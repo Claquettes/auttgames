@@ -1,0 +1,86 @@
+
+body {
+    z-index: 0;
+    width: 100vw;
+    height : 100vh;
+    overflow: hidden;
+    background-color: #ac988d;
+}
+.containertop{
+    display: flex;
+    height: 70%;
+    width: 100%;
+}
+.containerbottom{
+    display: flex;
+    height: 15%;
+    width: 100%;
+}
+.screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 100%;   
+    background: url(https://media.giphy.com/media/Bs0GXj3ew6xxK/giphy.gif) no-repeat center center fixed; 
+    background-size: cover;
+    /*La couleur de fond est gris clair*/
+    background-color: #9d68a5;
+    /*La bordure est noire et épaisse*/
+    font-size: 20px;
+    /*La police est de couleur blanche*/
+    color: #ffffff;
+}
+.input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 40%;
+    height: 100%;
+    background-color: #1974c4;
+    font-size: 20px;
+    color: #ffffff;
+}
+.animHautGauche{
+    display: flex;
+    z-index: 1;
+    height: 100%; 
+    width: 20%;
+    background-color: aqua;
+}
+.animHautDroite{
+    display: flex;
+    z-index: 1;
+    height: 100%; 
+    width: 20%;
+    background-color: aqua;
+}
+.animBasGauche{
+    display: flex;
+    z-index: 1;
+    height: 100%; 
+    width: 30%;
+    background-color: aqua;
+}
+.animBasDroite{
+    display: flex;
+    z-index: 1;
+    height: 100%; 
+    width: 30%;
+    background-color: aqua;
+}
+.footer{
+    color: #111; font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: 300; text-align: center; width: 100%; background-color: #ac988d; 
+    bottom: 2%;
+    position: absolute;
+
+}
+
+/*Palette CSS: 
+.color1 {color: #1974c4;}
+.color2 {color: #9d68a5;}
+.color3 {color: #b77b84;}
+.color4 {color: #ac988d;}
+.color5 {color: #a6a6a3;}
+*/
