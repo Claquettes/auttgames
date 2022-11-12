@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/games/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/games/css/morpion.css">
+	<link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+	<title>Morpion</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">AUTT</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigPation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Accueil</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							Jeux
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="/games/tic-tac-toe">Morpion</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-sm-12 col-md-6 offset-md-3">
+
+				<div class="alert d-none" role="alert" id="turn-message"></div>
+
+				<div class="card mb-3" id="user-card">
+					<div class="card-body">
+
+						<form method="POST" id="form">
+
+							<div class="mb-3">
+								<label for="username" class="form-label">Nom d'utilisateur</label>
+								<input type="text" class="form-control" id="username" minlength="2" maxlength="20"
+									placeholder="Saisir votre nom d'utilisateur" required>
+							</div>
+							<button class="btn btn-primary" id="start" type="submit">Créer un salon privée</button>
+						</form>
+
+					</div>
+				</div>
+
+				<div class="card mb-3 d-none" id="rooms-card">
+					<div class="card-header">Salons disponibles</div>
+					<ul class="list-group list-group-flush" id="rooms-list"></ul>
+				</div>
+
+				<div class="d-none" id="waiting-area">
+					<div class="card mb-3">
+						<div class="card-header">En attente d'un autre joueur</div>
+						<div class="card-body mx-auto">
+							<div class="spinner-border" role="status">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body text-center">
+							Partage ce lien pour inviter quelqu'un à jouer avec toi
+							<span id="link-to-share"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="card d-none" id="game-card">
+					<div class="card-header">
+						Tic-tac-toe
+					</div>
+					<div class="card-body mx-auto">
+						<table class="board">
+							<tr>
+								<td class="cell" id="cell-1-1"></td>
+								<td class="cell" id="cell-1-2"></td>
+								<td class="cell" id="cell-1-3"></td>
+							</tr>
+
+							<tr>
+								<td class="cell" id="cell-2-1"></td>
+								<td class="cell" id="cell-2-2"></td>
+								<td class="cell" id="cell-2-3"></td>
+							</tr>
+
+							<tr>
+								<td class="cell" id="cell-3-1"></td>
+								<td class="cell" id="cell-3-2"></td>
+								<td class="cell" id="cell-3-3"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div class="text-center d-none mt-2" id="restart-area">
+					<input class="btn btn-primary" id="restart" type="button" value="Rejouer">
+				</div>
+
+			</div>
+		</div>
+		<script src="/games/jquery/jquery.min.js"></script>
+		<script src="/games/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/games/socket.io/socket.io.js"></script>
+		<script src="/games/js/morpion.js"></script>
+</body>
+
+</html>

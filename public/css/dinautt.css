@@ -1,0 +1,183 @@
+html {
+	width: 100vw;
+	height: 100vh;
+}
+
+* {
+	padding: 20;
+	margin: 0;
+}
+
+body {
+	overflow: hidden;
+	background-color: #ac988d;
+}
+
+h1 {
+	color: black;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-size: 80px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 1;
+	text-align: center;
+	padding: 0px;
+}
+
+.annonceScore {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 32px;
+	margin: 0 0 -6px;
+	text-align: center;
+}
+
+.scoretexte {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 30px;
+	font-weight: 300;
+	line-height: 32px;
+	margin: 0 0 1px;
+	text-align: center;
+}
+
+.credits {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 15px;
+	margin: 0 0 2px;
+	text-align: center;
+}
+
+#leaderboard {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 32px;
+	margin: 0 0 2px;
+	text-align: center;
+	padding: 20px;
+}
+
+table {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 32px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+footer {
+	color: #111;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	font-weight: 300;
+	text-align: center;
+	width: 100%;
+	background-color: #ac988d;
+
+}
+
+/* animation du texte AUTT */
+div.autt-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.autt-item {
+	color: white;
+	font-weight: bold;
+	animation-name: text-shadow-multicolor2;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+
+}
+
+@keyframes text-shadow-multicolor2 {
+	0% {
+		text-shadow: 0 0 #9d68a5, 0 0 #b77b84, 0 0 #b77b84, 0 0 #ac988d, 0 0 #a6a6a3;
+		transform: translateX(0) translateY(0);
+	}
+
+	100% {
+		text-shadow: -5px -5px #9d68a5, -7px -7px #b77b84, -9px -9px #b77b84, -11px -11px #ac988d, -13px -13px #a6a6a3;
+		transform: translateX(8px) translateY(8px);
+	}
+}
+
+/* fin de l'animation du texte AUTT*/
+
+/*éléments du jeu */
+#game {
+	background-color: #ac988d;
+	border: 9px solid #b77b84;
+	height: 200px;
+	margin: 0 0 15px;
+}
+
+#obstacle-container {
+	overflow: hidden;
+	position: relative;
+	top: 60%;
+}
+
+#character {
+	/*width: 20px;
+	height: 50px;
+	border: 2px solid #000000;
+	background-color: #1974c4;*/
+	position: relative;
+	top: 160px;
+}
+
+.playAnimation {
+	animation: jump 500ms;
+}
+
+
+.obstacle {
+	width: 18px;
+	position: relative;
+	height: 50px;
+	border: 2px solid #000000;
+	background-color: #9d68a5;
+	display: inline-block;
+	left: 100%;
+}
+
+@keyframes jump {
+	0% {
+		top: 150px;
+	}
+
+	40% {
+		top: 100px;
+	}
+
+	60% {
+		top: 100px;
+	}
+
+	100% {
+		top: 150px;
+	}
+}
+
+/*Palette CSS: 
+.color1 {color: #1974c4;}
+.color2 {color: #9d68a5;}
+.color3 {color: #b77b84;}
+.color4 {color: #ac988d;}
+.color5 {color: #a6a6a3;}
+*/
