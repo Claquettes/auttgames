@@ -146,25 +146,37 @@ div.autt-container {
 	display: inline-block;
 	left: 100%;
 }
-
-@keyframes jump {
-	0% {
-		top: 150px;
-	}
-
-	40% {
-		top: 100px;
-	}
-
-	60% {
-		top: 100px;
-	}
-
-	100% {
-		top: 150px;
-	}
+@keyframes jump{
+	0%{top: 150px;}
+	40%{top: 100px;}
+	60%{top: 100px;}
+	100%{top: 150px;}
+}
+@keyframes jumpInverse{
+	0%{top: 4px;}
+	40%{top:54px;}
+	60%{top: 54px;}
+	100%{top: 4px;}
+}
+@keyframes downToUp{
+   0%{top: 150px;
+   transform-origin: center;
+   transform: rotate(0deg);}
+   30%{top: 120px;}
+   60%{top: 100px;}
+   100%{top: 40px;
+   transform: rotate(180deg);}
 }
 
+@keyframes upToDown{
+   0%{top: 40px;
+   transform-origin: center;
+   transform: rotate(0deg);}
+   30%{top: 70px;}
+   60%{top: 105px;}
+   100%{top: 150px;
+   transform: rotate(180deg);}
+}
 /*Palette CSS: 
 .color1 {color: #1974c4;}
 .color2 {color: #9d68a5;}

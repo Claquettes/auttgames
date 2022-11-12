@@ -28,6 +28,52 @@ let addNewObstacle = function () {
     obstacles.push(newObstacle);
     return newObstacle;
 }
+//fonction qui inverse la gravité
+let changeGravity =function () {
+    if (gravityPosition == -1) {
+    if (character.classList != "playAnimationDownToUp") {  
+        character.classList.add("playAnimationDownToUp");
+        setTimeout(function () {
+            character.classList.remove("playAnimationDownToUp");
+        //on fait une rotation de 180°
+        character.style.transform = "rotate(180deg)";    
+        }, 500);
+            gravityPosition *= -1; //1 = haut, -1 = bas
+    }
+}
+    else {
+        if (character.classList != "playAnimationUpToDown") {
+            character.classList.add("playAnimationUpToDown");
+            setTimeout(function () {
+                character.classList.remove("playAnimationUpToDown");
+                //on fait une rotation de 180°
+                character.style.transform = "rotate(0deg)";
+            }, 500);
+            gravityPosition *= -1; //1 = haut, -1 = bas
+        }
+    }
+}
+
+//fonction qui maintient le personage si la gravité est inversée
+let gravityHandler = function () {
+    if (gravityPosition == 1) {
+    document.getElementById("character").style.top = "4px";
+    }
+    else {
+    document.getElementById("character").style.top = "150px";
+    }
+   }
+    
+//fonction qui fait sauter si on appuie sur la barre espace et renverse la gravité si on appuie sur la touche "arrow up"
+var keyHandler = function (e) {
+    if (e.key == "ArrowUp") {
+        changeGravity();
+    }
+    if (e.key == " ") {
+        jump();
+    }
+    
+};
 
 let resetObstacle = function (obs) {
     obs.style.left = obstacleBaseOffset + "px";
@@ -65,7 +111,9 @@ var gameLoop = setInterval(function () {
             obs.remove();
 
         }
-
+        // On check la gravité pour repositionner le personnage au besoin
+        gravityHandler();
+        
         // On anime l'obstacle
         obstacleAnim(obs)
 
