@@ -1,4 +1,3 @@
-//declaration du joueur, obstacle, et du trigger pour le nombre d'obstacles passés
 const obstacleBaseOffset = document.getElementById("game").clientWidth; // décalage de l'obstacle au début du jeu
 
 var character = document.getElementById("character");
@@ -30,14 +29,6 @@ function jump() {
             }, 500);
     }
 }
-}
-
-let addNewObstacle = function () {
-    let newObstacle = document.createElement("div");
-    newObstacle.classList.add("obstacle");
-    obstacleContainer.appendChild(newObstacle);
-    obstacles.push(newObstacle);
-    return newObstacle;
 }
 //fonction qui inverse la gravité
 let changeGravity =function () {
@@ -86,6 +77,15 @@ var keyHandler = function (e) {
     
 };
 
+let addNewObstacle = function () {
+    let newObstacle = document.createElement("div");
+    newObstacle.classList.add("obstacle");
+    obstacleContainer.appendChild(newObstacle);
+    obstacles.push(newObstacle);
+    return newObstacle;
+}
+
+//procédure pour reset un obstacle
 let resetObstacle = function (obs) {
     obs.style.left = obstacleBaseOffset + "px";
 }
@@ -93,8 +93,7 @@ let resetObstacle = function (obs) {
 // procédure pour animer un obstacle
 let obstacleAnim = function (obs) {
     if (obs.style.left == '')
-        resetObstacle(obs)
-
+        resetObstacle(obs);
     let currentOffset = parseInt(obs.style.left.replace("px", ""));
     let newOffset = (currentOffset - speed <= -40) ? obstacleBaseOffset : currentOffset - speed;
     obs.style.left = newOffset + "px";
@@ -120,40 +119,43 @@ var gameLoop = setInterval(function () {
 
             obstacles.splice(obstacles.indexOf(obs), 1); // on cancel l'animation
             obs.remove();
-
         }
         // On check la gravité pour repositionner le personnage au besoin
         gravityHandler();
 
         // On anime l'obstacle
-        obstacleAnim(obs)
+        obstacleAnim(obs);
 
         document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
     })
 }, 10);
 
 // on lance le jeu :
-let ob = setInterval(function () {
+let ob = setInterval(function(){
     // on créer un nouvel obstacle tout à droite de l'écran toutes les 2 secondes
     addNewObstacle()
     //TODO change speed
 }, 2000);
 
+//procédure qui check si on a appuyé sur une touche
+let keyLooker = setInterval(function () {
+    document.addEventListener("keydown", keyHandler);
+}, 10);
 
 // Horloge qui augmente la clock toutes les secondes
-var timer = setInterval(function () {
+var timer = setInterval(function(){
     clock++;
 }, 1000);
 
 // procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 10 de speed
-var changeSpeed = setInterval(function () {
-    if (clock >= 10) {
-        if (speed < 10) {
-            speed = speed + (Math.random());
-            clock = 0;
+var changeSpeed = setInterval(function(){
+    if(clock>=10){
+        if(speed<10){
+            speed=speed+(Math.random());
+            clock=0;
             console.log(speed);
         }
     }
 }, 750);
 
-
+Footer
