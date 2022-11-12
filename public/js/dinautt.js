@@ -82,7 +82,7 @@ let addNewObstacle = function () {
     let newObstacle = document.createElement("div");
     newObstacle.classList.add("obstacle");
     obstacleContainer.appendChild(newObstacle);
-    obstacleContainerHaut.appendChild(newObstacle);
+    //obstacleContainerHaut.appendChild(newObstacle);
     obstacles.push(newObstacle);
     return newObstacle;
 }
