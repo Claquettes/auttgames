@@ -8,17 +8,28 @@ let score = 0;
 let temps = 440;
 let speed = 6; // px/10ms
 let clock = 0; //en secondes
+let gravityPosition = -1; // -1 = bas, 1 = haut; -1 par defaut NE METTEZ PAS 0! on se sert de la valeur negative pour inverser les animations
 
 let obstacles = [];
 
 // fonction qui fait sauter à l'input
 function jump() {
-    if (character.classList != "playAnimation") {
-        character.classList.add("playAnimation");
-        setTimeout(function () {
-            character.classList.remove("playAnimation");
-        }, 500);
+    //si le personnage est en bas, on le fait sauter
+    if (gravityPosition == -1){
+        if (character.classList != "playAnimation") {
+            character.classList.add("playAnimation");
+            setTimeout(function () {
+                character.classList.remove("playAnimation");
+            }, 500);
+    }}
+    else{   //si le personnage est en haut, on le fait descendre
+        if (character.classList != "playAnimationJumpInverse") {
+            character.classList.add("playAnimationJumpInverse");
+            setTimeout(function () {
+                character.classList.remove("playAnimationJumpInverse");
+            }, 500);
     }
+}
 }
 
 let addNewObstacle = function () {
@@ -113,7 +124,7 @@ var gameLoop = setInterval(function () {
         }
         // On check la gravité pour repositionner le personnage au besoin
         gravityHandler();
-        
+
         // On anime l'obstacle
         obstacleAnim(obs)
 
