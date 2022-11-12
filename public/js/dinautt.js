@@ -2,7 +2,7 @@ const obstacleBaseOffset = document.getElementById("game").clientWidth; // déca
 
 var character = document.getElementById("character");
 var obstacleContainer = document.getElementById("obstacle-container");
-var obstacleContainerHaut = document.getElementById("obstacle-container");
+var obstacleContainerHaut = document.getElementById("obstacle-containerHaut");
 
 let score = 0;
 let temps = 440;
