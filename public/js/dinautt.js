@@ -78,11 +78,16 @@ var keyHandler = function (e) {
     
 };
 
+//fonction qui créé un obstacle
 let addNewObstacle = function () {
     let newObstacle = document.createElement("div");
     newObstacle.classList.add("obstacle");
+    //on ajoute l'obstacle, soit en haut (newObstacleHaut), soit en bas (newObstacleBas)
+    if(Math.random() < 0.5){
     obstacleContainer.appendChild(newObstacle);
-    //obstacleContainerHaut.appendChild(newObstacle);
+    }else{
+        obstacleContainerHaut.appendChild(newObstacle);
+    }
     obstacles.push(newObstacle);
     return newObstacle;
 }
