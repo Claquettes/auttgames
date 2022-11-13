@@ -69,13 +69,13 @@ div.autt-container {
 }
 
 #obstacle-container{
-    height: 50px;
+    height: 54px;
     overflow: hidden;
     position: relative;
     top: 60%;
 }
 #obstacle-containerHaut{
-    height: 50px;
+    height: 54px;
     overflow: hidden;
     position: relative;
     top: 20%;
