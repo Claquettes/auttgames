@@ -119,16 +119,17 @@ var gameLoop = setInterval(function () {
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {
             //en fonction de la gravité, on check si le personnage est au dessus ou en dessous de l'obstacle
-            if (gravityPosition == -1)//cas où la gravité est normale {
-                if (characterTop <= 130) {
+            if (gravityPosition == -1){//cas où la gravité est normale {
+                if (characterTop >= 130) {
                     console.log("obstacle passé");
                 }
             else//cas ou le perso est en haut
             {
-                if (characterTop >= 20) {
+                if (characterTop <= 20) {
                     console.log("obstacle passé");
                 }
             }
+        }
 
             obstacles.splice(idx, 1); // on cancel l'animation
 
