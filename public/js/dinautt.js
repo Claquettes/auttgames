@@ -88,6 +88,7 @@ let addNewObstacle = function () {
     }else{
         obstacleContainerHaut.appendChild(newObstacle);
     }
+    //on pousse l'obstacle de droite à gauche
     obstacles.push(newObstacle);
     return newObstacle;
 }
