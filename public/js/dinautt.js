@@ -85,13 +85,14 @@ let addNewObstacle = function () {
     //on ajoute l'obstacle, soit en haut (newObstacleHaut), soit en bas (newObstacleBas)
     if(Math.random() < 0.5){
     obstacleContainer.appendChild(newObstacle);
-    }else{
-        obstacleContainerHaut.appendChild(newObstacleHaut);
+    }
+    else{
+        obstacleContainerHaut.appendChild(newObstacle);
     }
     //on pousse l'obstacle de droite à gauche
     obstacles.push(newObstacle);
     return newObstacle;
-}
+};
 
 //procédure pour reset un obstacle
 let resetObstacle = function (obs) {
