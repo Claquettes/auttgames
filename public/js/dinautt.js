@@ -86,7 +86,7 @@ let addNewObstacle = function () {
     if(Math.random() < 0.5){
     obstacleContainer.appendChild(newObstacle);
     }else{
-        obstacleContainerHaut.appendChild(newObstacle);
+        obstacleContainerHaut.appendChild(newObstacleHaut);
     }
     //on pousse l'obstacle de droite à gauche
     obstacles.push(newObstacle);
