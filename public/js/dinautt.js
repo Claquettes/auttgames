@@ -123,12 +123,12 @@ var gameLoop = setInterval(function () {
                 if (characterTop >= 130) {
                     console.log("obstacle passé");
                 }
-            else//cas ou le perso est en haut
-            {
-                if (characterTop <= 20) {
-                    console.log("obstacle passé");
+                else {
+                    console.log("perdu");
+                    clearInterval(gameLoop);
+                    obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
                 }
-            }
+            
         }
 
             obstacles.splice(idx, 1); // on cancel l'animation
