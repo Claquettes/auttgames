@@ -141,7 +141,7 @@ var gameLoop = setInterval(function () {
         // On anime l'obstacle
         obstacleAnim(obs);
 
-        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(characterTop));
     })
 }, 10);
 
