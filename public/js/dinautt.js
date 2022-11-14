@@ -117,7 +117,7 @@ var gameLoop = setInterval(function () {
         var blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {
-                if (characterTop >= 130) {
+                if (characterTop >= 50) {
                     console.log("obstacle passé");
                 }
                 else {
