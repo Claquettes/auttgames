@@ -115,11 +115,12 @@ var gameLoop = setInterval(function () {
     obstacles.forEach((obs, idx) => {
         var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top")); //recupère la valeur sur l'axe y du char//
         var blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
-
+        console.log(gravityPosition);
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {
             //en fonction de la gravité, on check si le personnage est au dessus ou en dessous de l'obstacle
-            if (gravityPosition <10){//cas où la gravité est normale {
+            if (gravityPosition == -1){
+                //cas où la gravité est normale {
                 if (characterTop >= 130) {
                     console.log("obstacle passé");
                 }
@@ -127,14 +128,10 @@ var gameLoop = setInterval(function () {
                     console.log("perdu");
                     clearInterval(gameLoop);
                     obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
+                    alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
                 }
             
-        }
-
-            obstacles.splice(idx, 1); // on cancel l'animation
-
-            alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
-            clearInterval(gameLoop);
+            }
         }
 
         // On check si on a jump au dessus d'un bloc
