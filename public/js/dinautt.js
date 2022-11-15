@@ -160,6 +160,7 @@ var gameLoop = setInterval(function () {
         // On affiche le score dans l'html, dans la div "scoretexte"
         document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
         addMoreObstacles();
+        console.log("oui");
         
     })
 }, 10);
