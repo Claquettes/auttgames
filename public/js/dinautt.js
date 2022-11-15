@@ -87,9 +87,11 @@ let addNewObstacle = function () {
     obstacleContainer.appendChild(newObstacle);
     console.log("obstacle en bas");
     }
-    else{
+    else{//on double la vitesse de l'obstacle en haut
+        speed *= 2;
         obstacleContainerHaut.appendChild(newObstacle);
         console.log("obstacle en haut");
+        speed /= 2;
     }
     //on pousse l'obstacle de droite à gauche
     obstacles.push(newObstacle);
@@ -119,7 +121,7 @@ var gameLoop = setInterval(function () {
         if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
 
                 if(gravityPosition == -1){ //si la gravité est normale
-                  {if ((characterTop  <= 130)) {        //position basse idle: 150px //postion haute idle: 0px
+                  {if ((characterTop  <= 130)) {        //position basse idle: 150px //postion haute idle: 4px
                         console.log("obstacle passé");                       //on à passé l'obstacle
                     }
                     else {
