@@ -156,7 +156,9 @@ var gameLoop = setInterval(function () {
         // On anime l'obstacle
         obstacleAnim(obs);
         // On affiche le score
-        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+        //document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+        //on affiche le score du joueur dans l'html
+        document.getElementById("scoretexte").innerHTML = (parseInt(score));
     })
 }, 10);
 
