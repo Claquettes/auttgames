@@ -20,7 +20,7 @@ function jump() {
             character.classList.add("playAnimation");
             setTimeout(function () {
                 character.classList.remove("playAnimation");
-            }, 500);
+            }, 500);    
     }}
     else{   //si le personnage est en haut, on le fait descendre
         if (character.classList != "playAnimationJumpInverse") {
@@ -145,7 +145,6 @@ var gameLoop = setInterval(function () {
                 
             
         }
-        // On check si on a jump au dessus d'un bloc
         if (blockLeft < 0) {
             score++;
 
@@ -157,9 +156,13 @@ var gameLoop = setInterval(function () {
 
         // On anime l'obstacle
         obstacleAnim(obs);
+        obstacleAnim(obs);
+        obstacleAnim(obs);
+        obstacleAnim(obs);
         // On affiche le score dans l'html, dans la div "scoretexte"
         document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
         
+
         
     })
 }, 10);
