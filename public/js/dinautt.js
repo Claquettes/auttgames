@@ -119,7 +119,7 @@ var gameLoop = setInterval(function () {
         if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
 
                 if(gravityPosition == -1){ //si la gravité est normale
-                  {if (characterTop  <= 130) {        //position basse idle: 150px //postion haute idle: 4px
+                  {if ((characterTop  <= 130) && (characterTop >=70)) {        //position basse idle: 150px //postion haute idle: 4px
                         console.log("obstacle passé");                       //on à passé l'obstacle
                     }
                     else {
@@ -130,7 +130,7 @@ var gameLoop = setInterval(function () {
                 }}}
 
                 else{ //si la gravité est inversée
-                    if (characterTop  >= 40) {        //position basse idle: 150px //postion haute idle: 4px
+                    if ((characterTop  >= 40) && (characterTop <=50)) {        //position basse idle: 150px //postion haute idle: 4px
                         console.log("obstacle passé");                       //on à passé l'obstacle
                     }
                     else {
@@ -155,7 +155,7 @@ var gameLoop = setInterval(function () {
 
         // On anime l'obstacle
         obstacleAnim(obs);
-
+        // On affiche le score
         document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
     })
 }, 10);
@@ -177,10 +177,10 @@ var timer = setInterval(function(){
     clock++;
 }, 1000);
 
-// procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 10 de speed
+// procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 20 de speed
 var changeSpeed = setInterval(function(){
     if(clock>=10){
-        if(speed<10){
+        if(speed<20){
             speed=speed+(Math.random());
             clock=0;
             console.log(speed);
