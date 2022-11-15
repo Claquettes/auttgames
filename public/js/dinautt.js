@@ -201,6 +201,7 @@ var addMoreObstacles = setInterval(function(){
     if(random<0.5){
         //on ajoute un obstacle
         addNewObstacle();
+        console.log("un obstacle de plus pour toi ma petite gueule");
     }
 }, 100);
    
