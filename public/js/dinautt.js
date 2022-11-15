@@ -155,10 +155,10 @@ var gameLoop = setInterval(function () {
 
         // On anime l'obstacle
         obstacleAnim(obs);
-        // On affiche le score
-        //document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
-        //on affiche le score du joueur dans l'html
-        //document.getElementById("scoretexte").innerHTML = (parseInt(score));
+        // On affiche le score dans l'html, dans la div "scoretexte"
+        document.getElementById("scoretexte").innerHTML = "Score: " + score;
+        
+        
     })
 }, 10);
 
