@@ -116,8 +116,9 @@ var gameLoop = setInterval(function () {
         var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top")); //recupère la valeur sur l'axe y du char//
         var blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
         // On vérifie si on a perdu
-        if (blockLeft < 20 && blockLeft > 0) {
-                if (characterTop  <= 130 && characterTop >= 99) {        //position basse idle: 150px //postion haute idle: 4px
+        if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
+                if(gravityPosition == -1){ //si la gravité est normale
+                {if (characterTop  <= 130) {        //position basse idle: 150px //postion haute idle: 4px
                     console.log("obstacle passé");                       //on à passé l'obstacle
                 }
                 else {
@@ -125,7 +126,8 @@ var gameLoop = setInterval(function () {
                     clearInterval(gameLoop);
                     obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
                     alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
-                }
+                }}}
+                
             
             }
         // On check si on a jump au dessus d'un bloc
