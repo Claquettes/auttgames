@@ -193,3 +193,14 @@ var changeSpeed = setInterval(function(){
 }, 750);
 
 Footer
+
+//procédure qui ajoute plus d'obstacles de temps en temps
+var addMoreObstacles = setInterval(function(){
+    //on génère un nombre aléatoire entre 0 et 1
+    let random = Math.random();
+    if(random<0.5){
+        //on ajoute un obstacle
+        addNewObstacle();
+    }
+}, 100);
+   
