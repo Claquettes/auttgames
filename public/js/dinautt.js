@@ -117,7 +117,7 @@ var gameLoop = setInterval(function () {
         var blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
-            
+
                 if(gravityPosition == -1){ //si la gravité est normale
                   {if (characterTop  <= 130) {        //position basse idle: 150px //postion haute idle: 4px
                         console.log("obstacle passé");                       //on à passé l'obstacle
@@ -156,7 +156,7 @@ var gameLoop = setInterval(function () {
         // On anime l'obstacle
         obstacleAnim(obs);
 
-        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(characterTop));
+        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
     })
 }, 10);
 
