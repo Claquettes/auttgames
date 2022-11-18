@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "devStart": "nodemon app.js",
-
+    "devStart": "nodemon user.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,11 +14,17 @@
     "@popperjs/core": "^2.9.2",
     "@types/socket.io": "^2.1.13",
     "@types/socket.io-client": "^1.4.36",
+    "bcrypt": "^5.1.0",
     "bootstrap": "^5.0.0-beta2",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
     "jquery": "^3.6.0",
+    "method-override": "^3.0.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "socket.io": "^4.0.1"
   },
