@@ -31,7 +31,7 @@ function getUser(username, password) {
     })
 }
 
-async function getUserById(id) {
+function getUserById(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE id = ?', [id], (err, result) => {
             if (err) {
@@ -46,6 +46,7 @@ async function getUserById(id) {
         })
     })    
 }
+
 
 module.exports = {
     init,
