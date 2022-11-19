@@ -88,5 +88,5 @@ function checkNotAuthenticated(req, res, next) {
     }
     next()
 }
-
-app.listen(3000)
+console.log('ok ca marche on est sur le port 80')
+app.listen(80)
