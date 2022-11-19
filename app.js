@@ -56,7 +56,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    db.registerUser(req.body.username, req.body.password).then((result) => {
+    db.registerUser(escapeHtml(req.body.username), req.body.password).then((result) => {
         res.redirect('/games/login')
     }).catch((err) => {
         console.log(err)
