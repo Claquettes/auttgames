@@ -2,7 +2,7 @@
 <% if (messages.error){ %>
     <div class="error"><%= messages.error %></div>}
 <% } %>  
-<form action="/login" method="POST">
+<form action="/games/login" method="POST">
 
     <div>
         <label for="name">Pseudo</label>
@@ -14,4 +14,4 @@
     </div>
     <button type="submit">Se connecter</button>
 </form>
-<a href="/register">Pas encore inscrit?</a>
+<a href="/games/register">Pas encore inscrit?</a>
