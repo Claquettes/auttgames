@@ -50,8 +50,8 @@ app.get('/login',checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/login',checkNotAuthenticated,  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
+    successRedirect: '/games/profile',
+    failureRedirect: '/games/login',
     failureFlash: true 
 }   
 ))
@@ -68,9 +68,9 @@ app.post('/register',checkNotAuthenticated, async (req, res) => {
             name: req.body.name,
             password: hashedPassword
         })
-        res.redirect('/login')
+        res.redirect('/games/login')
     }catch{
-        res.redirect('/register')
+        res.redirect('/games/register')
     }
     console.log(users) // to see the users array, faudrait le mettre dans la database
 })
@@ -79,7 +79,7 @@ app.delete('/logout', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.redirect('/login');
+      res.redirect('/games/login');
     });
   
 });
