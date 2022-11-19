@@ -24,23 +24,30 @@ header > a:first-child {
 
 header ul {
     list-style-type: none;
+}
+
+header ul,
+header .nav-profile {
     margin: 0;
     padding: 0;
     height: auto;
     display: inline-block;
 }
 
-header ul li {
+header ul,
+header .nav-profile {
     margin: 7px 5px;
     transition: background-color 0.4s;
 }
 
-header ul li:hover {
+header ul li:hover,
+header span a:hover {
     background: #444;
     transition: background-color 0.4s;
 }
 
-header li {
+header li,
+header span a {
     display: inline-block;
     padding: 12px 10px;
 }
@@ -48,6 +55,11 @@ header li {
 header a {
     color: #CCC;
     text-decoration: none;
+}
+
+header .nav-profile {
+    float: right;
+    margin-right: 20px;
 }
 
 footer {

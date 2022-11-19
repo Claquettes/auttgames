@@ -1,7 +1,6 @@
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
-
 
 const { Socket } = require('socket.io');
 
@@ -12,22 +11,29 @@ const http = require('http').createServer(app);
 const path = require('path');
 const bcrypt = require('bcrypt')
 const passport = require('passport')
+const mysql = require('mysql');
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const db = require('./db')
 
 const port = 8080;
-
-
 // USERS
+
+db.init(mysql, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD);
+
 const initializePassport = require('./passport-config')
 initializePassport(
-    passport,
-    name => users.find(user => user.name === name),
-    id => users.find(user => user.id === id)
+    passport
 )
 
 const users = [] //array of users, faudrait le mettre dans une base de données
+users.push({
+    id: Date.now().toString(),
+    name: "aaa",
+    password: "$2b$10$kF18/h5RUkTbUaLcHH/nVO3PaiFEdth20Jaa2ExnkSbS1FnTW9Mxe"
+})
+
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
@@ -41,26 +47,26 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-app.get('/profile', checkAuthenticated,(req, res) => {
-    res.render('index.ejs', {name: req.user.name})
+app.get('/profile', checkAuthenticated, (req, res) => {
+    res.render('index.ejs', { username: req.user.username })
 })
 
-app.get('/login',checkNotAuthenticated, (req, res) => {
+app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
 
-app.post('/login',checkNotAuthenticated,  passport.authenticate('local', {
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/games/profile',
     failureRedirect: '/games/login',
-    failureFlash: true 
-}   
+    failureFlash: true
+}
 ))
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
 })
 
-app.post('/register',checkNotAuthenticated, async (req, res) => {
+app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         users.push({
@@ -69,30 +75,30 @@ app.post('/register',checkNotAuthenticated, async (req, res) => {
             password: hashedPassword
         })
         res.redirect('/games/login')
-    }catch{
+    } catch {
         res.redirect('/games/register')
     }
     console.log(users) // to see the users array, faudrait le mettre dans la database
 })
 app.delete('/logout', (req, res, next) => {
     req.logOut((err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect('/games/login');
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/games/login');
     });
-  
+
 });
 
 function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return next()
     }
     res.redirect('/games/login')
-} 
+}
 
 function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return res.redirect('/games/profile')
     }
     next()
@@ -136,7 +142,7 @@ http.listen(port, () => {
 let rooms = [];
 
 io.on("connect_error", (err) => {
-  console.log(`connect_error due to ${err.message}`);
+    console.log(`connect_error due to ${err.message}`);
 });
 
 io.on('connection', (socket) => {
@@ -214,5 +220,5 @@ function createRoom(player) {
 }
 
 function roomId() {
-    return Math.random().toString(36).substring(2, 2+9);
+    return Math.random().toString(36).substring(2, 2 + 9);
 }

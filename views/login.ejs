@@ -1,12 +1,12 @@
 <h1>Connexion à ton compte Claq.fr!</h1>
 <% if (messages.error){ %>
-    <div class="error"><%= messages.error %></div>}
+    <div class="error"><%= messages.error %></div>
 <% } %>  
 <form action="/games/login" method="POST">
 
     <div>
-        <label for="name">Pseudo</label>
-        <input type="text" name="name" id="name" required>
+        <label for="username">Pseudo</label>
+        <input type="text" name="username" id="username" required>
     </div>
     <div>
         <label for="password">Mot de passe</label>
