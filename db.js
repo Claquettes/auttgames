@@ -1,4 +1,4 @@
-const { use } = require("passport");
+const bcrypt = require('bcrypt')
 
 var db;
 
@@ -18,33 +18,17 @@ function init(mysql, user, password) {
 
 function getUser(username, password) {
     return new Promise((resolve, reject) => {
-        console.log("username: " + username)
-        db.query('SELECT * FROM users WHERE username = "' + username + '"', (err, result) => {
+        db.query('SELECT * FROM users WHERE username = ?', [username], (err, result) => {
             if (err)
                 reject(err)
 
-            console.dir(JSON.stringify(result))
-
-            console.log(result === [])
-            console.log(Object.keys.length != 1)
-
-            if (result === [] || Object.keys.length != 1) {
+            if (result.length != 1 || !bcrypt.compareSync(password, result[0].password)) {
                 resolve(undefined)
             } else {
-                console.log(JSON.stringify(result[0]))
                 resolve(result[0])
             }
         })
     })
-
-
-    /*db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, result) => {
-        if (err) {
-            console.log(err)
-        } else {
-            return result
-        }
-    })*/
 }
 
 async function getUserById(id) {
@@ -56,7 +40,6 @@ async function getUserById(id) {
                 if (result === [] || Object.keys.length != 1) {
                     resolve(undefined)
                 } else {
-                    console.log(JSON.stringify(result[0]))
                     resolve(result[0])
                 }
             }

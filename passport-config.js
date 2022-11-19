@@ -4,9 +4,7 @@ const db = require('./db')
 
 function initialize(passport) {
     const authenticateUser = async (name, password, done) => {
-        let hashedPassword = await bcrypt.hash(password, 10)
-
-        db.getUser(name, hashedPassword).then((user) => {
+        db.getUser(name, password).then((user) => {
             console.log("got user: ")
             console.dir(user)
 

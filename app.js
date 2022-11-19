@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const { Socket } = require('socket.io');
-
 const express = require('express');
 
 const app = express();
@@ -18,21 +17,11 @@ const methodOverride = require('method-override')
 const db = require('./db')
 
 const port = 8080;
-// USERS
 
 db.init(mysql, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD);
 
 const initializePassport = require('./passport-config')
-initializePassport(
-    passport
-)
-
-const users = [] //array of users, faudrait le mettre dans une base de données
-users.push({
-    id: Date.now().toString(),
-    name: "aaa",
-    password: "$2b$10$kF18/h5RUkTbUaLcHH/nVO3PaiFEdth20Jaa2ExnkSbS1FnTW9Mxe"
-})
+initializePassport(passport)
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
