@@ -44,12 +44,24 @@ function getUserById(id) {
                 }
             }
         })
-    })    
+    })
 }
 
+function registerUser(username, password) {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO users (username, password, cheat,) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
 
 module.exports = {
     init,
     getUser,
-    getUserById
+    getUserById,
+    registerUser
 };

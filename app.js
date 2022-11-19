@@ -56,19 +56,14 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            name: req.body.name,
-            password: hashedPassword
-        })
+    db.registerUser(req.body.username, req.body.password).then((result) => {
         res.redirect('/games/login')
-    } catch {
+    }).catch((err) => {
+        console.log(err)
         res.redirect('/games/register')
-    }
-    console.log(users) // to see the users array, faudrait le mettre dans la database
+    })
 })
+
 app.delete('/logout', (req, res, next) => {
     req.logOut((err) => {
         if (err) {
@@ -94,7 +89,17 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 
+function escapeHtml(text) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
 
+    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+}
 
 
 
