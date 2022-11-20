@@ -1,3 +1,61 @@
-h1 {
-    color: red; font-family: 'Helvetica Neue', sans-serif; font-size: 80px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
+body {
+    z-index: 0;
+    width: 100vw;
+    height : 100vh;
+    overflow: hidden;
+    background-color: #ac988d;
 }
+
+h1 {
+    color: rgb(0, 0, 0); font-family: 'Helvetica Neue', sans-serif; font-size: 40px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
+}
+
+.banner{
+    flex: 70%;
+    background-color: aqua;
+
+}
+.level{
+    flex: 15%;
+    background-color: rgb(174, 0, 255);
+
+}
+.gold{
+    flex: 15%;
+    background-color: rgb(174, 0, 255);
+
+}
+
+.haut{
+    position: relative;
+    size: relative;
+    height: 30%;
+    width: 100%;
+    display: flex;
+
+}
+.stats{
+    position: relative;
+    left: 15%;
+    size: relative;
+    height: 30%;
+    width: 70%;
+    display: flex;
+
+}
+.statsContent{
+    justify-content: center;
+    flex: 33%;
+    height: 100%;
+}
+.statsTexte{
+    color: rgb(0, 0, 0); font-family: 'Helvetica Neue', sans-serif; font-size: 20px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
+    justify-content: center;    
+}
+/*Palette CSS: 
+.color1 {color: #1974c4;}
+.color2 {color: #9d68a5;}
+.color3 {color: #b77b84;}
+.color4 {color: #ac988d;}
+.color5 {color: #a6a6a3;}
+*/

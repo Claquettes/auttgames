@@ -1,8 +1,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/games/css/stylesGlobal.css">
-    <link rel="stylesheet" href="/games/css/profile.css">
+	<link rel="stylesheet" href="/stylesGlobal.css">
+    <link rel="stylesheet" href="/profile.css">
 	<link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
 	<title>Jeux en ligne</title>
 </head>
@@ -28,13 +28,48 @@
 			<a href="/games/profile">Mon profil</a>
 		</span>
 	</header>
-    <div>
-        <h1>Salut <%= username %>, la forme?</h1>
-        <p>Cette page c'est ton profil! on est en train de bosser dessus, donc si tu vois ca c'est que t'es sacrément early dans le projet, et on t'en remercie.</p>
-        <form action="/games/logout?_method=DELETE" method="POST">
-            <button type="submit">Se déconnecter</button>
-        </form>
+    <div class="haut">
+		<div class="level">
+			lvl et xp
+		</div>
+
+        <div class="banner">
+            //on affiche la banière du joueur
+            <img src="/games/banners/<?= $banner ?>" alt="Bannière du joueur">
+        </div>
+
+		<div class="gold">
+			autt coins et finance
+		</div>
+
+
     </div>
+	<h1>Bienvenue sur ton profil, <%= username %> !</h1> 
+	<form action="/games/logout?_method=DELETE" method="POST">
+		<button type="submit">Se déconnecter</button>
+	</form>
+	<div class="statsTexte">Tes statistiques:</div>
+	<div class="stats">
+		<div class="statCitations statsContent">
+			<h2>Jeu des citations</h2>
+			Nombre de parties jouées : <?= $total_games ?>
+			<p>Nombre de bonnes réponses : <?= $wins ?><p>
+			<p>Ratio des bonnes réponses : <?= Ratio ?><
+			<p>Ratio de victoires : <?= RatioV ?></p>
+			<p>Nombre de parties terminées en dernière position :     </p>
+		</div>
+		<div class="statsMorpion statsContent">
+			<h2>Morpion</h2>
+			<p>Nombre de parties jouées : <?= $total_games ?></p>
+			<p>Nombre de parties gagnées : <?= $wins ?></p>
+		</div>
+		<div class="statsDinautt statsContent">
+			<h2>Din'autt</h2>
+			<p>Nombre de parties jouées : <?= $total_games ?>    </p>
+			<p>Highscore: <?= Highscore ?></p>
+
+		</div>
+</div>
 </body>
 
 
