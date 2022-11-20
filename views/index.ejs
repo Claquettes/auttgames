@@ -1,5 +1,40 @@
-<h1>Salut <%= username %>, la forme?</h1>
-<p>Cette page c'est ton profil! on est en train de bosser dessus, donc si tu vois ca c'est que t'es sacrément early dans le projet, et on t'en remercie.</p>
-<form action="/games/logout?_method=DELETE" method="POST">
-    <button type="submit">Se déconnecter</button>
-</form>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/games/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/games/css/profile.css">
+	<link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+	<title>Jeux en ligne</title>
+</head>
+
+<body>
+	<header>
+		<a href="/">AUTT</a>
+		<ul>
+			<a href="/games/">
+				<li>Accueil</li>
+			</a>
+			<a href="/games/dinautt">
+				<li>Dinautt</li>
+			</a>
+			<a href="/games/morpion">
+				<li>Morpion</li>
+			</a>
+			<a href="/games/citations">
+				<li>Jeu des citations</li>
+			</a>
+		</ul>
+		<span class="nav-profile">
+			<a href="/games/profile">Mon profil</a>
+		</span>
+	</header>
+    <div>
+        <h1>Salut <%= username %>, la forme?</h1>
+        <p>Cette page c'est ton profil! on est en train de bosser dessus, donc si tu vois ca c'est que t'es sacrément early dans le projet, et on t'en remercie.</p>
+        <form action="/games/logout?_method=DELETE" method="POST">
+            <button type="submit">Se déconnecter</button>
+        </form>
+    </div>
+</body>
+
+
