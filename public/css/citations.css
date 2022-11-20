@@ -16,6 +16,9 @@ body {
     height: 15%;
     width: 100%;
 }
+.games{
+    display:none;
+}
 .screen{
     display: flex;
     justify-content: center;

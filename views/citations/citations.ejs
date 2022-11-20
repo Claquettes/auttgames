@@ -1,12 +1,15 @@
-<html lang="en"><head>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/games/css/stylesGlobal.css">
     <link rel="stylesheet" href="/games/css/citations.css">
-    
+
     <title>Jeu des citations</title>
 </head>
+
 <body>
     <header>
         <a href="/">AUTT</a>
@@ -25,26 +28,30 @@
             </a>
         </ul>
     </header>
+    <div class="waiting">
+        <button id="createButton">Créer une room</button>
+    </div>
+    <div class="containertop games">
 
-    <div class="containertop">
-        
         <div class="animHautGauche">
         </div>
 
-        <div class="screen">        <!--là où on affiche les citations, les scores ect --> 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+        <div class="screen">
+            <!--là où on affiche les citations, les scores ect -->
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
         </div>
-    
+
         <div class="animHautDroite">
         </div>
     </div>
 
-    <div class="containerbottom">
-        
+    <div class="containerbottom games">
+
         <div class="animBasGauche">
         </div>
 
-        <div class="input">        <!--là où on écrit les réponses -->
+        <div class="input">
+            <!--là où on écrit les réponses -->
             <p>Input</p>
         </div>
 
@@ -53,8 +60,12 @@
 
     </div>
 
-    <div class="footer">        <!-- en bas de la page, commun à toutes les pages-->
+    <div class="footer">
+        <!-- en bas de la page, commun à toutes les pages-->
         <p>© 2022 - AUTT</p>
     </div>
+    <script src="/games/socket.io/socket.io.js"></script>
+    <script src="/games/js/citations.js"></script>
+</body>
 
-</body></html>
+</html>

@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 const socketio = require('socket.io')(http);
 
 require('./dinautt').init(app, http);
-require('./citations').init(app);
+require('./citations').init(app, socketio);
 require('./morpion').init(app, socketio);
 
 http.listen(port, () => {

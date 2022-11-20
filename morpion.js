@@ -2,10 +2,7 @@ const path = require('path');
 let rooms = [];
 
 function init(app, socketio) {
-    socketio.on('connection', (socket) => {
-        console.log("New connection");
-    });
-
+    
     morpionIO = socketio.of('/morpion');
 
     app.get('/morpion', (req, res) => {
