@@ -61,35 +61,36 @@ function init(app, db, session_secret) {
 
     });
 
-    function checkAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) {
-            return next()
-        }
-        res.redirect('/games/login')
+}
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
     }
+    res.redirect('/games/login')
+}
 
-    function checkNotAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) {
-            return res.redirect('/games/profile')
-        }
-        next()
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/games/profile')
     }
+    next()
+}
 
+function escapeHtml(text) {
+    var map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
 
-    function escapeHtml(text) {
-        var map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-
-        return text.replace(/[&<>"']/g, function (m) { return map[m]; });
-    }
-
+    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
 
 module.exports = {
-    init: init
+    init: init,
+    checkAuthenticated: checkAuthenticated,
+    checkNotAuthenticated: checkNotAuthenticated
 }
