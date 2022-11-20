@@ -28,9 +28,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates/index.html'));
 });
 
+const socketio = require('socket.io')(http);
+
 require('./dinautt').init(app, http);
 require('./citations').init(app);
-require('./morpion').init(app, http);
+require('./morpion').init(app, socketio);
 
 http.listen(port, () => {
     console.log(`Listening on http://localhost:${port}/`);
