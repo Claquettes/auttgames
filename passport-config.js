@@ -1,8 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
-const db = require('./db')
 
-function initialize(passport) {
+function initialize(passport, db) {
     const authenticateUser = async (name, password, done) => {
         db.getUser(name, password).then((user) => {
             console.log("got user: ")

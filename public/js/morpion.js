@@ -9,7 +9,7 @@ const player = {
   win: false
 };
 
-const socket = io.connect("https://claq.fr/", {path: "/games/socket.io"});
+const socket = io.connect({path: "/games/socket.io"});
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
