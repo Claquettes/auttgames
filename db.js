@@ -16,17 +16,27 @@ function init(mysql, user, password) {
     });
 }
 
-function getUser(username, password) {
+function getUsersByName(username) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE username = ?', [username], (err, result) => {
             if (err)
                 reject(err)
+            else
+                resolve(result)
+        })
+    })
+}
 
-            if (result.length != 1 || !bcrypt.compareSync(password, result[0].password)) {
-                resolve(undefined)
-            } else {
-                resolve(result[0])
-            }
+function getUser(username, password) {
+    return new Promise((resolve, reject) => {
+        getUsersByName(username).then((result) => {
+            if (result.length !== 1 || !bcrypt.compareSync(password, result[0].password))
+                resolve(null)
+            else
+                return resolve(result[0])
+        }).catch((err) => {
+            console.log(err)
+            reject(err)
         })
     })
 }
@@ -49,12 +59,20 @@ function getUserById(id) {
 
 function registerUser(username, password) {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO users (username, password, cheat) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
-            if (err) {
-                reject(err)
+        getUsersByName(username).then((result) => {
+            if (result.length !== 0) {
+                reject("Nom d'utilisateur déjà utilisé")
             } else {
-                resolve(result)
+                db.query('INSERT INTO users (username, password, cheat) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve(result)
+                    }
+                })
             }
+        }).catch((err) => {
+            reject(err)
         })
     })
 }

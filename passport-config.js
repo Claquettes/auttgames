@@ -8,7 +8,7 @@ function initialize(passport) {
             console.log("got user: ")
             console.dir(user)
 
-            if (user !== undefined) {
+            if (user !== null) {
                 return done(null, user)
             } else {
                 return done(null, false, { message: 'Mot de passe incorrect' })
