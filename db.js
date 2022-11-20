@@ -57,29 +57,27 @@ function getUserById(id) {
     })
 }
 
-function registerUser(username, password) {
-    return new Promise((resolve, reject) => {
-        getUsersByName(username).then((result) => {
-            if (result.length !== 0) {
-                reject("Nom d'utilisateur déjà utilisé")
-            } else {
-                db.query('INSERT INTO users (username, password, cheat) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
-                    if (err) {
-                        reject(err)
-                    } else {
-                        resolve(result)
-                    }
-                })
-            }
-        }).catch((err) => {
-            reject(err)
-        })
+function registerUser(username, password, cb) {
+    getUsersByName(username).then((result) => {
+        if (result.length !== 0) {
+            cb(null, false, "Nom d'utilisateur déjà utilisé")
+        } else {
+            db.query('INSERT INTO users (username, password, cheat) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
+                if (err) {
+                    cb(err)
+                } else {
+                    cb(null, true, result)
+                }
+            })
+        }
+    }).catch((err) => {
+        cb(err)
     })
 }
 
 module.exports = {
-    init,
-    getUser,
-    getUserById,
-    registerUser
-};
+            init,
+            getUser,
+            getUserById,
+            registerUser
+        };

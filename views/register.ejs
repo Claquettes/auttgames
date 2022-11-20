@@ -1,8 +1,11 @@
 <h1>Création de ton compte Claq.fr!</h1> 
 <h2>Attention, le site est en cours de déploiement, les données ne sont pas encore rajoutées à la base de données. Les comptes créés avant le déploiement sont supprimés à chaque redémarrage du serveur.</h2>
 
-<form action="/games/register" method="POST">
+<% if (locals.message) { %>
+    <div class="error"><%= message %></div>
+<% } %>  
 
+<form action="/games/register" method="POST">
     <div>
         <label for="username">Pseudo</label>
         <input type="text" name="username" id="username" required>

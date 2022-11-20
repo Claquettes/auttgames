@@ -56,11 +56,17 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    db.registerUser(escapeHtml(req.body.username), req.body.password).then((result) => {
-        res.redirect('/games/login')
-    }).catch((err) => {
-        console.log(err)
-        res.redirect('/games/register')
+    db.registerUser(escapeHtml(req.body.username), req.body.password, (err, success, message) => {
+        if (err) {
+            console.log(err)
+            res.sendStatus(500)
+        } else {
+            if (success) {
+                res.render('login.ejs', { message: message })
+            } else {
+                res.render('register.ejs', { message: message })
+            }
+        }
     })
 })
 
