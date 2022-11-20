@@ -3,17 +3,17 @@ const bcrypt = require('bcrypt')
 var db;
 
 function init(mysql, user, password) {
-    db = mysql.createConnection({
+    db = mysql.createPool({
         host: 'localhost',
         user: user,
         password: password,
         database: 'auttgames'
-    });
+    })
 
-    db.connect(function (err) {
+    db.getConnection((err, connection) => {
         if (err) throw err;
-        console.log("MySQL Connected!");
-    });
+        console.log('MySQL connected')
+    })
 }
 
 function getUsersByName(username) {
