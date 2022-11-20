@@ -32,7 +32,6 @@ require('./dinautt').init(app, http);
 require('./citations').init(app);
 require('./morpion').init(app, http);
 
- http.listen(port, () => {
-     console.log(`Listening on http://localhost:${port}/`);
- });
- 
+http.listen(port, () => {
+    console.log(`Listening on http://localhost:${port}/`);
+});

@@ -10,7 +10,7 @@ function init(app, db, session_secret) {
         resave: false,
         saveUninitialized: false
     }))
-    
+
     require('./passport-config')(passport, db)
 
     app.use(passport.initialize())
