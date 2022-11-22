@@ -184,8 +184,8 @@ var timer = setInterval(function(){
 
 // procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 20 de speed
 var changeSpeed = setInterval(function(){
-    if(clock>=10){
-        if(speed<20){
+    if(clock>=7){
+        if(speed<<30){
             speed=speed+(Math.random());
             clock=0;
             console.log(speed);
