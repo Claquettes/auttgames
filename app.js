@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 const socketio = require('socket.io')(http);
 
 require('./dinautt').init(app, http);
-require('./citations').init(app, socketio);
-require('./morpion').init(app, socketio);
+require('./citations').init(app, socketio.of('/citations'));
+require('./morpion').init(app, socketio.of('/morpion'));
 
 http.listen(port, () => {
     console.log(`Listening on http://localhost:${port}/`);

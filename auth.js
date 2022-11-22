@@ -19,12 +19,12 @@ function init(app, db, session_secret) {
     app.get('/profile', checkAuthenticated, (req, res) => {
         db.getStats(req.user.id).then((stats) => {
             res.render('profile',
-            { 
-                username: req.user.username,
-                banner: req.user.username,
-                avatar: req.user.avatar,
-                stats: stats
-            })
+                {
+                    username: req.user.username,
+                    banner: req.user.username,
+                    avatar: req.user.avatar,
+                    stats: stats
+                })
         }).catch((err) => {
             console.log(err)
             res.sendStatus(500)

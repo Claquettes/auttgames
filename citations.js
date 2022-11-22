@@ -1,24 +1,21 @@
 const sessionController = require('./sessionController');
+const { checkAuthenticated } = require('./auth');
 const db = require('./db');
 
 let rooms = [];
 let players = [];
-
-const path = require('path');
-const auth = require('./auth');
 function init(app, socketio) {
-    citationsIO = socketio.of('/citations');
-    citationsIO.use(sessionController.wrap(sessionController.sessionMiddleware));
+    socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
-    app.get('/citations', auth.checkAuthenticated, (req, res) => {
+    app.get('/citations', checkAuthenticated, (req, res) => {
         res.render("citations/citations", { username: req.user.username });
     });
 
-    citationsIO.on("connect_error", (err) => {
+    socketio.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
     });
 
-    citationsIO.on('connection', (socket) => {
+    socketio.on('connection', (socket) => {
         console.log(`[connection] ${socket.id}`);
         socket.emit('get rooms', rooms);
         socket.on('create room', async () => {
