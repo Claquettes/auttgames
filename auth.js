@@ -1,6 +1,8 @@
 const flash = require('express-flash')
+const { Stats } = require('fs')
 const methodOverride = require('method-override')
 const passport = require('passport')
+const db = require('./db')
 
 const sessionController = require('./sessionController')
 
@@ -15,11 +17,22 @@ function init(app, db, session_secret) {
     app.use(methodOverride('_method'))
 
     app.get('/profile', checkAuthenticated, (req, res) => {
-        res.render('index.ejs', { username: req.user.username })
+        db.getStats(req.user.id).then((stats) => {
+            res.render('profile',
+            { 
+                username: req.user.username,
+                banner: req.user.username,
+                avatar: req.user.avatar,
+                stats: stats
+            })
+        }).catch((err) => {
+            console.log(err)
+            res.sendStatus(500)
+        })
     })
 
     app.get('/login', checkNotAuthenticated, (req, res) => {
-        res.render('login.ejs')
+        res.render('login')
     })
 
     app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
@@ -30,7 +43,7 @@ function init(app, db, session_secret) {
     ))
 
     app.get('/register', checkNotAuthenticated, (req, res) => {
-        res.render('register.ejs')
+        res.render('register')
     })
 
     app.post('/register', checkNotAuthenticated, async (req, res) => {
@@ -40,9 +53,9 @@ function init(app, db, session_secret) {
                 res.sendStatus(500)
             } else {
                 if (success) {
-                    res.render('login.ejs', { message: message })
+                    res.render('login', { message: message })
                 } else {
-                    res.render('register.ejs', { message: message })
+                    res.render('register', { message: message })
                 }
             }
         })
