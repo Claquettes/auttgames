@@ -1,29 +1,30 @@
-const path = require('path');
+const sessionController = require('./sessionController');
+const { checkAuthenticated } = require('./auth');
+
 let rooms = [];
 
 function init(app, socketio) {
-    
-    morpionIO = socketio.of('/morpion');
+    socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
-    app.get('/morpion', (req, res) => {
-        res.sendFile(path.join(__dirname, 'templates/morpion/index.html'));
+    app.get('/morpion', checkAuthenticated, (req, res) => {
+        res.render('morpion/morpion', { username: req.user.username });
     });
 
-    morpionIO.on("connect_error", (err) => {
-        console.log(`connect_error due to ${err.message}`);
+    socketio.on("connect_error", (err) => {
+        console.log(`[MORPION] connect_error due to ${err.message}`);
     });
 
-    morpionIO.on('connection', (socket) => {
-        console.log(`[connection] ${socket.id}`);
+    socketio.on('connection', (socket) => {
+        console.log(`[MORPION] connection ${socket.id}`);
 
         socket.on('playerData', (player) => {
-            console.log(`[playerData] ${player.username}`);
+            console.log(`[MORPION] playerData ${player.username}`);
 
             let room = null;
 
             if (!player.roomId) {
                 room = createRoom(player);
-                console.log(`[create room ] - ${room.id} - ${player.username}`);
+                console.log(`[MORPION] create room - ${room.id} - ${player.username}`);
             } else {
                 room = rooms.find(r => r.id === player.roomId);
 
@@ -37,32 +38,32 @@ function init(app, socketio) {
 
             socket.join(room.id);
 
-            morpionIO.to(socket.id).emit('join room', room.id);
+            socketio.to(socket.id).emit('join room', room.id);
 
             if (room.players.length === 2) {
-                morpionIO.to(room.id).emit('start game', room.players);
+                socketio.to(room.id).emit('start game', room.players);
             }
         });
 
         socket.on('get rooms', () => {
-            morpionIO.to(socket.id).emit('list rooms', rooms);
+            socketio.to(socket.id).emit('list rooms', rooms);
         });
 
         socket.on('play', (player) => {
             console.log(`[play] ${player.username}`);
-            morpionIO.to(player.roomId).emit('play', player);
+            socketio.to(player.roomId).emit('play', player);
         });
 
         socket.on('play again', (roomId) => {
             const room = rooms.find(r => r.id === roomId);
 
             if (room && room.players.length === 2) {
-                morpionIO.to(room.id).emit('play again', room.players);
+                socketio.to(room.id).emit('play again', room.players);
             }
         })
 
         socket.on('disconnect', () => {
-            console.log(`[disconnect] ${socket.id}`);
+            console.log(`[MORPION] disconnect ${socket.id}`);
             let room = null;
 
             rooms.forEach(r => {

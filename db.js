@@ -41,7 +41,7 @@ function getUser(username, password) {
     })
 }
 
-function getUserById(id) {
+async function getUserById(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE id = ?', [id], (err, result) => {
             if (err) {
@@ -66,7 +66,13 @@ function registerUser(username, password, cb) {
                 if (err) {
                     cb(err)
                 } else {
-                    cb(null, true, result)
+                    db.query('INSERT INTO stats (id) VALUES (?)', [result.insertId], (err, result2) => {
+                        if (err) {
+                            cb(err)
+                        } else {
+                            cb(null, true, null)
+                        }
+                    })
                 }
             })
         }
@@ -75,9 +81,30 @@ function registerUser(username, password, cb) {
     })
 }
 
+async function getStats(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM stats WHERE id = ?', [id], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                if (result === [] || Object.keys.length != 1) {
+                    resolve(undefined)
+                } else {
+                    stats = result[0]
+                    stats.Citations_ratioWins = stats.Citations_wins / ((stats.Citations_total_games) == 0 ? 1 : stats.Citations_total_games)
+                    stats.Citations_ratioA = stats.Citations_nbA / ((stats.Citations_totalA) == 0 ? 1 : stats.Citations_totalA)
+                    stats.Morpion_ratioWins = stats.Morpion_wins / ((stats.Morpion_total_games) == 0 ? 1 : stats.Morpion_total_games)
+                    resolve(stats)
+                }
+            }
+        })
+    })
+}
+
 module.exports = {
             init,
             getUser,
             getUserById,
-            registerUser
+            registerUser,
+            getStats
         };

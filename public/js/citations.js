@@ -6,5 +6,5 @@ socket.on('get rooms', (rooms) => {
 });
 
 document.getElementById("createButton").addEventListener("click", () => {
-  socket.emit('create room', Math.random().toString(10).substring(2, 2 + 9));
+  socket.emit('create room');
 });

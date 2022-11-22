@@ -35,7 +35,7 @@
 
         <div class="banner">
             //on affiche la banière du joueur
-            <img src="/games/banners/<?= $banner ?>" alt="Bannière du joueur">
+            <img src="/games/banners/<%= banner %>" alt="Bannière du joueur">
         </div>
 
 		<div class="gold">
@@ -52,21 +52,22 @@
 	<div class="stats">
 		<div class="statCitations statsContent">
 			<h2>Jeu des citations</h2>
-			Nombre de parties jouées : <?= $total_games ?>
-			<p>Nombre de bonnes réponses : <?= $wins ?><p>
-			<p>Ratio des bonnes réponses : <?= Ratio ?><
-			<p>Ratio de victoires : <?= RatioV ?></p>
-			<p>Nombre de parties terminées en dernière position :     </p>
+			<p>Nombre de parties jouées : <%= stats.Citations_total_games %></p>
+			<p>Nombre de bonnes réponses : <%= stats.Citations_wins %><p>
+			<p>Ratio des bonnes réponses : <%= stats.Citations_ratioA %>
+			<p>Ratio de victoires : <%= stats.Citations_ratioWins %></p>
+			<p>Nombre de parties terminées en dernière position : <?= stats.Citations_nbgames_last %></p>
 		</div>
 		<div class="statsMorpion statsContent">
 			<h2>Morpion</h2>
-			<p>Nombre de parties jouées : <?= $total_games ?></p>
-			<p>Nombre de parties gagnées : <?= $wins ?></p>
+			<p>Nombre de parties jouées : <%= stats.Morpion_total_games %></p>
+			<p>Nombre de parties gagnées : <%= stats.Morpion_wins %></p>
+			<p>Ratio de victoires : <%= stats.Morpion_ratioWins %></p>
 		</div>
 		<div class="statsDinautt statsContent">
 			<h2>Din'autt</h2>
-			<p>Nombre de parties jouées : <?= $total_games ?>    </p>
-			<p>Highscore: <?= Highscore ?></p>
+			<p>Nombre de parties jouées : <%= stats.Dinautt_total_games %></p>
+			<p>Highscore: <%= stats.Dinautt_highscore %></p>
 
 		</div>
 </div>
