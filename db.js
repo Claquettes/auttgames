@@ -41,7 +41,7 @@ function getUser(username, password) {
     })
 }
 
-function getUserById(id) {
+async function getUserById(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM users WHERE id = ?', [id], (err, result) => {
             if (err) {

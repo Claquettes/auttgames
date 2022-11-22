@@ -1,15 +1,12 @@
 const flash = require('express-flash')
-const session = require('express-session')
 const methodOverride = require('method-override')
 const passport = require('passport')
 
+const sessionController = require('./sessionController')
+
 function init(app, db, session_secret) {
     app.use(flash())
-    app.use(session({
-        secret: session_secret,
-        resave: false,
-        saveUninitialized: false
-    }))
+    app.use(sessionController.sessionMiddleware)
 
     require('./passport-config')(passport, db)
 

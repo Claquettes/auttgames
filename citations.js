@@ -1,11 +1,14 @@
+const sessionController = require('./sessionController');
+const db = require('./db');
+
 let rooms = [];
 let players = [];
 
 const path = require('path');
 const auth = require('./auth');
 function init(app, socketio) {
-
     citationsIO = socketio.of('/citations');
+    citationsIO.use(sessionController.wrap(sessionController.sessionMiddleware));
 
     app.get('/citations', auth.checkAuthenticated, (req, res) => {
         res.render("citations/citations", { username: req.user.username });
@@ -18,9 +21,13 @@ function init(app, socketio) {
     citationsIO.on('connection', (socket) => {
         console.log(`[connection] ${socket.id}`);
         socket.emit('get rooms', rooms);
-        socket.on('create room', (username) => {
+        socket.on('create room', async () => {
+            console.log(socket.request.session.passport.user)
+            let user = await db.getUserById(socket.request.session.passport.user);
+            console.log('Got user : ' + user.username)
+
             let id = roomId();
-            rooms.push({owner: username, id: id});
+            rooms.push({owner: user.username, id: id});
             players.push({
                 username: "test",
                 roomId: id,
