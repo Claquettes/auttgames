@@ -44,3 +44,7 @@ function roomId() {
 module.exports = {
     init: init
 }
+
+app.get('/citations/loading', checkAuthenticated, (req, res) => {
+    res.render("citations/loading");
+});
