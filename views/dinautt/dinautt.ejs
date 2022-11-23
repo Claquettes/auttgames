@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html onclick="jump()">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Some games created by the AUTT Team; right here for you to try and enjoy, on Claq.fr">
+    <title>Jeu du Dinau'tt</title>
+    <meta name="description" content="Le jeu du Dino mais en mode AUTT">
+    <link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+    <link rel="stylesheet" href="/games/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/games/css/dinautt.css">
+</head>
+
+<body>
+<header>
+    <a href="/">AUTT</a>
+    <ul>
+        <a href="/games/">
+            <li>Accueil</li>
+        </a>
+        <a href="/games/dinautt">
+            <li>Dinautt</li>
+        </a>
+        <a href="/games/morpion">
+            <li>Morpion</li>
+        </a>
+        <a href="/games/citations">
+            <li>Jeu des citations</li>
+        </a>
+    </ul>
+</header>
+
+<h1>Le jeu du Dino mais en version
+    <div class='autt-container'>
+        <div class='autt-item'>AUTT</div>
+    </div>
+</h1>
+
+<p class="annonceScore">Ton score est :</p>
+<p class="scoretexte">0</p>
+</div>
+<div id="game">
+    <div id="character"><img src="/games/assets/dinautt/taco.png" width="40" height="40">
+    </div>
+    <div id="obstacle-containerHaut">
+    </div>
+    <div id="obstacle-container">
+    </div>
+</div>
+<div id="leaderboard">
+    "Space" to jump and "UpArrow" to change gravity <br>
+    Leaderboard [WORK IN PROGRESS], Petit bug pour le moment, sautez meme si vous êtes du coté opposé à l'obstacle.<br>
+    <br>
+    <table>
+        <thead>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Score</th>
+        </thead>
+        <tbody>
+        <% for (var i = 0; i < leaderboard.length; i++) { %>
+            <tr>
+                <td>
+                    <%= leaderboard[i].username %>
+                </td>
+                <td>
+                    <%= leaderboard[i].Dinautt_highscore %>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+<div id="bottomTexte">
+    <div class="credits">Fait avec amour à Lyon par FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a>
+    </div>
+    <br>
+</div>
+<footer>
+    <p>©claq.fr 2022.</p><br>
+    <p>Made with ♡ in Lyon, France.</p>
+</footer>
+<script src="/games/socket.io/socket.io.js"></script>
+<script src="/games/js/dinautt.js" async></script>
+</body>
+</html>

@@ -1,8 +1,6 @@
 const flash = require('express-flash')
-const { Stats } = require('fs')
 const methodOverride = require('method-override')
 const passport = require('passport')
-const db = require('./db')
 
 const sessionController = require('./sessionController')
 
@@ -13,7 +11,18 @@ function init(app, db, session_secret) {
     require('./passport-config')(passport, db)
 
     app.use(passport.initialize())
-    app.use(passport.session())
+    app.use(passport.session(
+        {
+            secret: session_secret,
+            resave: false,
+            saveUninitialized: false,
+            cookie: {
+                maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+                sameSite: true,
+                secure: true
+            },
+        }
+    ))
     app.use(methodOverride('_method'))
 
     app.get('/profile', checkAuthenticated, (req, res) => {
@@ -36,10 +45,10 @@ function init(app, db, session_secret) {
     })
 
     app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-        successRedirect: '/games/profile',
-        failureRedirect: '/games/login',
-        failureFlash: true
-    }
+            successRedirect: '/games/profile',
+            failureRedirect: '/games/login',
+            failureFlash: true
+        }
     ))
 
     app.get('/register', checkNotAuthenticated, (req, res) => {
@@ -53,9 +62,9 @@ function init(app, db, session_secret) {
                 res.sendStatus(500)
             } else {
                 if (success) {
-                    res.render('login', { message: message })
+                    res.render('login', {message: message})
                 } else {
-                    res.render('register', { message: message })
+                    res.render('register', {message: message})
                 }
             }
         })
@@ -88,7 +97,7 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 function escapeHtml(text) {
-    var map = {
+    let map = {
         '&': '&amp;',
         '<': '&lt;',
         '>': '&gt;',
@@ -96,7 +105,9 @@ function escapeHtml(text) {
         "'": '&#039;'
     };
 
-    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+    return text.replace(/[&<>"']/g, function (m) {
+        return map[m];
+    });
 }
 
 module.exports = {

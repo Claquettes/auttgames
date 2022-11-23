@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 
-var db;
+let db;
 
 function init(mysql, user, password) {
     db = mysql.createPool({
@@ -10,7 +10,7 @@ function init(mysql, user, password) {
         database: 'auttgames'
     })
 
-    db.getConnection((err, connection) => {
+    db.getConnection((err) => {
         if (err) throw err;
         console.log('MySQL connected')
     })
@@ -47,7 +47,7 @@ async function getUserById(id) {
             if (err) {
                 reject(err)
             } else {
-                if (result === [] || Object.keys.length != 1) {
+                if (result === [] || Object.keys.length !== 1) {
                     resolve(undefined)
                 } else {
                     resolve(result[0])
@@ -66,7 +66,7 @@ function registerUser(username, password, cb) {
                 if (err) {
                     cb(err)
                 } else {
-                    db.query('INSERT INTO stats (id) VALUES (?)', [result.insertId], (err, result2) => {
+                    db.query('INSERT INTO stats (id) VALUES (?)', [result.insertId], (err) => {
                         if (err) {
                             cb(err)
                         } else {
@@ -81,19 +81,19 @@ function registerUser(username, password, cb) {
     })
 }
 
-async function getStats(id) {
+async function getAllStats(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM stats WHERE id = ?', [id], (err, result) => {
             if (err) {
                 reject(err)
             } else {
-                if (result === [] || Object.keys.length != 1) {
+                if (result === [] || Object.keys.length !== 1) {
                     resolve(undefined)
                 } else {
-                    stats = result[0]
-                    stats.Citations_ratioWins = stats.Citations_wins / ((stats.Citations_total_games) == 0 ? 1 : stats.Citations_total_games)
-                    stats.Citations_ratioA = stats.Citations_nbA / ((stats.Citations_totalA) == 0 ? 1 : stats.Citations_totalA)
-                    stats.Morpion_ratioWins = stats.Morpion_wins / ((stats.Morpion_total_games) == 0 ? 1 : stats.Morpion_total_games)
+                    let stats = result[0]
+                    stats.Citations_ratioWins = stats.Citations_wins / ((stats.Citations_total_games) === 0 ? 1 : stats.Citations_total_games)
+                    stats.Citations_ratioA = stats.Citations_nbA / ((stats.Citations_totalA) === 0 ? 1 : stats.Citations_totalA)
+                    stats.Morpion_ratioWins = stats.Morpion_wins / ((stats.Morpion_total_games) === 0 ? 1 : stats.Morpion_total_games)
                     resolve(stats)
                 }
             }
@@ -101,10 +101,36 @@ async function getStats(id) {
     })
 }
 
+function getDinauttLeaderboard() {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT username, Dinautt_highscore FROM stats JOIN users on users.id = stats.id ORDER BY Dinautt_highscore DESC LIMIT 10', (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
+
+function updateHighscore(id, highscore) {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE stats SET Dinautt_highscore = GREATEST(Dinautt_highscore, ?) WHERE id = ?', [highscore, id], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
+
 module.exports = {
-            init,
-            getUser,
-            getUserById,
-            registerUser,
-            getStats
-        };
+    init,
+    getUser,
+    getUserById,
+    registerUser,
+    getStats: getAllStats,
+    getDinauttLeaderboard: getDinauttLeaderboard,
+    updateHighscore: updateHighscore
+};

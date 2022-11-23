@@ -1,8 +1,10 @@
+let socket = io("/dinautt");
+
 const obstacleBaseOffset = document.getElementById("game").clientWidth; // décalage de l'obstacle au début du jeu
 
-var character = document.getElementById("character");
-var obstacleContainer = document.getElementById("obstacle-container");
-var obstacleContainerHaut = document.getElementById("obstacle-containerHaut");
+let character = document.getElementById("character");
+let obstacleContainer = document.getElementById("obstacle-container");
+let obstacleContainerHaut = document.getElementById("obstacle-containerHaut");
 
 let score = 0;
 let temps = 440;
@@ -15,37 +17,37 @@ let obstacles = [];
 // fonction qui fait sauter à l'input
 function jump() {
     //si le personnage est en bas, on le fait sauter
-    if (gravityPosition == -1){
-        if (character.classList != "playAnimation") {
+    if (gravityPosition === -1) {
+        if (!character.classList.contains("playAnimation")) {
             character.classList.add("playAnimation");
             setTimeout(function () {
                 character.classList.remove("playAnimation");
             }, 500);
-    }}
-    else{   //si le personnage est en haut, on le fait descendre
-        if (character.classList != "playAnimationJumpInverse") {
+        }
+    } else {   //si le personnage est en haut, on le fait descendre
+        if (!character.classList.contains("playAnimationJumpInverse")) {
             character.classList.add("playAnimationJumpInverse");
             setTimeout(function () {
                 character.classList.remove("playAnimationJumpInverse");
             }, 500);
+        }
     }
 }
-}
+
 //fonction qui inverse la gravité
-let changeGravity =function () {
-    if (gravityPosition == -1) {
-    if (character.classList != "playAnimationDownToUp") {  
-        character.classList.add("playAnimationDownToUp");
-        setTimeout(function () {
-            character.classList.remove("playAnimationDownToUp");
-        //on fait une rotation de 180°
-        character.style.transform = "rotate(180deg)";    
-        }, 500);
+let changeGravity = function () {
+    if (gravityPosition === -1) {
+        if (!character.classList.contains("playAnimationDownToUp")) {
+            character.classList.add("playAnimationDownToUp");
+            setTimeout(function () {
+                character.classList.remove("playAnimationDownToUp");
+                //on fait une rotation de 180°
+                character.style.transform = "rotate(180deg)";
+            }, 500);
             gravityPosition *= -1; //1 = haut, -1 = bas
-    }
-}
-    else {
-        if (character.classList != "playAnimationUpToDown") {
+        }
+    } else {
+        if (!character.classList.contains("playAnimationUpToDown")) {
             character.classList.add("playAnimationUpToDown");
             setTimeout(function () {
                 character.classList.remove("playAnimationUpToDown");
@@ -59,23 +61,21 @@ let changeGravity =function () {
 
 //fonction qui maintient le personage si la gravité est inversée
 let gravityHandler = function () {
-    if (gravityPosition == 1) {
-    document.getElementById("character").style.top = "0px";
+    if (gravityPosition === 1) {
+        document.getElementById("character").style.top = "0px";
+    } else {
+        document.getElementById("character").style.top = "150px";
     }
-    else {
-    document.getElementById("character").style.top = "150px";
-    }
-   }
-    
+}
+
 //fonction qui fait sauter si on appuie sur la barre espace et renverse la gravité si on appuie sur la touche "arrow up"
-var keyHandler = function (e) {
-    if (e.key == "ArrowUp") {
+let keyHandler = function (e) {
+    if (e.key === "ArrowUp") {
         changeGravity();
     }
-    if (e.key == " ") {
+    if (e.key === " ") {
         jump();
     }
-    
 };
 
 //fonction qui créé un obstacle
@@ -83,11 +83,10 @@ let addNewObstacle = function () {
     let newObstacle = document.createElement("div");
     newObstacle.classList.add("obstacle");
     //on ajoute l'obstacle, soit en haut (newObstacleHaut), soit en bas (newObstacleBas)
-    if(Math.random() < 0.5){
-    obstacleContainer.appendChild(newObstacle);
-    console.log("obstacle en bas");
-    }
-    else{//on double la vitesse de l'obstacle en haut
+    if (Math.random() < 0.5) {
+        obstacleContainer.appendChild(newObstacle);
+        console.log("obstacle en bas");
+    } else {//on double la vitesse de l'obstacle en haut
         speed *= 2;
         obstacleContainerHaut.appendChild(newObstacle);
         console.log("obstacle en haut");
@@ -105,7 +104,7 @@ let resetObstacle = function (obs) {
 
 // procédure pour animer un obstacle
 let obstacleAnim = function (obs) {
-    if (obs.style.left == '')
+    if (obs.style.left === '')
         resetObstacle(obs);
     let currentOffset = parseInt(obs.style.left.replace("px", ""));
     let newOffset = (currentOffset - speed <= -40) ? obstacleBaseOffset : currentOffset - speed;
@@ -113,37 +112,21 @@ let obstacleAnim = function (obs) {
 };
 
 // boucle principale du jeu pour vérifier si on a perdu, compter le score, animer les obstacles...
-var gameLoop = setInterval(function () {
+let gameLoop = setInterval(function () {
     obstacles.forEach((obs, idx) => {
-        var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top")); //recupère la valeur sur l'axe y du char//
-        var blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
+        let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top")); //recupère la valeur sur l'axe y du char//
+        let blockLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left")); //recupère la valeur sur l'axe x du block//
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
-
-                if(gravityPosition == -1){ //si la gravité est normale
-                  {if ((characterTop  <= 130)) {        //position basse idle: 150px //postion haute idle: 4px
-                        console.log("obstacle passé");                       //on à passé l'obstacle
-                    }
-                    else {
-                        console.log("perdu");
-                        clearInterval(gameLoop);
-                        obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
-                        alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
-                }}}
-
-                else{ //si la gravité est inversée
-                    if ((characterTop  >= 40)) {        //position basse idle: 150px //postion haute idle: 4px
-                        console.log("obstacle passé");                       //on à passé l'obstacle
-                    }
-                    else {
-                        console.log("perdu");
-                        clearInterval(gameLoop);
-                        obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
-                        alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
-                }}
-
-                
-            
+            if ((gravityPosition === -1 && characterTop <= 130) || (gravityPosition === 1 && characterTop >= 40)) { //si la gravité est normale
+                console.log("obstacle passé");                       //on à passé l'obstacle
+            } else {
+                console.log("perdu");
+                clearInterval(gameLoop);
+                obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
+                alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + score);
+                socket.emit('newscore', score);
+            }
         }
         // On check si on a jump au dessus d'un bloc
         if (blockLeft < 0) {
@@ -159,14 +142,13 @@ var gameLoop = setInterval(function () {
         obstacleAnim(obs);
         // On affiche le score dans l'html, dans la div "scoretexte"
         document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
-        addMoreObstacles();
         console.log("oui");
-        
+
     })
 }, 10);
 
 // on lance le jeu :
-let ob = setInterval(function(){
+let ob = setInterval(function () {
     // on créer un nouvel obstacle tout à droite de l'écran toutes les 2 secondes
     addNewObstacle()
     //TODO change speed
@@ -178,31 +160,29 @@ let keyLooker = setInterval(function () {
 }, 10);
 
 // Horloge qui augmente la clock toutes les secondes
-var timer = setInterval(function(){
+let timer = setInterval(function () {
     clock++;
 }, 1000);
 
 // procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 20 de speed
-var changeSpeed = setInterval(function(){
-    if(clock>=7){
-        if(speed<<30){
-            speed=speed+(Math.random());
-            clock=0;
+let changeSpeed = setInterval(function () {
+    if (clock >= 7) {
+        if (speed << 30) {
+            speed = speed + (Math.random());
+            clock = 0;
             console.log(speed);
         }
     }
 }, 750);
 
-Footer
-
 //procédure qui ajoute plus d'obstacles de temps en temps
-var addMoreObstacles = setInterval(function(){
+/*setInterval(function () {
     //on génère un nombre aléatoire entre 0 et 1
     let random = Math.random();
-    if(random<0.5){
+    if (random < 0.5) {
         //on ajoute un obstacle
         addNewObstacle();
         console.log("un obstacle de plus pour toi ma petite gueule");
     }
 }, 100);
-   
+   */

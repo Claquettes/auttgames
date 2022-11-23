@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 const socketio = require('socket.io')(http);
 
-require('./dinautt').init(app, http);
+require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 

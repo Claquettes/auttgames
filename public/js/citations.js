@@ -33,7 +33,7 @@ socket.on('get rooms', (rooms) => {
 socket.on('get players', (players, id) => {
   let html = "";
   for (i = 0; i < players.length; i++) {
-    if (players[i].roomId == id) {
+    if (players[i].roomId === id) {
       html += players[i].username;
     }
   }  
@@ -45,13 +45,13 @@ socket.on('already connected', (room, players) => {
   waitingRoom.classList.remove('d-none');
   createbutton.classList.add('d-none');
   joinbutton.classList.add('d-none');
-  document.getElementById("hostname").innerHTML = "Host de la partie : "+room.owner;
+  document.getElementById("hostname").innerHTML = "Host de la partie : " + room.owner;
   let html = "";
-  for (i = 0; i < players.length; i++) {
-    if (players[i].roomId == room.id) {
-      html += '<div class="player"><img class="avatar" src="https://cdn.discordapp.com/attachments/725671112658255895/1045028468024410212/images.png"> <p class="username">'+players[i].username+"</p></div>";
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].roomId === room.id) {
+      html += '<div class="player"><img class="avatar" src="https://cdn.discordapp.com/attachments/725671112658255895/1045028468024410212/images.png" alt="avatar"> <p class="username">' + players[i].username + "</p></div>";
     }
-  }  
+  }
   document.getElementById("playersList").innerHTML = html;
   console.log(players);
 });
