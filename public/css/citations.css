@@ -16,9 +16,7 @@ body {
     height: 15%;
     width: 100%;
 }
-.games{
-    display:none;
-}
+
 .screen{
     display: flex;
     justify-content: center;
@@ -78,6 +76,25 @@ body {
     bottom: 2%;
     position: absolute;
 
+}
+
+.avatar{
+   height: 64px;
+   width: 64px; 
+   border-radius: 100%;
+}
+
+.player{
+  display: flex;
+  justify-content: left;
+  padding: 5px;
+}
+
+.username{
+  align-self: center;  
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: 10px;
 }
 
 /*Palette CSS: 
