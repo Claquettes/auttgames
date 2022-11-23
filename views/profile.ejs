@@ -29,13 +29,19 @@
 		</span>
 	</header>
     <div class="haut">
-		<div class="level">
-			lvl et xp
+		<div class="gauche">
+            <div class="level">
+                <img src="/games/assets/assets-profile/level/image_part_072.jpg" class="lvlPng" alt="level">
+            </div>
+            <div class="avatar">
+                <img src="/games/assets/assets-profile/avatar.jpg" class="avatarPng" alt="avatar">
+            </div>
+                
 		</div>
 
         <div class="banner">
-            //on affiche la banière du joueur
-            <img src="/games/banners/<%= banner %>" alt="Bannière du joueur">
+            <img src="/games/banners/<%= banner %>" alt="">
+            <img src="/games/assets/assets-profile/banner.jpg" class="bannerPng" alt="">
         </div>
 
 		<div class="gold">
@@ -45,9 +51,7 @@
 
     </div>
 	<h1>Bienvenue sur ton profil, <%= username %> !</h1> 
-	<form action="/games/logout?_method=DELETE" method="POST">
-		<button type="submit">Se déconnecter</button>
-	</form>
+	
 	<div class="statsTexte">Tes statistiques:</div>
 	<div class="stats">
 		<div class="statCitations statsContent">
@@ -71,6 +75,12 @@
 
 		</div>
 </div>
+<div class="deconnection">
+    <form action="/games/logout?_method=DELETE" method="POST">
+        <button type="submit">Se déconnecter</button>
+    </form>
+</div>
+
 </body>
 
 

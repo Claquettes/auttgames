@@ -13,11 +13,54 @@ h1 {
 .banner{
     flex: 70%;
     background-color: aqua;
+    overflow: hidden;
+
+}
+.gauche{
+    flex: 15%; 
 
 }
 .level{
-    flex: 15%;
-    background-color: rgb(174, 0, 255);
+    size: relative;
+    position: relative;
+    top: 0%;
+    left: 62%;
+    height: 20%;
+    width: 20%;
+}
+.lvlPng{
+    z-index: 2;
+    border-radius: 100% 98% 90%;
+    size: relative;
+    position: relative;
+    top: 10%;
+    left: 80%;
+    height: 100%;
+    width: 100%;
+
+}
+
+.avatarPng{
+    z-index: 1;
+    size: relative;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    position: relative;
+    border-radius: 100%;
+    top: -15%;
+    left: 0%;
+    height: 90%;
+    width: 90%;
+
+}
+.bannerPng{
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    object-fit : scale-down;
+    width:100%;
+    height: auto;
 
 }
 .gold{
@@ -35,6 +78,7 @@ h1 {
 
 }
 .stats{
+    z-index: 1;
     position: relative;
     left: 15%;
     size: relative;
@@ -51,6 +95,11 @@ h1 {
 .statsTexte{
     color: rgb(0, 0, 0); font-family: 'Helvetica Neue', sans-serif; font-size: 20px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
     justify-content: center;    
+}
+
+.deconnection{
+    position: relative;
+    left: 50%;
 }
 /*Palette CSS: 
 .color1 {color: #1974c4;}
