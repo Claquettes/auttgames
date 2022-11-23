@@ -21,7 +21,6 @@ h1 {
 
 }
 .level{
-    size: relative;
     position: relative;
     top: 0%;
     left: 62%;
@@ -42,7 +41,6 @@ h1 {
 
 .avatarPng{
     z-index: 1;
-    size: relative;
     border-style: solid;
     border-color: black;
     border-width: 5px;
