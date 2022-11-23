@@ -11,6 +11,10 @@ function init(app, socketio) {
         res.render("citations/citations", { username: req.user.username });
     });
 
+    app.get('/citations/loading', checkAuthenticated, (req, res) => {
+        res.render("citations/loading");
+    });
+    
     socketio.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
     });
@@ -44,3 +48,4 @@ function roomId() {
 module.exports = {
     init: init
 }
+
