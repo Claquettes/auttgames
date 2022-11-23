@@ -67,6 +67,10 @@ footer {
 
 }
 
+.d-none {
+    display: none!important;
+}
+
 /*Palette CSS: 
 .color1 {color: #1974c4;}
 .color2 {color: #9d68a5;}

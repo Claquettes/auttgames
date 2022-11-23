@@ -27,10 +27,10 @@ body {
   size-adjust: relative;
   font-weight: 300;
   font-size: 1.5em;
-  width: 50%;
+  width: 100%;
   z-index:3;
   position: relative;
-  left: 40%;
+  text-align: center;
 }
 .players{
   z-index: 3;
@@ -47,11 +47,11 @@ body {
   size-adjust: relative;
   font-weight: 300;
   font-size: 1.5em;
-  width: 50%;
+  width: 100%;
   z-index:3;
   position: relative;
   top: 4%;
-  left: 40%;
+  text-align: center;
 }
 .host{
   z-index: 3;

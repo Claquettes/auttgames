@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/games/css/stylesGlobal.css">
     <link rel="stylesheet" href="/games/css/citations.css">
+    <link rel="stylesheet" href="/games/css/loading.css">
 
     <title>Jeu des citations</title>
 </head>
@@ -30,8 +31,32 @@
     </header>
     <div class="waiting">
         <button id="createButton">Créer une room</button>
+        <button id="joinButton">Rejoindre une room</button>
     </div>
-    <div class="containertop games">
+    <div id="waitingRoom" class="d-none">
+    <div class ="containerPlayer">
+		<div class="topTexte">
+			Joueurs Connectés:
+		</div>
+		<div id="playersList" class="players"></div>
+		<div id="hostname" class="bottomTexte">
+			Host de la partie:
+		</div>
+		<div class="host"></div>
+	</div>
+	<div class="texte">
+		<h1>System<span style="color:white;">.<span style="color:#e06c75;">out</span>.</span><span style="color:#61afef;">println</span>("</h1>
+		<div class="string">
+		  <h1 class="greeting en">en attente</h1>
+		  <h1 class="greeting es">de tous les</h1>
+		  <h1 class="greeting de">joueurs pour</h1>
+		  <h1 class="greeting it">lancer la partie</h1>  
+		</div>
+		<h1 class="closure">");</h1>
+	</div>
+    </div>
+    <div id= "gameContainer" class="d-none">
+    <div class="containertop">
 
         <div class="animHautGauche">
         </div>
@@ -45,7 +70,7 @@
         </div>
     </div>
 
-    <div class="containerbottom games">
+    <div class="containerbottom">
 
         <div class="animBasGauche">
         </div>
@@ -59,7 +84,7 @@
         </div>
 
     </div>
-
+    </div>
     <div class="footer">
         <!-- en bas de la page, commun à toutes les pages-->
         <p>© 2022 - AUTT</p>
