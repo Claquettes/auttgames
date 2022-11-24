@@ -20,14 +20,17 @@ function init(app, socketio) {
     });
 
     socketio.on('connection', (socket) => {
-        if (socket.request.session.passport != undefined) {
-          if (players.map(p => p.id).includes(socket.request.session.passport.user)) socket.emit('already connected', rooms[0], players);
+        let user = socket.request.session.passport.user;
+
+        if (user === undefined) {
+            return;
         }
-        console.log(`[connection] ${socket.id}`);
+
+        if (players.map(p => p.id).includes(user.id))
+            socket.emit('already connected', rooms[0], players);
+
         socket.on('create room', async () => {
-            console.log(socket.request.session.passport.user)
-            let user = await db.getUserById(socket.request.session.passport.user);
-            console.log('Got user : ' + user.username)
+            console.log(`[create room] ${socket.id}`);
 
             let id = roomId();
             rooms.push({owner: user.username, id: id});
@@ -45,7 +48,7 @@ function init(app, socketio) {
         });
         socket.on('join room', async () => {
             socket.join(rooms[0].id);
-            let user = await db.getUserById(socket.request.session.passport.user);
+
             players.push({
                 username: user.username,
                 roomId: rooms[0].id,
@@ -54,6 +57,7 @@ function init(app, socketio) {
                 score: 0,
                 answers: []
             })
+
             socket.emit('get rooms', rooms);
             socketio.to(rooms[0].id).emit('get players', players);
             console.log('test');

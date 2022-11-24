@@ -20,7 +20,7 @@ function init(app, socketio) {
         socket.on('playerData', (player) => {
             console.log(`[MORPION] playerData ${player.username}`);
 
-            let room = null;
+            let room;
 
             if (!player.roomId) {
                 room = createRoom(player);

@@ -2,117 +2,117 @@
 <html lang="fr">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/games/css/stylesGlobal.css">
-	<link rel="stylesheet" href="/games/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/games/css/morpion.css">
-	<link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
-	<title>Morpion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/games/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/games/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/games/css/morpion.css">
+    <link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+    <title>Morpion</title>
 </head>
 
 <body>
-	<header>
-		<a href="/">AUTT</a>
-		<ul>
-			<a href="/games/">
-				<li>Accueil</li>
-			</a>
-			<a href="/games/dinautt">
-				<li>Dinautt</li>
-			</a>
-			<a href="/games/morpion">
-				<li>Morpion</li>
-			</a>
-			<a href="/games/citations">
-				<li>Jeu des citations</li>
-			</a>
-		</ul>
-		<span class="nav-profile">
+<header>
+    <a href="/">AUTT</a>
+    <ul>
+        <a href="/games/">
+            <li>Accueil</li>
+        </a>
+        <a href="/games/dinautt">
+            <li>Dinautt</li>
+        </a>
+        <a href="/games/morpion">
+            <li>Morpion</li>
+        </a>
+        <a href="/games/citations">
+            <li>Jeu des citations</li>
+        </a>
+    </ul>
+    <span class="nav-profile">
 			<a href="/games/profile">Mon profil</a>
 		</span>
-	</header>
+</header>
 
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-sm-12 col-md-6 offset-md-3">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 offset-md-3">
 
-				<div class="alert d-none" role="alert" id="turn-message"></div>
+            <div class="alert d-none" role="alert" id="turn-message"></div>
 
-				<div class="card mb-3" id="user-card">
-					<div class="card-body">
-						<form method="POST" id="form">
+            <div class="card mb-3" id="user-card">
+                <div class="card-body">
+                    <form method="POST" id="form">
 
-							<div class="mb-3">
-								<label for="username" class="form-label">Nom d'utilisateur</label>
-								<input type="text" class="form-control" id="username"  minlength="2" maxlength="20"
-									placeholder="Saisir votre nom d'utilisateur" value="<%= username %>" required>
-							</div>
-							<button class="btn btn-primary" id="start" type="submit">Créer un salon privée</button>
-						</form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur</label>
+                            <input type="text" class="form-control" id="username" minlength="2" maxlength="20"
+                                   placeholder="Saisir votre nom d'utilisateur" value="<%= username %>" required>
+                        </div>
+                        <button class="btn btn-primary" id="start" type="submit">Créer un salon privée</button>
+                    </form>
 
-					</div>
-				</div>
+                </div>
+            </div>
 
-				<div class="card mb-3 d-none" id="rooms-card">
-					<div class="card-header">Salons disponibles</div>
-					<ul class="list-group list-group-flush" id="rooms-list"></ul>
-				</div>
+            <div class="card mb-3 d-none" id="rooms-card">
+                <div class="card-header">Salons disponibles</div>
+                <ul class="list-group list-group-flush" id="rooms-list"></ul>
+            </div>
 
-				<div class="d-none" id="waiting-area">
-					<div class="card mb-3">
-						<div class="card-header">En attente d'un autre joueur</div>
-						<div class="card-body mx-auto">
-							<div class="spinner-border" role="status">
-								<span class="visually-hidden">Loading...</span>
-							</div>
-						</div>
-					</div>
+            <div class="d-none" id="waiting-area">
+                <div class="card mb-3">
+                    <div class="card-header">En attente d'un autre joueur</div>
+                    <div class="card-body mx-auto">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
 
-					<div class="card">
-						<div class="card-body text-center">
-							Partage ce lien pour inviter quelqu'un à jouer avec toi
-							<span id="link-to-share"></span>
-						</div>
-					</div>
-				</div>
+                <div class="card">
+                    <div class="card-body text-center">
+                        Partage ce lien pour inviter quelqu'un à jouer avec toi
+                        <span id="link-to-share"></span>
+                    </div>
+                </div>
+            </div>
 
-				<div class="card d-none" id="game-card">
-					<div class="card-header">
-						Tic-tac-toe
-					</div>
-					<div class="card-body mx-auto">
-						<table class="board">
-							<tr>
-								<td class="cell" id="cell-1-1"></td>
-								<td class="cell" id="cell-1-2"></td>
-								<td class="cell" id="cell-1-3"></td>
-							</tr>
+            <div class="card d-none" id="game-card">
+                <div class="card-header">
+                    Tic-tac-toe
+                </div>
+                <div class="card-body mx-auto">
+                    <table class="board">
+                        <tr>
+                            <td class="cell" id="cell-1-1"></td>
+                            <td class="cell" id="cell-1-2"></td>
+                            <td class="cell" id="cell-1-3"></td>
+                        </tr>
 
-							<tr>
-								<td class="cell" id="cell-2-1"></td>
-								<td class="cell" id="cell-2-2"></td>
-								<td class="cell" id="cell-2-3"></td>
-							</tr>
+                        <tr>
+                            <td class="cell" id="cell-2-1"></td>
+                            <td class="cell" id="cell-2-2"></td>
+                            <td class="cell" id="cell-2-3"></td>
+                        </tr>
 
-							<tr>
-								<td class="cell" id="cell-3-1"></td>
-								<td class="cell" id="cell-3-2"></td>
-								<td class="cell" id="cell-3-3"></td>
-							</tr>
-						</table>
-					</div>
-				</div>
+                        <tr>
+                            <td class="cell" id="cell-3-1"></td>
+                            <td class="cell" id="cell-3-2"></td>
+                            <td class="cell" id="cell-3-3"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-				<div class="text-center d-none mt-2" id="restart-area">
-					<input class="btn btn-primary" id="restart" type="button" value="Rejouer">
-				</div>
+            <div class="text-center d-none mt-2" id="restart-area">
+                <input class="btn btn-primary" id="restart" type="button" value="Rejouer">
+            </div>
 
-			</div>
-		</div>
-		<script src="/games/jquery/jquery.min.js"></script>
-		<script src="/games/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/games/socket.io/socket.io.js"></script>
-		<script src="/games/js/morpion.js"></script>
+        </div>
+    </div>
+    <script src="/games/jquery/jquery.min.js"></script>
+    <script src="/games/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/games/socket.io/socket.io.js"></script>
+    <script src="/games/js/morpion.js"></script>
 </body>
 </html>

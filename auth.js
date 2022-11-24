@@ -26,12 +26,13 @@ function init(app, db, session_secret) {
     app.use(methodOverride('_method'))
 
     app.get('/profile', checkAuthenticated, (req, res) => {
+        console.dir(req.user)
         db.getStats(req.user.id).then((stats) => {
             res.render('profile',
                 {
                     username: req.user.username,
-                    banner: req.user.username,
                     avatar: req.user.avatar,
+                    banner: req.user.banner,
                     stats: stats
                 })
         }).catch((err) => {

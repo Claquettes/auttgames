@@ -125,6 +125,18 @@ function updateDinautt(id, highscore) {
     })
 }
 
+async function getNRandomCitation(n) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM citations ORDER BY RAND() LIMIT ?', [n], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
+
 module.exports = {
     init,
     getUser,
@@ -132,5 +144,6 @@ module.exports = {
     registerUser,
     getStats: getAllStats,
     getDinauttLeaderboard: getDinauttLeaderboard,
-    updateDinautt: updateDinautt
+    updateDinautt: updateDinautt,
+    getNRandomCitation: getNRandomCitation
 };

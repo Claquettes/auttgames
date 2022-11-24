@@ -10,7 +10,7 @@ function initialize(passport, db) {
             if (user !== null) {
                 return done(null, user)
             } else {
-                return done(null, false, { message: 'Mot de passe incorrect' })
+                return done(null, false, {message: 'Mot de passe incorrect'})
             }
         }).catch((err) => {
             console.log(err)
@@ -18,11 +18,16 @@ function initialize(passport, db) {
         })
     }
 
-    passport.use(new LocalStrategy({ usernameField: 'username' }, authenticateUser))
-    passport.serializeUser((user, done) => done(null, user.id))
-    passport.deserializeUser((id, done) => {
-        let user = db.getUserById(id).then((user) => {
-            return done(null, user)
+    passport.use(new LocalStrategy({usernameField: 'username'}, authenticateUser))
+    passport.serializeUser((user, done) => done(null, {
+        id: user.id,
+        username: user.username,
+        avatar: user.avatar,
+        banner: user.banner
+    }))
+    passport.deserializeUser((data, done) => {
+        db.getUserById(data.id).then((user) => {
+            return done(null, {id: user.id, username: user.username, avatar: user.avatar, banner: user.banner})
         }).catch((err) => {
             return done(err)
         })
