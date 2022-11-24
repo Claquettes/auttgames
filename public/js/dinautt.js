@@ -146,8 +146,8 @@ let gameLoop = setInterval(function () {
             console.log("perdu");
             clearInterval(gameLoop);
             obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
-            alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
             socket.emit('newscore', score);
+            alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
         }
 
         // On vérifie si on a perdu
