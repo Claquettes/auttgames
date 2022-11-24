@@ -8,21 +8,16 @@ function init(app, socketio) {
     socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
     socketio.on('connection', (socket) => {
-        console.log(`[connection] ${socket.id}`);
-        socket.on("newscore", (score) => {
-            if (socket.request.session.passport === undefined) {
-                console.log("no session");
-                return;
-            }
+            socket.on("newscore", (score) => {
+                if (socket.request.session.passport === undefined) {
+                    return;
+                }
 
-            let user = socket.request.session.passport.user;
-            console.log("score" + score)
-            if (Number.isInteger(score)) {
-                console.log("score is integer")
-                db.updateDinautt(user.id, score).catch((err) => {
-                    console.log(err);
-                });
-                console.log("score updated");
+                let user = socket.request.session.passport.user;
+                if (Number.isInteger(score)) {
+                    db.updateDinautt(user.id, score).catch((err) => {
+                        console.log(err);
+                    });
                 }
             });
         }
