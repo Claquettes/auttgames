@@ -4,13 +4,13 @@ html {
 }
 
 *{
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 body {
     overflow: hidden;
-    /*background-color: #ac988d;*/
+    background-color: #ac988d;
 }
 
 header {

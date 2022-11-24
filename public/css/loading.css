@@ -4,138 +4,143 @@ body {
     z-index: 0;
     width: 100vw;
     overflow: hidden;
-    background-color: #ac988d;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.containerPlayer{
-  z-index: 2;
-  background-color: #b77b84;
-  size-adjust: relative;
-  width: 70%;
-  height: 50%;
-  position: relative;
-  top: 10%;
-  left: 15%;
+.containerPlayer {
+    z-index: 2;
+    background-color: #b77b84;
+    size-adjust: relative;
+    width: 70%;
+    height: 50%;
+    position: relative;
+    top: 10%;
+    left: 15%;
 }
-.topTexte{
-  color: #ffffff;
-  size-adjust: relative;
-  font-weight: 300;
-  font-size: 1.5em;
-  width: 100%;
-  z-index:3;
-  position: relative;
-  text-align: center;
+
+.topTexte {
+    color: #ffffff;
+    size-adjust: relative;
+    font-weight: 300;
+    font-size: 1.5em;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+    text-align: center;
 }
-.players{
-  z-index: 3;
-  background-color: #a6a6a3;
-  size-adjust: relative;
-  position: relative;
-  left: 2%;
-  top: 2%;
-  width: 96%;
-  height: 61%;
+
+.players {
+    z-index: 3;
+    background-color: #a6a6a3;
+    size-adjust: relative;
+    position: relative;
+    left: 2%;
+    top: 2%;
+    width: 96%;
+    height: 61%;
 }
-.bottomTexte{
-  color: #ffffff;
-  size-adjust: relative;
-  font-weight: 300;
-  font-size: 1.5em;
-  width: 100%;
-  z-index:3;
-  position: relative;
-  top: 4%;
-  text-align: center;
+
+.bottomTexte {
+    color: #ffffff;
+    size-adjust: relative;
+    font-weight: 300;
+    font-size: 1.5em;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+    top: 4%;
+    text-align: center;
 }
-.host{
-  z-index: 3;
-  background-color: #a6a6a3;
-  size-adjust: relative;
-  position: relative;
-  left: 2%;
-  top: 6%;
-  width: 96%;
-  height: 16%;
+
+.host {
+    z-index: 3;
+    background-color: #a6a6a3;
+    size-adjust: relative;
+    position: relative;
+    left: 2%;
+    top: 6%;
+    width: 96%;
+    height: 16%;
 }
+
 .texte {
-  z-index: 1;
-  position: fixed;
-  top: 70%;
-  left: 25%;
-  font-size: 2vmin;
-  font-family: JetBrains Mono, monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #e4bb68;
+    z-index: 1;
+    position: fixed;
+    top: 70%;
+    left: 25%;
+    font-size: 2vmin;
+    font-family: JetBrains Mono, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e4bb68;
 }
 
 .string {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  animation: move 7s infinite;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    animation: move 7s infinite;
 }
 
 .greeting {
-  position: relative;
-  top: 8.6vmin;
-  animation: white-out 6s infinite;
+    position: relative;
+    top: 8.6vmin;
+    animation: white-out 6s infinite;
 }
 
 .closure::after {
-  content: '';
-  position: absolute;
-  height: 25vmin;
-  width: 40vmin;
-  background: #ac988d;
-  transform: translate(-45vmin, -24.5vmin);
+    content: '';
+    position: absolute;
+    height: 25vmin;
+    width: 40vmin;
+    background: #ac988d;
+    transform: translate(-45vmin, -24.5vmin);
 }
 
 .closure::before {
-  content: '';
-  position: absolute;
-  height: 25vmin;
-  width: 40vmin;
-  background: #ac988d;
-  transform: translate(-40vmin, 5vmin);
+    content: '';
+    position: absolute;
+    height: 25vmin;
+    width: 40vmin;
+    background: #ac988d;
+    transform: translate(-40vmin, 5vmin);
 }
 
 .en {
-  color: #fa8231;
+    color: #fa8231;
 }
 
 .es {
-  color: white;
+    color: white;
 }
 
 .de {
-  color: #b77b84;
+    color: #b77b84;
 }
 
 .it {
-  color: #a9b0bd;
+    color: #a9b0bd;
 }
 
 @keyframes move {
-  25% {
-    transform: translatey(-5.8vmin);
-    opacity: 1;
-  }
-  50% {
-    transform: translatey(-11vmin);
-  }
-  75% {
-    transform: translatey(-16.5vmin);
-  }
+    25% {
+        transform: translatey(-5.8vmin);
+        opacity: 1;
+    }
+    50% {
+        transform: translatey(-11vmin);
+    }
+    75% {
+        transform: translatey(-16.5vmin);
+    }
 }
-/*Palette CSS: 
+
+/*Palette CSS:
 .color1 {color: #1974c4;}
 .color2 {color: #9d68a5;}
 .color3 {color: #b77b84;}
