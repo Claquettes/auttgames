@@ -9,7 +9,7 @@ function init(app, socketio) {
         socket.on("newscore", (score) => {
             if (socket.request.session.passport.user !== undefined) {
                 if (Number.isInteger(score)) {
-                    db.updateHighscore(socket.request.session.passport.user, score).catch((err) => {
+                    db.updateDinautt(socket.request.session.passport.user, score).catch((err) => {
                         console.log(err);
                     });
                 }

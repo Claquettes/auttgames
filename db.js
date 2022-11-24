@@ -113,9 +113,9 @@ function getDinauttLeaderboard() {
     })
 }
 
-function updateHighscore(id, highscore) {
+function updateDinautt(id, highscore) {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE stats SET Dinautt_highscore = GREATEST(Dinautt_highscore, ?) WHERE id = ?', [highscore, id], (err, result) => {
+        db.query('UPDATE stats SET Dinautt_highscore = GREATEST(Dinautt_highscore, ?), Dinautt_total_games = Dinautt_total_games +1 WHERE id = ?', [highscore, id], (err, result) => {
             if (err) {
                 reject(err)
             } else {
@@ -132,5 +132,5 @@ module.exports = {
     registerUser,
     getStats: getAllStats,
     getDinauttLeaderboard: getDinauttLeaderboard,
-    updateHighscore: updateHighscore
+    updateDinautt: updateDinautt
 };
