@@ -21,11 +21,11 @@ function init(app, socketio) {
     });
 
     socketio.on('connection', (socket) => {
-        let user = socket.request.session.passport.user;
-
-        if (user === undefined) {
+        if (socket.request.session.passport === undefined) {
             return;
         }
+
+        let user = socket.request.session.passport.user;
 
         if (players.map(p => p.id).includes(user.id))
             socket.emit('already connected', rooms[0], players);

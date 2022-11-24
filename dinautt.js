@@ -9,7 +9,7 @@ function init(app, socketio) {
 
     socketio.on('connection', (socket) => {
             socket.on("newscore", (score) => {
-                if (socket.request.session.passport.user === undefined) {
+                if (socket.request.session.passport === undefined) {
                     return;
                 }
 
