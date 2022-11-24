@@ -1,3 +1,5 @@
+const socket = io('/dinautt');
+
 const obstacleBaseOffset = document.getElementById("game").clientWidth; // décalage de l'obstacle au début du jeu
 
 let character = document.getElementById("character");
@@ -145,6 +147,7 @@ let gameLoop = setInterval(function () {
             clearInterval(gameLoop);
             obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
             alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
+            socket.emit('newscore', score);
         }
 
         // On vérifie si on a perdu
