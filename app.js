@@ -12,7 +12,7 @@ const auth = require('./auth')
 const port = 8080;
 
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended: false}))
 
 db.init(mysql, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD);
 auth.init(app, db, process.env.SESSION_SECRET)
