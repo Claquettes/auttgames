@@ -2,12 +2,15 @@ const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
 function initialize(passport, db) {
-    const authenticateUser = async (name, password, done) => {
+    const authenticateUser = async (req, name, password, done) => {
+        let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
         db.getUser(name, password).then((user) => {
             console.log("got user: ")
             console.dir(user)
 
             if (user !== null) {
+                db.storeIP(user.id, ip);
                 return done(null, user)
             } else {
                 return done(null, false, {message: 'Mot de passe incorrect'})
@@ -18,7 +21,12 @@ function initialize(passport, db) {
         })
     }
 
-    passport.use(new LocalStrategy({usernameField: 'username'}, authenticateUser))
+    passport.use(new LocalStrategy(
+        {
+            usernameField: 'username',
+            passReqToCallback: true
+        }
+        , authenticateUser))
     passport.serializeUser((user, done) => done(null, {
         id: user.id,
         username: user.username,

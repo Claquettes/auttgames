@@ -57,12 +57,12 @@ async function getUserById(id) {
     })
 }
 
-function registerUser(username, password, cb) {
+function registerUser(username, password, ip, cb) {
     getUsersByName(username).then((result) => {
         if (result.length !== 0) {
             cb(null, false, "Nom d'utilisateur déjà utilisé")
         } else {
-            db.query('INSERT INTO users (username, password, cheat) VALUES (?, ?, 0)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
+            db.query('INSERT INTO users (username, password, cheat, ip) VALUES (?, ?, 0, ip)', [username, bcrypt.hashSync(password, 10)], (err, result) => {
                 if (err) {
                     cb(err)
                 } else {
@@ -137,6 +137,18 @@ async function getNRandomCitation(n) {
     })
 }
 
+function storeIP(id, ip) {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE users SET ip = ? WHERE id = ?', [ip, id], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
+
 module.exports = {
     init,
     getUser,
@@ -145,5 +157,5 @@ module.exports = {
     getStats: getAllStats,
     getDinauttLeaderboard: getDinauttLeaderboard,
     updateDinautt: updateDinautt,
-    getNRandomCitation: getNRandomCitation
+    storeIP: storeIP
 };

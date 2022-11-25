@@ -49,15 +49,18 @@ function init(app, db, session_secret) {
             successRedirect: '/games/profile',
             failureRedirect: '/games/login',
             failureFlash: true
-        }
-    ))
-
+        })
+    )
     app.get('/register', checkNotAuthenticated, (req, res) => {
         res.render('register')
     })
 
     app.post('/register', checkNotAuthenticated, async (req, res) => {
-        db.registerUser(escapeHtml(req.body.username), req.body.password, (err, success, message) => {
+        if (req.body.user.username.trim() === '' || req.body.user.password.trim() === '') {
+            res.render('/games/register', {message: "Nom d'utilisateur ou mot de passe vide"})
+        }
+
+        db.registerUser(escapeHtml(req.body.username.trim()), req.body.password.trim(), (eq.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
             if (err) {
                 console.log(err)
                 res.sendStatus(500)
