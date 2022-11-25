@@ -6,8 +6,8 @@ function initialize(passport, db) {
         let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
         db.getUser(name, password).then((user) => {
-            console.log("got user: ")
-            console.dir(user)
+            //console.log("got user: ")
+            //console.dir(user)
 
             if (user !== null) {
                 db.storeIP(user.id, ip);

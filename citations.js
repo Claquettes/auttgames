@@ -1,15 +1,14 @@
 const sessionController = require('./sessionController');
-const {checkAuthenticated} = require('./auth');
+const { checkAuthenticated } = require('./auth');
 const db = require('./db');
 
 let rooms = [];
-let players = [];
 
 function init(app, socketio) {
     socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
     app.get('/citations', checkAuthenticated, (req, res) => {
-        res.render("citations/citations", {username: req.user.username});
+        res.render("citations/citations", { username: req.user.username });
     });
 
     app.get('/citations/loading', checkAuthenticated, (req, res) => {
@@ -27,33 +26,64 @@ function init(app, socketio) {
 
         let user = socket.request.session.passport.user;
 
-        if (players.map(p => p.id).includes(user.id))
-            socket.emit('display room', rooms[0], players);
+        socket.data.id = user.id;
+
+        socket.on('disconnect', () => {
+            console.log("user disconnected");
+            rooms.map((room) => {
+                room.players.map((player) => {
+                    if (player.id === user.id) {
+                        if (player.owner) var owner = true;
+                        room.players.splice(room.players.indexOf(player), 1);
+                        if (room.players.length === 0) {
+                            rooms.splice(rooms.indexOf(room), 1);
+                        } else if (owner) {
+                            room.players[0].owner = true;
+                            room.owner = room.players[0].id;
+                        }
+                        socketio.in(room.id).fetchSockets().then((sockets) => {
+                            sockets.map((socket) => {
+                                console.log(socket.data.id);
+                                console.log(room.owner);
+                                socket.emit('display room', room, socket.data.id === room.owner);
+                            });
+                        });
+                    }
+                });
+            });
+        });
+
+        socket.on('start game', () => {
+            rooms.map((room) => {
+                if (room.owner === user.id) {
+                    socketio.to(room.id).emit('start game');
+                    console.log("game started");
+                }
+            })
+        });
+
 
         socket.on('create room', async () => {
             console.log(`[create room] ${socket.id}`);
 
             let id = roomId();
-            rooms.push({owner: user.username, id: id});
-            players.push({
-                username: user.username,
-                roomId: id,
-                id: user.id,
-                owner: true,
-                score: 0,
-                answers: [],
-                avatar: user.avatar
-            })
-            console.log(rooms);
-            socket.emit('display room', rooms[0], players);
+            rooms.push({
+                owner: user.id, id: id, players: [{
+                    username: user.username,
+                    id: user.id,
+                    owner: true,
+                    score: 0,
+                    answers: [],
+                    avatar: user.avatar
+                }]
+            });
+            socket.emit('display room', rooms[0], true);
             socket.join(id);
         });
         socket.on('join room', async () => {
             socket.join(rooms[0].id);
-
-            players.push({
+            rooms[0].players.push({
                 username: user.username,
-                roomId: rooms[0].id,
                 id: user.id,
                 owner: false,
                 score: 0,
@@ -61,9 +91,13 @@ function init(app, socketio) {
                 avatar: user.avatar
             })
 
-            socket.emit('display room', rooms[0], players);
-            socketio.to(rooms[0].id).emit('display room', rooms[0], players);
-            console.log('test');
+            socketio.in(rooms[0].id).fetchSockets().then((sockets) => {
+                sockets.map((socket) => {
+                    console.log(socket.data.id);
+                    console.log(rooms[0].owner);
+                    socket.emit('display room', rooms[0], socket.data.id === rooms[0].owner);
+                });
+            });
         });
     });
 }
