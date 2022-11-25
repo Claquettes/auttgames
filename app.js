@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates/index.html'));
 });
 
-const socketio = require('socket.io')(http);
+const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
 
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));

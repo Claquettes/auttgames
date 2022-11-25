@@ -81,6 +81,10 @@ function init(app, db, session_secret) {
 
     });
 
+    app.get('/settings', checkAuthenticated, (req, res) => {
+        res.render('settings', {user: req.user});
+    })
+
 }
 
 function checkAuthenticated(req, res, next) {
