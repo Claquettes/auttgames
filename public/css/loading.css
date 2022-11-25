@@ -82,7 +82,7 @@ body {
 }
 
 .textBox {
-    animation: textAnim 16s linear infinite;
+    animation: textAnim 8s linear infinite;
     font-size: 50px;
     overflow: hidden;
     white-space: nowrap;
@@ -114,13 +114,9 @@ body {
 
 @keyframes textAnim {
     0% {transform: translatey(0px);}
-    25% {transform: translatey(0px);}
-    25.1% {transform: translatey(-59px);}
-    50% {transform: translatey(-59px);}
-    50.1% {transform: translatey(-118px);}
-    75% {transform: translatey(-118px);}
-    75.1% {transform: translatey(-177px);}
-    100% {transform: translatey(-177px);}
+    50% {transform: translatey(0px);}
+    50.1% {transform: translatey(-59px);}
+    100% {transform: translatey(-59px);}
 }  
   
 

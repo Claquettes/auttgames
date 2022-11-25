@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt')
 function initialize(passport, db) {
     const authenticateUser = async (name, password, done) => {
         db.getUser(name, password).then((user) => {
-            console.log("got user: ")
-            console.dir(user)
+            //console.log("got user: ")
+            //console.dir(user)
 
             if (user !== null) {
                 return done(null, user)
