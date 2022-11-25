@@ -29,22 +29,18 @@
             </a>
         </ul>
     </header>
-    <div class="waiting">
+    <div id="lobby">
         <button id="createButton">Créer une room</button>
         <button id="joinButton">Rejoindre une room</button>
     </div>
-    <div id="waitingRoom" class="d-none">
+    <div id="waitingRoom" class="d-none waiting">
     <div class ="containerPlayer">
 		<div class="topTexte">
 			Joueurs Connectés:
 		</div>
 		<div id="playersList" class="players"></div>
-		<div id="hostname" class="bottomTexte">
-			Host de la partie:
-		</div>
-		<div class="host"></div>
 	</div>
-	<div class="texte">
+	<!--<div class="texte">
 		<h1>System<span style="color:white;">.<span style="color:#e06c75;">out</span>.</span><span style="color:#61afef;">println</span>("</h1>
 		<div class="string">
 		  <h1 class="greeting en">en attente</h1>
@@ -53,7 +49,17 @@
 		  <h1 class="greeting it">lancer la partie</h1>  
 		</div>
 		<h1 class="closure">");</h1>
-	</div>
+	</div>-->
+    <div class="wrapper">
+        <div class="box">
+            <img class="taco" src="/games/assets/dinautt/taco.png">
+            <div class="textBox">
+                en attente<br>
+                de tous les<br>
+                joueurs pour<br>
+                lancer la partie
+            </div>
+        </div> 
     </div>
     <div id= "gameContainer" class="d-none">
     <div class="containertop">

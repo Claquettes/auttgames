@@ -28,7 +28,7 @@ function init(app, socketio) {
         let user = socket.request.session.passport.user;
 
         if (players.map(p => p.id).includes(user.id))
-            socket.emit('already connected', rooms[0], players);
+            socket.emit('display room', rooms[0], players);
 
         socket.on('create room', async () => {
             console.log(`[create room] ${socket.id}`);
@@ -41,10 +41,11 @@ function init(app, socketio) {
                 id: user.id,
                 owner: true,
                 score: 0,
-                answers: []
+                answers: [],
+                avatar: user.avatar
             })
             console.log(rooms);
-            socket.emit('get rooms', rooms);
+            socket.emit('display room', rooms[0], players);
             socket.join(id);
         });
         socket.on('join room', async () => {
@@ -56,11 +57,12 @@ function init(app, socketio) {
                 id: user.id,
                 owner: false,
                 score: 0,
-                answers: []
+                answers: [],
+                avatar: user.avatar
             })
 
-            socket.emit('get rooms', rooms);
-            socketio.to(rooms[0].id).emit('get players', players);
+            socket.emit('display room', rooms[0], players);
+            socketio.to(rooms[0].id).emit('display room', rooms[0], players);
             console.log('test');
         });
     });
