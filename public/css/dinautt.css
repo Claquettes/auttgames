@@ -45,7 +45,7 @@ table {
     margin: 0 auto;
 }
 
-footer {
+.footer {
     color: #111;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -53,6 +53,8 @@ footer {
     text-align: center;
     width: 100%;
     background-color: #ac988d;
+    position: fixed;
+    bottom: 0;
 
 }
 /* animation du texte AUTT */
