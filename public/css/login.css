@@ -1,0 +1,75 @@
+.container {
+    margin: 0 10%;
+    justify-content: center;
+}
+
+.card {
+    background-color: var(--color3);
+    border: var(--color7) 5px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    transition: transform 0.6s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h1 {
+    color: var(--color4);
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 15px;
+}
+
+.card input {
+    min-width: 250px;
+    min-height: 23px;
+    background-color: var(--color2);
+    border: var(--color7) 3px solid;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 4px 4px 4px 10px;
+    margin: 5px;
+    transition: border 0.4s;
+}
+
+.card input:focus {
+    outline: none;
+    border: var(--color6) 3px solid;
+}
+
+.card button {
+    background-color: var(--color2);
+    border: var(--color7) 3px solid;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 5px;
+    padding: 3px;
+}
+
+::placeholder {
+    color: var(--color7);
+    opacity: 1;
+}
+
+.card form {
+    margin: 15px 0;
+}
+
+.card a {
+    color: var(--color4);
+    text-decoration: none;
+}
+
+.card a:visited {
+    color: var(--color4);
+    text-decoration: none;
+}

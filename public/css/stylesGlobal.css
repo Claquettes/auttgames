@@ -1,16 +1,27 @@
-html {
-    width: 100vw;
-    height : 100vh;
+:root {
+    --color1: #04080F;
+    --color2: #488ae8;
+    --color3: #165eae;
+    --color4: #bdd0e6;
+    --color5: #DAE3E5;
+    --color6: rgb(9, 76, 116);
+    --color7: rgb(23, 48, 111);
 }
 
-*{
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
     padding: 0;
     margin: 0;
 }
 
 body {
     overflow: hidden;
-    background-color: #ac988d;
+    background-color: var(--color6);
+    font-family: 'Open Sans', sans-serif;
 }
 
 header {
@@ -63,18 +74,16 @@ header .nav-profile {
 }
 
 footer {
-    color: #111; font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: 300; text-align: center; width: 100%; background-color: #ac988d; 
+    color: #111;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+    width: 100%;
+    background-color: #ac988d;
 
 }
 
 .d-none {
-    display: none!important;
+    display: none !important;
 }
-
-/*Palette CSS: 
-.color1 {color: #04080F;}
-.color2 {color: #507DBC;}
-.color3 {color: #A1C6EA;}
-.color4 {color: #BBD1EA;}
-.color5 {color: #DAE3E5;}
-*/

@@ -24,6 +24,7 @@ function initialize(passport, db) {
     passport.use(new LocalStrategy(
         {
             usernameField: 'username',
+            passwordField: 'password',
             passReqToCallback: true
         }
         , authenticateUser))
