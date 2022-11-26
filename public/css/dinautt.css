@@ -13,6 +13,12 @@ h1 {
     text-align: center;
     padding: 0px;
 }
+h5{
+    text-align: center;
+    color: white;
+    margin: 15px 0;
+    font-size: 15px;
+}
 #leaderboard h2{
     margin-bottom: 10px;
     color: white;
