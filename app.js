@@ -22,6 +22,11 @@ app.use('/bootstrap/js', express.static(path.join(__dirname, 'node_modules/boots
 app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store')
+    next()
+})
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates/index.html'));
 });
