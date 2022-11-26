@@ -3,6 +3,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 
 const sessionController = require('./sessionController')
+const {sanitize} = require("./passport-config");
 
 function init(app, db, session_secret) {
     app.use(flash())
@@ -60,7 +61,7 @@ function init(app, db, session_secret) {
             res.render('/games/register', {message: "Nom d'utilisateur ou mot de passe vide"})
         }
 
-        db.registerUser(escapeHtml(req.body.username.trim()), req.body.password.trim(), (eq.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
+        db.registerUser(sanitize(req.body.username), sanitize(req.body.password), (req.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
             if (err) {
                 console.log(err)
                 res.sendStatus(500)
@@ -102,20 +103,6 @@ function checkNotAuthenticated(req, res, next) {
         return res.redirect('/games/profile')
     }
     next()
-}
-
-function escapeHtml(text) {
-    let map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-    };
-
-    return text.replace(/[&<>"']/g, function (m) {
-        return map[m];
-    });
 }
 
 module.exports = {

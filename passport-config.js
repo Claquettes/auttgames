@@ -5,7 +5,7 @@ function initialize(passport, db) {
     const authenticateUser = async (req, name, password, done) => {
         let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-        db.getUser(name, password).then((user) => {
+        db.getUser(sanitize(name), sanitize(password)).then((user) => {
             //console.log("got user: ")
             //console.dir(user)
 
@@ -40,6 +40,20 @@ function initialize(passport, db) {
             return done(err)
         })
     })
+}
+
+function sanitize(str) {
+    let map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+
+    return str.trim().replace(/[&<>"']/g, function (m) {
+        return map[m];
+    });
 }
 
 module.exports = initialize
