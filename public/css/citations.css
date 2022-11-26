@@ -98,6 +98,18 @@ body {
   margin-left: 10px;
 }
 
+.endgame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ac988d;
+    font-size: 20px;
+    color: #ffffff;
+    flex-direction: column;
+}
+
 /*Palette CSS: 
 .color1 {color: #1974c4;}
 .color2 {color: #9d68a5;}
