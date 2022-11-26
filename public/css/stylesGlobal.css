@@ -20,7 +20,8 @@ html {
 
 body {
     overflow: hidden;
-    background-color: var(--color6);
+    background: rgb(72,138,232);
+    background: radial-gradient(circle, rgba(72,138,232,1) 0%, rgba(9,76,116,1) 80%);
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -74,7 +75,7 @@ header .nav-profile {
 }
 
 .footer {
-    color: #111;
+    color: #ffffff;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 300;

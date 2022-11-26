@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-    color: rgb(0, 0, 0); font-family: 'Helvetica Neue', sans-serif; font-size: 40px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
+    color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 40px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
 }
 
 .banner{
@@ -74,6 +74,7 @@ h1 {
 
 }
 .stats{
+    color: white;
     z-index: 1;
     position: relative;
     left: 15%;
@@ -88,7 +89,7 @@ h1 {
     height: 100%;
 }
 .statsTexte{
-    color: rgb(0, 0, 0); font-family: 'Helvetica Neue', sans-serif; font-size: 20px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
+    color: white; font-family: 'Helvetica Neue', sans-serif; font-size: 20px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;padding: 0px; 
     justify-content: center;    
 }
 
@@ -96,6 +97,7 @@ h1 {
     position: relative;
     left: 50%;
 }
+
 /*Palette CSS: 
 .color1 {color: #1974c4;}
 .color2 {color: #9d68a5;}

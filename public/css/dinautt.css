@@ -4,26 +4,33 @@ body {
 }
 
 h1 {
-    color: black;
+    color: white;
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 80px;
+    font-size: 60px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
     text-align: center;
     padding: 0px;
 }
-
+#leaderboard h2{
+    margin-bottom: 10px;
+    color: white;
+}
 .annonceScore{
     color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 -6px; text-align: center;
 }
 
 .scoretexte{
-    color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 1px; text-align: center;
+    color: white; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 1px;
+    width: auto;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .credits {
-    color: #111;
+    color: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 300;
@@ -37,7 +44,7 @@ h1 {
 }
 
 table {
-    color: #111;
+    color: #ffffff;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 300;
@@ -78,13 +85,12 @@ div.autt-container {
 /*éléments du jeu */
 #game {
     background-color: var(--color3);
-    position: relative;
-    left: 25%;
-    width: 50%;
     border: var(--color7) 5px solid;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
     height: 200px;
-    margin: 0 0 15px;
+    margin: 15px 20%;
+    position: relative;
+    
 }
 
 #obstacle-container {
@@ -110,17 +116,14 @@ div.autt-container {
 }
 
 #leaderboard{
-    position: relative;
-    left: 35%;
+    margin: 15px 40%;    
     height: auto;
-    width: 30%;
     background-color: var(--color3);
     border: var(--color7) 5px solid;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
-}
-
-#leaderboard:hover{
-    transform: scale(1.05);
+    max-height: 30%;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .playAnimation{
@@ -188,6 +191,16 @@ div.autt-container {
     left: 100%;
 }
 
+table, th, td {
+    border: 2px solid var(--color5);
+    border-collapse: collapse;
+    border-radius: 26px;
+
+}
+th, td {
+    padding: 7px;
+    text-align: center;
+}
 
 @keyframes jump {
     0% {

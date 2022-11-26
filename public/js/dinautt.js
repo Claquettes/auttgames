@@ -1,3 +1,4 @@
+(function (){
 const socket = io('/dinautt');
 
 const obstacleBaseOffset = document.getElementById("game").clientWidth; // décalage de l'obstacle au début du jeu
@@ -147,20 +148,20 @@ let gameLoop = setInterval(function () {
             clearInterval(gameLoop);
             obstacles.splice(idx, 1); // on cancel l'animation de l'obstacle
             socket.emit('newscore', score);
-            alert("Tu as perdu sale Fraude rafraichi la page pour rejouer, et ton Score était: " + (score));
+            alert("Perdu! Ton score était: " + (score));
         }
 
         // On vérifie si on a perdu
         if (blockLeft < 20 && blockLeft > 0) {  //quand le bloc atteint la bordure
 
             if (characterTop <= 40) { //si le personnage est en haut
-                if (obs.classList.contains("obstacleHaut")) { //si le bloc est en haut
+                if (obs.classList.contains("obstacleHaut")&& !(obs.classList.contains("obstaclePlusHaut"))) { //si le bloc est en haut
                     perdu();
                 }
             }
 
             if (characterTop >= 125) { //si le personnage est en bas
-                if (obs.classList.contains("obstacleBas")) { //si le bloc est en bas
+                if (obs.classList.contains("obstacleBas")&& !(obs.classList.contains("obstaclePlusHaut"))) { //si le bloc est en bas
                     perdu();
                 }
             }
@@ -180,8 +181,6 @@ let gameLoop = setInterval(function () {
 
         }
         if (blockLeft < 0) {
-            score++;
-
             obstacles.splice(obstacles.indexOf(obs), 1); // on cancel l'animation
             obs.remove();
         }
@@ -191,7 +190,7 @@ let gameLoop = setInterval(function () {
         // On anime l'obstacle
         obstacleAnim(obs);
         // On affiche le score dans l'html, dans la div "scoretexte"
-        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+        
     })
 }, 10);
 
@@ -210,15 +209,18 @@ let keyLooker = setInterval(function () {
 // Horloge qui augmente la clock toutes les secondes
 let timer = setInterval(function () {
     clock++;
-}, 1000);
+    score++;
+    document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+}, 100);
 
 // procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 20 de speed
 let changeSpeed = setInterval(function () {
-    if (clock >= 7) {
+    if (clock >= 70) {
 
-        if (speed << 30) {
+        if (speed <= 60) {
             speed = speed + (Math.random());
             clock = 0;
         }
     }
 }, 750);
+})();
