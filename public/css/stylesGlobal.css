@@ -73,17 +73,17 @@ header .nav-profile {
     margin-right: 20px;
 }
 
-footer {
+.footer {
     color: #111;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 300;
     text-align: center;
     width: 100%;
-    background-color: #ac988d;
+    position: fixed;
+    bottom: 0;
 
 }
-
 .d-none {
     display: none !important;
 }
