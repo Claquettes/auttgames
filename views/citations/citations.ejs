@@ -34,51 +34,60 @@
         <button id="joinButton">Rejoindre une room</button>
     </div>
     <div id="waitingRoom" class="d-none waiting">
-    <div class ="containerPlayer">
-		<div class="topTexte">
-			Joueurs Connectés:
-		</div>
-		<div id="playersList" class="players"></div>
-	</div>
-    <button id="startButton" class="d-none">Démarrer la partie</button>
-    <div class="wrapper">
-        <div class="box">
-            <img class="taco" src="/games/assets/dinautt/taco.png">
-            <div class="textBox">
-                en attente de joueurs<br>
-                pour lancer la partie
+        <div class="containerPlayer">
+            <div class="topTexte">
+                Joueurs Connectés:
             </div>
-        </div> 
-    </div>
-    <div id= "gameContainer" class="d-none">
-    <div class="containertop">
-
-        <div class="animHautGauche">
+            <div id="playersList" class="players"></div>
         </div>
-
-        <div class="screen">
-            <!--là où on affiche les citations, les scores ect -->
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
-        </div>
-
-        <div class="animHautDroite">
+        <button id="startButton" class="d-none">Démarrer la partie</button>
+        <div class="wrapper">
+            <div class="box">
+                <img class="taco" src="/games/assets/dinautt/taco.png">
+                <div class="textBox">
+                    en attente de joueurs<br>
+                    pour lancer la partie
+                </div>
+            </div>
         </div>
     </div>
+    <div id="gameContainer" class="d-none">
+        <div class="containertop">
 
-    <div class="containerbottom">
+            <div class="animHautGauche">
+            </div>
 
-        <div class="animBasGauche">
+            <div id="screen" class="screen">
+                <!--là où on affiche les citations, les scores ect -->
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
+            </div>
+
+            <div class="animHautDroite">
+            </div>
         </div>
 
-        <div class="input">
-            <!--là où on écrit les réponses -->
-            <p>Input</p>
-        </div>
+        <div class="containerbottom">
 
-        <div class="animBasDroite">
-        </div>
+            <div class="animBasGauche">
+            </div>
 
+            <div class="input">
+                <!--là où on écrit les réponses -->
+                <input type="text" name="answer" id="answer">
+            </div>
+
+            <div class="animBasDroite">
+            </div>
+
+        </div>
     </div>
+    <div id="endGame" class="endgame d-none">
+        <div class="citation">citation x: "citation"</div>
+        <div class="answer">answer</div>
+        <div class="username">username</div>
+        <div class="useranswer">useranswer</div>
+        <button id="falseButton">Faux</button>
+        <button id="trueButton">Vrai</button>
     </div>
     <div class="footer">
         <!-- en bas de la page, commun à toutes les pages-->

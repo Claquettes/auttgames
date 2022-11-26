@@ -12,6 +12,10 @@ const startbutton = document.getElementById('startButton');
 const gamecontainer = document.getElementById('gameContainer');
 const waitingRoom = document.getElementById('waitingRoom');
 
+const screen = document.getElementById('screen');
+
+const endGame = document.getElementById('endGame');
+
 
 createbutton.addEventListener("click", () => {
     socket.emit('create room');
@@ -40,3 +44,20 @@ socket.on('display room', (room, owner) => {
     }
     console.log(room.players);
 });
+
+socket.on('new citation', (citation) => {
+    waitingRoom.classList.add('d-none');
+    gamecontainer.classList.remove('d-none');
+    screen.innerHTML = `<p>${citation}</p>`;
+    document.getElementById("answer").value = "";
+    setTimeout(() => {
+        socket.emit('answer', document.getElementById('answer').value);
+      }, 10000)
+});
+
+socket.on('end game', () => {
+    gamecontainer.classList.add('d-none');
+    endGame.classList.remove('d-none');
+    console.log("end game");
+});
+

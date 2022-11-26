@@ -48,6 +48,7 @@ function init(app, socketio) {
                                 socket.emit('display room', room, socket.data.id === room.owner);
                             });
                         });
+                        return;
                     }
                 });
             });
@@ -56,30 +57,58 @@ function init(app, socketio) {
         socket.on('start game', () => {
             rooms.map((room) => {
                 if (room.owner === user.id) {
-                    socketio.to(room.id).emit('start game');
+                    socketio.to(room.id).emit('new citation', room.citations[room.curQuote].citation);
+                    room.curQuote++;
                     console.log("game started");
+                    const gameInterval = setInterval(() => {
+                        if (room.curQuote >= 1) {
+                            clearInterval(gameInterval);
+                            setTimeout(() => {
+                                room.curQuote = 0;
+                                socketio.to(room.id).emit('end game');
+                            }, 11000);
+                        }
+                        socketio.to(room.id).emit('new citation', room.citations[room.curQuote].citation);
+                        room.curQuote++;
+                      }, 11000)
                 }
             })
         });
 
+        socket.on('answer', (answer) => {
+            rooms.map((room) => {
+                room.players.map((player) => {
+                    if (player.id === user.id) {
+                        player.answers.push(answer);
+                        console.log(player.answers);
+                        return;
+                    }
+                });
+            });
+        });
 
-        socket.on('create room', async () => {
+
+        /*socket.on('create room', async () => {
             console.log(`[create room] ${socket.id}`);
 
             let id = roomId();
             rooms.push({
-                owner: user.id, id: id, players: [{
+                owner: user.id, 
+                id: id, 
+                players: [{
                     username: user.username,
                     id: user.id,
                     owner: true,
                     score: 0,
                     answers: [],
                     avatar: user.avatar
-                }]
+                }],
+                citations: await db.getNRandomCitations(20),
+                curQuote: 0
             });
             socket.emit('display room', rooms[0], true);
             socket.join(id);
-        });
+        });*/
         socket.on('join room', async () => {
             socket.join(rooms[0].id);
             rooms[0].players.push({
