@@ -27,7 +27,6 @@ function init(app, db, session_secret) {
     app.use(methodOverride('_method'))
 
     app.get('/profile', checkAuthenticated, (req, res) => {
-        console.dir(req.user)
         db.getStats(req.user.id).then((stats) => {
             res.render('profile',
                 {

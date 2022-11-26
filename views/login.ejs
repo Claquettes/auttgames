@@ -1,16 +1,48 @@
-<h1>Connexion à ton compte Claq.fr!</h1>
-<% if (messages.error){ %>
-    <div class="error"><%= messages.error %></div>
-<% } %>
-<form action="/games/login" method="POST">
-    <div>
-        <label for="username">Pseudo</label>
-        <input type="text" name="username" id="username" required>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/games/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/games/css/login.css">
+    <link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+    <title>Login</title>
+</head>
+<body>
+<header>
+    <a href="/">AUTT</a>
+    <ul>
+        <a href="/games/">
+            <li>Accueil</li>
+        </a>
+        <a href="/games/dinautt">
+            <li>Dinautt</li>
+        </a>
+        <a href="/games/morpion">
+            <li>Morpion</li>
+        </a>
+        <a href="/games/citations">
+            <li>Jeu des citations</li>
+        </a>
+    </ul>
+</header>
+<div class="container">
+    <div class="card">
+        <h1>Connexion</h1>
+        <% if (messages.error){ %>
+            <div class="error"><%= messages.error %></div>
+        <% } %>
+        <form action="/games/login" method="POST">
+            <div>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
+        <a href="/games/register">Pas encore inscrit?</a>
     </div>
-    <div>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" required>
-    </div>
-    <button type="submit">Se connecter</button>
-</form>
-<a href="/games/register">Pas encore inscrit?</a>
+</div>
+</body>
+</html>
