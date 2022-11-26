@@ -9,7 +9,7 @@ function init(app, db, session_secret) {
     app.use(flash())
     app.use(sessionController.sessionMiddleware)
 
-    require('./passport-config')(passport, db)
+    require('./passport-config').initialize(passport, db)
 
     app.use(passport.initialize())
     app.use(passport.session(
@@ -57,7 +57,7 @@ function init(app, db, session_secret) {
     })
 
     app.post('/register', checkNotAuthenticated, async (req, res) => {
-        if (req.body.user.username.trim() === '' || req.body.user.password.trim() === '') {
+        if (req.body.username.trim() === '' || req.body.password.trim() === '') {
             res.render('/games/register', {message: "Nom d'utilisateur ou mot de passe vide"})
         }
 

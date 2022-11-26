@@ -56,4 +56,7 @@ function sanitize(str) {
     });
 }
 
-module.exports = initialize
+module.exports = {
+    initialize: initialize,
+    sanitize: sanitize
+}
