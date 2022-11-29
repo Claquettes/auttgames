@@ -31,6 +31,7 @@ const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout'
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
+require('./envoie').init(app);
 
 http.listen(port, () => {
     console.log(`Listening on http://localhost:${port}/`);
