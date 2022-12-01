@@ -43,7 +43,7 @@ const createTiles = quantity => {
 }
 
 const createGrid = () => {
-  
+  wrapper.innerHTML = "";
   
   const size = document.body.clientWidth > 800 ? 100 : 50;
   
