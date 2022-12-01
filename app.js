@@ -8,8 +8,10 @@ const path = require('path');
 const mysql = require('mysql2');
 const db = require('./db')
 const auth = require('./auth')
+const anime = require('animejs');
 
 const port = 8080;
+
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
