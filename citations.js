@@ -43,8 +43,6 @@ function init(app, socketio) {
                         }
                         socketio.in(room.id).fetchSockets().then((sockets) => {
                             sockets.map((socket) => {
-                                console.log(socket.data.id);
-                                console.log(room.owner);
                                 socket.emit('display room', room, socket.data.id === room.owner);
                             });
                         });
@@ -61,7 +59,7 @@ function init(app, socketio) {
                     room.curQuote++;
                     console.log("game started");
                     const gameInterval = setInterval(() => {
-                        if (room.curQuote >= 1) {
+                        if (room.curQuote >= 10) {
                             clearInterval(gameInterval);
                             setTimeout(() => {
                                 room.curQuote = 0;
@@ -88,10 +86,9 @@ function init(app, socketio) {
         });
 
 
-        /*socket.on('create room', async () => {
-            console.log(`[create room] ${socket.id}`);
-
+        socket.on('create room', async () => {
             let id = roomId();
+            console.log(`[create room] ${id}`);
             rooms.push({
                 owner: user.id, 
                 id: id, 
@@ -108,25 +105,28 @@ function init(app, socketio) {
             });
             socket.emit('display room', rooms[0], true);
             socket.join(id);
-        });*/
-        socket.on('join room', async () => {
-            socket.join(rooms[0].id);
-            rooms[0].players.push({
-                username: user.username,
-                id: user.id,
-                owner: false,
-                score: 0,
-                answers: [],
-                avatar: user.avatar
-            })
+        });
 
-            socketio.in(rooms[0].id).fetchSockets().then((sockets) => {
-                sockets.map((socket) => {
-                    console.log(socket.data.id);
-                    console.log(rooms[0].owner);
-                    socket.emit('display room', rooms[0], socket.data.id === rooms[0].owner);
-                });
-            });
+        socket.on('join room', async (roomId) => {
+            rooms.map((room) => {
+                if (room.id === roomId) {
+                    socket.join(roomId);
+                    room.players.push({
+                        username: user.username,
+                        id: user.id,
+                        owner: false,
+                        score: 0,
+                        answers: [],
+                        avatar: user.avatar
+                    })
+                    socket.emit('display room', room, socket.data.id === room.owner);
+                    socketio.in(roomId).fetchSockets().then((sockets) => {
+                        sockets.map((socket) => {
+                            socket.emit('display room', room, socket.data.id === room.owner);
+                        });
+                    });
+                }
+            })
         });
     });
 }
