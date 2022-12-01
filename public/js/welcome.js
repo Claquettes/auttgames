@@ -1,8 +1,8 @@
 const wrapper = document.getElementById("tiles");
 
-let columns = 0,
-    rows = 0,
-    toggled = false;
+let columns = 0;
+let rows = 0;
+let toggled = false;
 
 const toggle = () => {
   toggled = !toggled;
