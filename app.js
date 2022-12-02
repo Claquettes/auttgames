@@ -10,7 +10,7 @@ const db = require('./db')
 const auth = require('./auth')
 const anime = require('animejs');
 
-const port = 8080;
+const port = 80;
 
 
 app.set('view engine', 'ejs')
@@ -22,14 +22,15 @@ auth.init(app, db, process.env.SESSION_SECRET)
 app.use('/bootstrap/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/bootstrap/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-app.use(express.static('public'));
+app.use('/', express.static('public'));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'templates/index.html'));
+    res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
 const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
 
+app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));

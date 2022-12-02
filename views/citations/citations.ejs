@@ -4,58 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/games/css/stylesGlobal.css">
-    <link rel="stylesheet" href="/games/css/citations.css">
-    <link rel="stylesheet" href="/games/css/loading.css">
+    <link rel="stylesheet" href="/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/css/citations.css">
+    <link rel="stylesheet" href="/css/loading.css">
 
     <title>Jeu des citations</title>
 </head>
 
 <body>
-    <header>
-        <a href="/">AUTT</a>
-        <ul>
-            <a href="/games/">
-                <li>Accueil</li>
-            </a>
-            <a href="/games/dinautt">
-                <li>Dinautt</li>
-            </a>
-            <a href="/games/morpion">
-                <li>Morpion</li>
-            </a>
-            <a href="/games/citations">
-                <li>Jeu des citations</li>
-            </a>
-        </ul>
-    </header>
-    <div id="lobby">
-        <button id="createButton">Créer une room</button>
-        <button id="joinButton">Rejoindre une room</button>
-    </div>
-    <div id="waitingRoom" class="d-none waiting">
-        <div class="containerPlayer">
-            <div class="topTexte">
-                Joueurs Connectés:
-            </div>
-            <div id="playersList" class="players"></div>
+<header>
+    <a href="/">AUTT</a>
+    <ul>
+        <a href="/">
+            <li>Accueil</li>
+        </a>
+        <a href="/dinautt">
+            <li>Dinautt</li>
+        </a>
+        <a href="/morpion">
+            <li>Morpion</li>
+        </a>
+        <a href="/citations">
+            <li>Jeu des citations</li>
+        </a>
+    </ul>
+</header>
+<div id="lobby">
+    <button id="createButton">Créer une room</button>
+    <button id="joinButton">Rejoindre une room</button>
+</div>
+<div id="waitingRoom" class="d-none waiting">
+    <div class="containerPlayer">
+        <div class="topTexte">
+            Joueurs Connectés:
         </div>
-        <button id="startButton" class="d-none">Démarrer la partie</button>
-        <button id="copyButton" class="js-copy">Partager le lien</button>
-        <div class="wrapper">
-            <div class="box">
-                <img class="taco" src="/games/assets/dinautt/taco.png">
-                <div class="textBox">
-                    en attente de joueurs<br>
-                    pour lancer la partie
-                </div>
+        <div id="playersList" class="players"></div>
+    </div>
+    <button id="startButton" class="d-none">Démarrer la partie</button>
+    <button id="copyButton" class="js-copy">Partager le lien</button>
+    <div class="wrapper">
+        <div class="box">
+            <img class="taco" src="/assets/dinautt/taco.png">
+            <div class="textBox">
+                en attente de joueurs<br>
+                pour lancer la partie
             </div>
         </div>
     </div>
-    <div id="gameContainer" class="d-none">
-        <div class="containertop">
+</div>
+<div id="gameContainer" class="d-none">
+    <div class="containertop">
 
-            <div class="animHautGauche">
+        <div class="animHautGauche">
             </div>
 
             <div id="screen" class="screen">
@@ -90,17 +90,17 @@
         <button id="falseButton">Faux</button>
         <button id="trueButton">Vrai</button>
     </div>
-    <div class="footer">
-        <!-- en bas de la page, commun à toutes les pages-->
-        <p>© 2022 - AUTT</p>
-    </div>
-    <script src="/games/socket.io/socket.io.js"></script>
-    <script src="/games/js/citations.js"></script>
-    <div class="footer">
-        <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
-            target="_blank" href="https://github.com/Claquettes/JS_Games">ici</p>
-        <p>©claq.fr 2022.</p><br> 
-    </div>
+<div class="footer">
+    <!-- en bas de la page, commun à toutes les pages-->
+    <p>© 2022 - AUTT</p>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/citations.js"></script>
+<div class="footer">
+    <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                target="_blank" href="https://github.com/Claquettes/JS_Games">ici</p>
+    <p>©claq.fr 2022.</p><br>
+</div>
 </body>
 
 </html>

@@ -46,8 +46,8 @@ function init(app, db, session_secret) {
     })
 
     app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-            successRedirect: '/games/profile',
-            failureRedirect: '/games/login',
+            successRedirect: '/profile',
+            failureRedirect: '/login',
             failureFlash: true
         })
     )
@@ -57,7 +57,7 @@ function init(app, db, session_secret) {
 
     app.post('/register', checkNotAuthenticated, async (req, res) => {
         if (req.body.username.trim() === '' || req.body.password.trim() === '') {
-            res.render('/games/register', {message: "Nom d'utilisateur ou mot de passe vide"})
+            res.render('/register', {message: "Nom d'utilisateur ou mot de passe vide"})
         }
 
         db.registerUser(sanitize(req.body.username), sanitize(req.body.password), (req.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
@@ -79,7 +79,7 @@ function init(app, db, session_secret) {
             if (err) {
                 return next(err);
             }
-            res.redirect('/games/login');
+            res.redirect('/login');
         });
 
     });
@@ -94,12 +94,12 @@ function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
     }
-    res.redirect('/games/login')
+    res.redirect('/login')
 }
 
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/games/profile')
+        return res.redirect('/profile')
     }
     next()
 }

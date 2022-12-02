@@ -1,58 +1,58 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/games/css/profile.css">
-	<link rel="stylesheet" href="/games/css/stylesGlobal.css">
-	<link rel="icon" type="image/png" href="/games/logo_autt-(192x192).png" sizes="192x192">
+	<link rel="stylesheet" href="/css/profile.css">
+	<link rel="stylesheet" href="/css/stylesGlobal.css">
+	<link rel="icon" type="image/png" href="/logo_autt-(192x192).png" sizes="192x192">
 	<title>Jeux en ligne</title>
 </head>
 
 <body>
-	<header>
-		<a href="/">AUTT</a>
-		<ul>
-			<a href="/games/">
-				<li>Accueil</li>
-			</a>
-			<a href="/games/dinautt">
-				<li>Dinautt</li>
-			</a>
-			<a href="/games/morpion">
-				<li>Morpion</li>
-			</a>
-			<a href="/games/citations">
-				<li>Jeu des citations</li>
-			</a>
-		</ul>
-		<span class="nav-profile">
-			<a href="/games/profile">Mon profil</a>
+<header>
+	<a href="/">AUTT</a>
+	<ul>
+		<a href="/">
+			<li>Accueil</li>
+		</a>
+		<a href="/dinautt">
+			<li>Dinautt</li>
+		</a>
+		<a href="/morpion">
+			<li>Morpion</li>
+		</a>
+		<a href="/citations">
+			<li>Jeu des citations</li>
+		</a>
+	</ul>
+	<span class="nav-profile">
+			<a href="/profile">Mon profil</a>
 		</span>
-	</header>
-	<div class="haut">
-		<div class="gauche">
-			<div class="level">
-				<img src="/games/assets/assets-profile/level/image_part_072.jpg" class="lvlPng" alt="level">
-			</div>
-			<div class="avatar">
-				<img src="<%= avatar %>" class="avatarPng" alt="avatar">
-			</div>
-
+</header>
+<div class="haut">
+	<div class="gauche">
+		<div class="level">
+			<img src="/assets/assets-profile/level/image_part_072.jpg" class="lvlPng" alt="level">
+		</div>
+		<div class="avatar">
+			<img src="<%= avatar %>" class="avatarPng" alt="avatar">
 		</div>
 
-		<div class="banner">
-			<img src="/games/banners/<%= banner %>" alt="">
-			<img src="/games/assets/assets-profile/banner.jpg" class="bannerPng" alt="">
-		</div>
+	</div>
 
-		<div class="gold">
-			autt coins et finance
-		</div>
+	<div class="banner">
+		<img src="/banners/<%= banner %>" alt="">
+		<img src="/assets/assets-profile/banner.jpg" class="bannerPng" alt="">
+	</div>
+
+	<div class="gold">
+		autt coins et finance
+	</div>
 
 
-    </div>
-	<h1>Bienvenue sur ton profil, <%= username %> !</h1> 
-	
-	<div class="statsTexte">Tes statistiques:</div>
+</div>
+<h1>Bienvenue sur ton profil, <%= username %> !</h1>
+
+<div class="statsTexte">Tes statistiques:</div>
 	<div class="stats">
 		<div class="statCitations statsContent">
 			<h2>Jeu des citations</h2>
@@ -74,16 +74,16 @@
 			<p>Highscore: <%= stats.Dinautt_highscore %></p>
 
 		</div>
-</div>
+	</div>
 <div class="deconnection">
-    <form action="/games/logout?_method=DELETE" method="POST">
-        <button type="submit">Se déconnecter</button>
-    </form>
+	<form action="/logout?_method=DELETE" method="POST">
+		<button type="submit">Se déconnecter</button>
+	</form>
 </div>
 <div class="footer">
-    <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
-        target="_blank" href="https://github.com/Claquettes/JS_Games">ici</p>
-    <p>©claq.fr 2022.</p><br> 
+	<p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible
+		<a>target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
+	<p>©claq.fr 2022.</p><br>
 </div>
 
 </body>
