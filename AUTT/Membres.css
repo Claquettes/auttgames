@@ -1,0 +1,146 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 612px;
+}
+
+.u-section-1 .u-list-1 {
+  margin-bottom: 60px;
+  margin-top: 112px;
+}
+
+.u-section-1 .u-repeater-1 {
+  min-height: 375px;
+  grid-auto-columns: calc(20% - 8px);
+  grid-template-columns: calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px) calc(20% - 8px);
+  grid-gap: 10px 10px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-image-1 {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-1 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-image-2 {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-3 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-text-4 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-container-layout-3 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-image-3 {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-5 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-text-6 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-container-layout-4 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-image-4 {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-7 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-text-8 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-container-layout-5 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-image-5 {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.u-section-1 .u-text-9 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-text-10 {
+  margin: 72px auto 0;
+}
+
+.u-section-1 .u-gallery-nav-1 {
+  position: absolute;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.u-section-1 .u-gallery-nav-2 {
+  position: absolute;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-repeater-1 {
+    grid-template-columns: repeat(5, calc(20% - 8px));
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-repeater-1 {
+    grid-auto-columns: calc(33.333333333333336% - 6.666666666666667px);
+    grid-template-columns: repeat(3, calc(33.333333333333336% - 6.666666666666667px));
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-repeater-1 {
+    grid-auto-columns: calc(50% - 5px);
+    grid-template-columns: repeat(2, calc(50% - 5px));
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-repeater-1 {
+    grid-auto-columns: calc(100% - 0px);
+    grid-template-columns: 100%;
+  }
+}
