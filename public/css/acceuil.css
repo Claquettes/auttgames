@@ -44,9 +44,10 @@ body.toggled > #title {
   opacity: 0;
 }
 
-body.toggled > #dinautt {
+body.toggled > #menu {
   animation: fadetext 1s ease-in-out;
-  opacity: 1; 
+  opacity: 1;
+  z-index: 3;
 }
 
 body.toggled > #icon {
@@ -85,7 +86,7 @@ body.toggled > #tiles > .tile:hover {
 }
 
 
-#dinautt {
+#menu {
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -154,4 +155,9 @@ body.toggled > #tiles > .tile:hover {
   pointer-events: none;
   transition: opacity 1200ms ease;
   z-index: 1;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
