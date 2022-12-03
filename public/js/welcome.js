@@ -8,7 +8,6 @@ let toggled = false;
 
 const toggle = () => {
   toggled = !toggled;
-  
   document.body.classList.toggle("toggled");
 }
 
