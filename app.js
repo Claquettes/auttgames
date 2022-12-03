@@ -12,7 +12,6 @@ const anime = require('animejs');
 
 const port = 80;
 
-
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
 

@@ -1,14 +1,20 @@
 const sharp = require('sharp');
+const rewrite = require('express-urlrewrite');
+
 
 function init(app) {
+
+    app.use(rewrite('/envoie/:msg1/:msg2', '/envoie?msg=:msg1&msg2=:msg2'));
+    app.use(rewrite('/envoie/:msg2', '/envoie?msg=ENVOIE&msg2=:msg2'));
+
     app.get('/envoie', async (req, res) => {
 
-            let msg1 = '';
-            let msg2 = ''
-            if (req.query.msg)
-                msg1 = req.query.msg;
-            if (req.query.msg2)
-                msg2 = req.query.msg2;
+        let msg1 = '';
+        let msg2 = ''
+        if (req.query.msg)
+            msg1 = req.query.msg;
+        if (req.query.msg2)
+            msg2 = req.query.msg2;
 
             let svgImage = `
         <svg width="600" height="400">
