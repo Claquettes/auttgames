@@ -5,6 +5,7 @@ let columns = 0;
 let rows = 0;
 let toggled = false;
 
+
 const toggle = () => {
   toggled = !toggled;
   
