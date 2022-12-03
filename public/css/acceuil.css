@@ -35,6 +35,10 @@ body.toggled > #title {
   opacity: 0;
 }
 
+body.toggled > #dinautt {
+  opacity: 0;
+}
+
 body.toggled > #icon {
   opacity: 1;
 }
@@ -79,7 +83,18 @@ body.toggled > #tiles > .tile:hover {
 
 #title {
   color: white;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 6vw;
+  margin: 0px;
+  pointer-events: none;
+  transition: opacity 1200ms ease;
+  width: 50vw;
+  z-index: 3;
+}
+
+.boutons {
+  color: white;
+  font-family: 'Press Start 2P', sans-serif;
   font-size: 6vw;
   margin: 0px;
   pointer-events: none;
@@ -90,7 +105,7 @@ body.toggled > #tiles > .tile:hover {
 
 #title > .fancy {
   color: var(--g2);
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Press Start 2P', sans-serif;
   font-size: 1.5em;
   line-height: 0.9em;
 }
