@@ -13,6 +13,7 @@ const waitingRoom = document.getElementById('waitingRoom');
 const screen = document.getElementById('screen');
 
 const endGame = document.getElementById('endGame');
+const answerTable = document.getElementById('answerTable');
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -37,7 +38,7 @@ startbutton.addEventListener("click", () => {
 });
 
 copyButton.addEventListener("click", () => {
-    text = window.location.href+"?room="+roomId;
+    text = window.location.href + "?room=" + roomId;
     navigator.clipboard.writeText(text).then(() => {
         alert("Texte copié !")
     })
@@ -68,9 +69,34 @@ socket.on('new citation', (citation) => {
     }, 10000)
 });
 
-socket.on('end game', () => {
+socket.on('end game', (room, answer) => {
     gamecontainer.classList.add('d-none');
     endGame.classList.remove('d-none');
     console.log("end game");
+    console.log('room', room);
+    refreshAnswer(room, answer);
 });
 
+function refreshAnswer(room, answer, owner) {
+    text = `
+    <table id="answerTable">
+        <thead>
+            <tr>
+            <th>${answer.citation}</th> 
+            <th>${answer.author}</th>
+            <th>${answer.date}</th>
+            </tr>
+        </thead>
+        <tbody>`;
+    for (let i = 0; i < room.players.length; i++) {
+        text += `
+        <tr>
+            <td>${room.players[i].username}</td>
+            <td>${room.players[i].answers[0]}</td>
+            <td><input type="checkbox" id="answer_${i}"></td>
+        </tr>`;
+    }
+    text += `</tbody>
+    </table>`;
+    answerTable.innerHTML = text;   
+}

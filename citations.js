@@ -59,11 +59,11 @@ function init(app, socketio) {
                     room.curQuote++;
                     console.log("game started");
                     const gameInterval = setInterval(() => {
-                        if (room.curQuote >= 10) {
+                        if (room.curQuote >= 1) {
                             clearInterval(gameInterval);
                             setTimeout(() => {
                                 room.curQuote = 0;
-                                socketio.to(room.id).emit('end game');
+                                socketio.to(room.id).emit('end game',room,room.citations[0]);
                             }, 11000);
                         }
                         socketio.to(room.id).emit('new citation', room.citations[room.curQuote].citation);
