@@ -12,23 +12,28 @@
     background-position: -200% center;
   }
 }
+
 @keyframes fadetext {
   from {
     opacity: 0;
   }
-  
+
   to {
     opacity: 1;
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   animation: background-pan 10s linear infinite;
   background: linear-gradient(
-    to right,
-    var(--g1),
-    var(--g2),
-    var(--g1)
+          to right,
+          var(--g1),
+          var(--g2),
+          var(--g1)
   );
   background-size: 200%;
   height: 100vh;
@@ -44,9 +49,10 @@ body.toggled > #title {
   opacity: 0;
 }
 
-body.toggled > #dinautt {
+body.toggled > #menu {
   animation: fadetext 1s ease-in-out;
-  opacity: 1; 
+  opacity: 1;
+  z-index: 3;
 }
 
 body.toggled > #icon {
@@ -66,26 +72,18 @@ body.toggled > #tiles > .tile:hover {
 
 }
 
-.selectprofil {
+.selectprofil, .selectdinautt, .selectcitations, .selectmorpion {
   text-align: center;
-  position: relative;
-  color: white;
+  color: black;
+  transition: color 0.5s;
 }
-.selectdinautt {
-  text-align: center;
-  color:black;
-}
-.selectcitations {
-  text-align: center;
-  color:black;
-}
-.selectmorpion {
-  text-align: center;
-  color:black;
+
+.selectprofil:hover, .selectdinautt:hover, .selectcitations:hover, .selectmorpion:hover {
+  color: #fff;
 }
 
 
-#dinautt {
+#menu {
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -155,3 +153,4 @@ body.toggled > #tiles > .tile:hover {
   transition: opacity 1200ms ease;
   z-index: 1;
 }
+
