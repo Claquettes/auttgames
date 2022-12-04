@@ -23,6 +23,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "express-urlrewrite": "^2.0.0",
+    "i": "^0.3.7",
     "jquery": "^3.6.0",
     "method-override": "^3.0.0",
     "mysql2": "^2.3.3",
