@@ -1,4 +1,6 @@
 
+const score = document.querySelector('.score');
+
 const board = document.querySelector('.board');
 const tiles = [...Array(16)].map((_, i) => {
   const tile = document.createElement('div');
@@ -8,13 +10,31 @@ const tiles = [...Array(16)].map((_, i) => {
   return tile;
 });
 
-// Add a new tile with a value of 2 or 4 to a random empty space on the board
+
 function addTile() {
   const emptyTiles = tiles.filter(tile => tile.textContent === '0');
-  if (emptyTiles.length === 0) return; // no empty tiles, game is over
+  if (emptyTiles.length === 0){
+    alert("Game Over");
+    return;
+  }; // no empty tiles, game is over
+
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
   randomTile.textContent = Math.random() < 0.9 ? 2 : 4;
 }
+function colorTiles() /*the function that colors the tiles according to their value in the css file 2048.css */ 
+{
+  for (let i = 0; i < tiles.length; i++) {
+    const tile = tiles[i];
+    const value = Number(tile.textContent);
+    tile.classList.remove('tile-2', 'tile-4', 'tile-8', 'tile-16', 'tile-32', 'tile-64', 'tile-128', 'tile-256', 'tile-512', 'tile-1024', 'tile-2048');
+    if (value > 0) {
+      tile.classList.add(`tile-${value}`);
+    }
+  }
+}
+
+ 
+  
 
 function moveTiles(direction) {
 
@@ -30,7 +50,7 @@ xModifier = 1;
 yModifier = 1;
 }
 
-// Iterate over the tiles and move them in the specified direction
+
 for (let y = 0; y < 4; y++) {
 for (let x = 0; x < 4; x++) {
   const index = x + y * 4;
@@ -48,8 +68,10 @@ for (let x = 0; x < 4; x++) {
       newY += yModifier;
     } else if (newTile.textContent === tile.textContent) {
       // Merge the tiles
+
       newTile.textContent = String(Number(newTile.textContent) * 2);
       tile.textContent = '0';
+      score.textContent = String(Number(score.textContent) + Number(newTile.textContent));
       break;
     } else {
       // Stop moving the tile if it can't be merged or moved to an empty space
@@ -85,3 +107,4 @@ document.addEventListener('keydown', event => {
 // Start the game
 addTile();
 addTile();
+score.textContent = '0';
