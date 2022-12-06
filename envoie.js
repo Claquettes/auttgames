@@ -11,7 +11,7 @@ function init(app) {
 
         let msg1 = '';
         let msg2 = ''
-        if (req.Squery.msg)
+        if (req.query.msg)
             msg1 = req.query.msg;
         if (req.query.msg2)
             msg2 = req.query.msg2;
