@@ -82,7 +82,9 @@ for (let x = 0; x < 4; x++) {
 }
 
 // Add a new tile to the game board
-addTile();
+  addTile();
+
+  colorTiles();
 }
 
 
@@ -107,4 +109,5 @@ document.addEventListener('keydown', event => {
 // Start the game
 addTile();
 addTile();
+colorTiles();
 score.textContent = '0';
