@@ -11,7 +11,7 @@ h1 {
     letter-spacing: -1px;
     line-height: 1;
     text-align: center;
-    padding: 0px;
+    padding: 0;
 }
 h5{
     text-align: center;
@@ -172,7 +172,7 @@ div.autt-container {
     z-index: 2;
     width: 18px;
     position: relative;
-    bottom: 0px;
+    bottom: 0;
     height: 60px;
     border: 2px solid #000000;
     background-color: #00ff88;

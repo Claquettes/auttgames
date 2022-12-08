@@ -8,7 +8,6 @@ const path = require('path');
 const mysql = require('mysql2');
 const db = require('./db')
 const auth = require('./auth')
-const anime = require('animejs');
 
 const port = 80;
 

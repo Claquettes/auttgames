@@ -6,23 +6,23 @@ if (sideLength < 2 || sideLength > 10) {
 }
 
 function calculTaille(){
-  var taille = 599/sideLength;
+  let taille = 599 / sideLength;
   //on applique cette taille à chaque case du plateau de jeu
-  var cases = document.getElementsByClassName("tile");
-  for (var i = 0; i < cases.length; i++) {
-    cases[i].style.width = taille+"px";
-    cases[i].style.height = taille+"px";
-    cases[i].style.lineHeight = taille+"px";
-    cases[i].style.fontSize = taille/2+"px";
+  let cases = document.getElementsByClassName("tile");
+  for (let i = 0; i < cases.length; i++) {
+    cases[i].style.width = taille + "px";
+    cases[i].style.height = taille + "px";
+    cases[i].style.lineHeight = taille + "px";
+    cases[i].style.fontSize = taille / 2 + "px";
   }
-  
+
 
 }
 
 const score = document.querySelector('.score');
 const nbTiles = sideLength * sideLength;
 const board = document.querySelector('.board');
-const tiles = [...Array(nbTiles)].map((_, i) => {
+const tiles = [...Array(nbTiles)].map(() => {
   const tile = document.createElement('div');
   tile.classList.add('tile');
   tile.textContent = '0';
@@ -39,7 +39,7 @@ function addTile() {
   }; // no empty tiles, game is over
 
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-  randomTile.textContent = Math.random() < 0.9 ? 2 : 4;
+  randomTile.textContent = String(Math.random() < 0.9 ? 2 : 4);
 }
 function colorTiles() /*the function that colors the tiles according to their value in the css file 2048.css */ 
 {
