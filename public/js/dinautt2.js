@@ -33,9 +33,10 @@ const basicObstacleWidth = 50;
 const middleObstacleHeight = canvas.height - minObstaclePlayerSpace;
 
 // RANDOM SIZED OBSTACLE
-const maxObstacleHeight = canvas.height - minObstaclePlayerSpace;
-const minObstacleHeight = 50;
-const borderOffset = 10;
+//const maxObstacleHeight = canvas.height - minObstaclePlayerSpace;
+//const minObstacleHeight = 50;
+
+const obstacleBorderOffset = 10;
 
 //const minDoubleObstaclePlayerSpace = Math.floor(3.0*playerWidth);
 
@@ -61,7 +62,7 @@ function drawObstacle(obstacle) {
     ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
 
     ctx.fillStyle = obstacle.color;
-    ctx.fillRect(obstacle.x + borderOffset, obstacle.y + borderOffset, obstacle.width - 2 * borderOffset, obstacle.height - 2 * borderOffset);
+    ctx.fillRect(obstacle.x + obstacleBorderOffset, obstacle.y + obstacleBorderOffset, obstacle.width - 2 * obstacleBorderOffset, obstacle.height - 2 * obstacleBorderOffset);
 }
 
 function tick() {
@@ -285,7 +286,7 @@ function genMiddleObstacle() {
     obstacles.push(obstacle);
 }
 
-function genRandomSizedObstacle() {
+/*function genRandomSizedObstacle() {
     let obstacle = {};
     obstacle.speed = getCurrentSpeed();
     obstacle.width = 50;
@@ -296,7 +297,7 @@ function genRandomSizedObstacle() {
     obstacle.borderColor = "gold";
 
     obstacles.push(obstacle);
-}
+}*/
 
 /*function genDoubleObstacle() {
     let freeSpace = random(minDoubleObstaclePlayerSpace, canvas.height - 30);

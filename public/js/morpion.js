@@ -81,7 +81,7 @@ $("#form").on('submit', function (e) {
     socket.emit('playerData', player);
 });
 
-$(".cell").on("click", function (e) {
+$(".cell").on("click", function () {
     const playedCell = this.getAttribute('id');
 
     if (this.innerText === "" && player.turn) {
@@ -160,7 +160,7 @@ function startGame(players) {
     gameCard.classList.remove('d-none');
     turnMsg.classList.remove('d-none');
 
-    const ennemyPlayer = players.find(p => p.socketId != player.socketId);
+    const ennemyPlayer = players.find(p => p.socketId !== player.socketId);
     ennemyUsername = ennemyPlayer.username;
 
     if (player.host && player.turn) {

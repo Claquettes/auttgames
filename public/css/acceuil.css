@@ -5,7 +5,7 @@
 
 @keyframes background-pan {
   from {
-    background-position: 0% center;
+    background-position: 0 center;
   }
   
   to {
@@ -38,7 +38,7 @@ body {
   background-size: 200%;
   height: 100vh;
   overflow: hidden;
-  margin: 0px;
+  margin: 0;
 }
 
 body.toggled {
@@ -112,7 +112,7 @@ body.toggled > #tiles > .tile:hover {
 .tile:before {
   background-color: rgb(15, 15, 15);
   content: "";
-  inset: 0.5px;
+  inset: 1px;
   position: absolute;
 }
 
@@ -120,7 +120,7 @@ body.toggled > #tiles > .tile:hover {
   color: white;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 6vw;
-  margin: 0px;
+  margin: 0;
   pointer-events: none;
   transition: opacity 1200ms ease;
   width: 50vw;
@@ -131,7 +131,7 @@ body.toggled > #tiles > .tile:hover {
   color: white;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 6vw;
-  margin: 0px;
+  margin: 0;
   pointer-events: none;
   transition: opacity 1200ms ease;
   width: 50vw;
