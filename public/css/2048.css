@@ -2,13 +2,14 @@
 .board {
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     margin: auto;
     border: 2px solid #333;
   }
 
   .tile {
+
     width: 100px;
     height: 100px;
     line-height: 100px;

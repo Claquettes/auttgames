@@ -1,8 +1,28 @@
+//on récupère la valeur de la longueur du côté du plateau de jeu, entrée par le joueur
+const sideLength = Number(prompt('Enter the side length of the board (between 2 and 10): '));
+if (sideLength < 2 || sideLength > 10) {
+  alert('Invalid side length');
+  throw new Error('Invalid side length');
+}
+
+function calculTaille(){
+  var taille = 599/sideLength;
+  //on applique cette taille à chaque case du plateau de jeu
+  var cases = document.getElementsByClassName("tile");
+  for (var i = 0; i < cases.length; i++) {
+    cases[i].style.width = taille+"px";
+    cases[i].style.height = taille+"px";
+    cases[i].style.lineHeight = taille+"px";
+    cases[i].style.fontSize = taille/2+"px";
+  }
+  
+
+}
 
 const score = document.querySelector('.score');
-
+const nbTiles = sideLength * sideLength;
 const board = document.querySelector('.board');
-const tiles = [...Array(16)].map((_, i) => {
+const tiles = [...Array(nbTiles)].map((_, i) => {
   const tile = document.createElement('div');
   tile.classList.add('tile');
   tile.textContent = '0';
@@ -51,14 +71,14 @@ yModifier = 1;
 }
 
 
-for (let y = 0; y < 4; y++) {
-for (let x = 0; x < 4; x++) {
-  const index = x + y * 4;
+for (let y = 0; y < sideLength; y++) {
+for (let x = 0; x < sideLength; x++) {
+  const index = x + y * sideLength;
   const tile = tiles[index];
   let newX = x + xModifier;
   let newY = y + yModifier;
-  while (newX >= 0 && newX < 4 && newY >= 0 && newY < 4) {
-    const newIndex = newX + newY * 4;
+  while (newX >= 0 && newX < sideLength && newY >= 0 && newY < sideLength) {
+    const newIndex = newX + newY * sideLength;
     const newTile = tiles[newIndex];
     if (newTile.textContent === '0') {
       // Move the tile to the empty space
@@ -107,6 +127,7 @@ document.addEventListener('keydown', event => {
 });
 
 // Start the game
+calculTaille();
 addTile();
 addTile();
 colorTiles();
