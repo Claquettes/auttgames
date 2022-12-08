@@ -26,8 +26,8 @@ function colorTiles() /*the function that colors the tiles according to their va
   for (let i = 0; i < tiles.length; i++) {
     const tile = tiles[i];
     const value = Number(tile.textContent);
-    tile.classList.remove('tile-2', 'tile-4', 'tile-8', 'tile-16', 'tile-32', 'tile-64', 'tile-128', 'tile-256', 'tile-512', 'tile-1024', 'tile-2048');
-    if (value > 0) {
+    tile.classList.remove('tile-0','tile-2', 'tile-4', 'tile-8', 'tile-16', 'tile-32', 'tile-64', 'tile-128', 'tile-256', 'tile-512', 'tile-1024', 'tile-2048');
+    if (value > -1) {
       tile.classList.add(`tile-${value}`);
     }
   }

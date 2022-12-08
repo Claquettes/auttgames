@@ -18,7 +18,9 @@
     color: #333;
     background-color: #eee;
   }
-
+  .tile-0 {
+    color: rgba(0, 0, 0, 0.0);
+  }
   .tile-2 {
     background-color: #eee4da;
   }
