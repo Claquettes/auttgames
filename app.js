@@ -29,6 +29,10 @@ app.get('/', (req, res) => {
 
 const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
 
+app.get('/dinautt2', (req, res) => {
+    res.render('dinautt2/dinautt2.ejs');
+});
+
 app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 
 app.get('/2048', (req, res) => {
