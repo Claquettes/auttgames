@@ -15,7 +15,8 @@ body {
     background-color: #b77b84;
     height: 60%;
     position: relative;
-    padding: 0 25px 25px;
+    padding: 25px;
+    padding-top: 0;
 }
 
 .topTexte {
