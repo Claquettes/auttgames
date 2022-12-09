@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html onclick="jump()">
+<html lang="fr">
 
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -17,23 +17,7 @@
 </head>
 
 <body>
-<header>
-    <a href="/">AUTT</a>
-    <ul>
-        <a href="/">
-            <li>Accueil</li>
-        </a>
-        <a href="/dinautt">
-            <li>Dinautt</li>
-        </a>
-        <a href="/morpion">
-            <li>Morpion</li>
-        </a>
-        <a href="/citations">
-            <li>Jeu des citations</li>
-        </a>
-    </ul>
-</header>
+<%- include('../header.ejs') %>
 
 <h1>Le jeu du Dino mais en version
     <div class='autt-container'>
@@ -47,8 +31,10 @@
     <h2>Leaderboard:</h2>
     <table>
         <thead>
-        <th scope="col">Pseudo</th>
-        <th scope="col">Score</th>
+        <tr>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Score</th>
+        </tr>
         </thead>
     </table>
 </div>
@@ -61,6 +47,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"
         integrity="sha512-+Ru50BzEpZjlFzVnjSmJfYFPFfY2hS0Kjlu/IvqaJoux7maF5lJrRVUJWJ2LevPls7rd242GLbWEt+zAo4OVVQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/dinautt2.js"></script>
+<script type="module" src="/js/bundle.js"></script>
 </body>
 </html>

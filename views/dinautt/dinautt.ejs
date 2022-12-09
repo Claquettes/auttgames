@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html onclick="jump()">
+<html lang="fr" onclick="jump()">
 
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -17,23 +17,8 @@
 </head>
 
 <body>
-<header>
-    <a href="/">AUTT</a>
-    <ul>
-        <a href="/">
-            <li>Accueil</li>
-        </a>
-        <a href="/dinautt">
-            <li>Dinautt</li>
-        </a>
-        <a href="/morpion">
-            <li>Morpion</li>
-        </a>
-        <a href="/citations">
-            <li>Jeu des citations</li>
-        </a>
-    </ul>
-</header>
+
+<%- include('../header.ejs') %>
 
 <h1>Le jeu du Dino mais en version
     <div class='autt-container'>
@@ -44,7 +29,8 @@
 
 <div id="game">
     <div class="scoretexte">0</div>
-    <div id="character"><img src="/assets/dinautt/taco.png" width="40" height="40">
+    <div id="character"><img alt="AUTT taco character" src="/assets/dinautt/taco.png" width="336" height="339"
+                             style="width: 40px; height: 40px;">
     </div>
     <div id="obstacle-containerHaut">
     </div>
