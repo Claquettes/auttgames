@@ -7,8 +7,8 @@
     --color3: #165eae;
     --color4: #bdd0e6;
     --color5: #DAE3E5;
-    --color6: rgb(9, 76, 116);
-    --color7: rgb(23, 48, 111);
+    --color6: #AF7AFF;
+    --color7: #165EAE;
 }
 
 html {
@@ -23,8 +23,8 @@ html {
 
 body {
     overflow: hidden;
-    background: rgb(72,138,232);
-    background: radial-gradient(circle, rgba(72,138,232,1) 0%, rgba(9,76,116,1) 80%);
+    background: rgb(175,122,255);
+    background: linear-gradient(90deg, rgba(175,122,255,1) 5%, rgba(22,94,174,1) 100%);  /*Faudrait changer pour mettre les variables mais ca marche pas*/
     font-family: 'Open Sans', sans-serif;
 }
 

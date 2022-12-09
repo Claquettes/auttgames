@@ -25,6 +25,8 @@
     font-size: 48px;
     font-weight: bold;
     color: #333;
+    border: #333;
+    border-radius: 5px;
     background-color: #eee;
   }
   .tile-0 {
