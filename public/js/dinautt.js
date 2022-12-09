@@ -28,7 +28,7 @@ function jump() {
             }, 500);
         }
     } else {   //si le personnage est en haut, on le fait descendre
-        if (character.classList != "playAnimationJumpInverse") {
+        if (!character.classList.contains("playAnimationJumpInverse")) {
             character.classList.add("playAnimationJumpInverse");
 
             setTimeout(function () {
@@ -75,16 +75,16 @@ let gravityHandler = function () {
 }
 
 //fonction qui fait sauter si on appuie sur la barre espace et renverse la gravité si on appuie sur la touche "arrow up"
-var keyHandler = function (e) {
-    if (e.key === "ArrowUp") {
-        changeGravity();
-    }
+    let keyHandler = function (e) {
+        if (e.key === "ArrowUp") {
+            changeGravity();
+        }
 
-    if (e.key === " ") {
-        jump();
-    }
+        if (e.key === " ") {
+            jump();
+        }
 
-};
+    };
 
 //fonction qui créé un obstacle
 let addNewObstacle = function () {
@@ -195,32 +195,32 @@ let gameLoop = setInterval(function () {
 }, 10);
 
 // on lance le jeu :
-let ob = setInterval(function () {
-    // on créer un nouvel obstacle tout à droite de l'écran toutes les 2 secondes
-    addNewObstacle()
-    //TODO change speed
-}, 2000);
+    setInterval(function () {
+        // on créer un nouvel obstacle tout à droite de l'écran toutes les 2 secondes
+        addNewObstacle()
+        //TODO change speed
+    }, 2000);
 
 //procédure qui check si on a appuyé sur une touche
-let keyLooker = setInterval(function () {
-    document.addEventListener("keydown", keyHandler);
-}, 10);
+    setInterval(function () {
+        document.addEventListener("keydown", keyHandler);
+    }, 10);
 
 // Horloge qui augmente la clock toutes les secondes
-let timer = setInterval(function () {
-    clock++;
-    score++;
-    document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
-}, 100);
+    setInterval(function () {
+        clock++;
+        score++;
+        document.getElementsByClassName("scoretexte")[0].innerHTML = (parseInt(score));
+    }, 100);
 
 // procédure qui augmente la vitesse de l'obstacle toutes les 10 secondes d'une quantité aléatoire, jusqu'a 20 de speed
-let changeSpeed = setInterval(function () {
-    if (clock >= 70) {
+    setInterval(function () {
+        if (clock >= 70) {
 
-        if (speed <= 60) {
-            speed = speed + (Math.random());
-            clock = 0;
+            if (speed <= 60) {
+                speed = speed + (Math.random());
+                clock = 0;
+            }
         }
-    }
-}, 750);
+    }, 750);
 })();

@@ -32,7 +32,7 @@ const createTile = index => {
   
   tile.style.opacity = toggled ? 0 : 1;
   
-  tile.onclick = e => handleOnClick(index);
+  tile.onclick = () => handleOnClick(index);
   
   return tile;
 }

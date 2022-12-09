@@ -8,7 +8,6 @@ const path = require('path');
 const mysql = require('mysql2');
 const db = require('./db')
 const auth = require('./auth')
-const anime = require('animejs');
 
 const port = 80;
 
@@ -28,6 +27,10 @@ app.get('/', (req, res) => {
 });
 
 const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
+
+app.get('/dinautt2', (req, res) => {
+    res.render('dinautt2/dinautt2.ejs');
+});
 
 app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 

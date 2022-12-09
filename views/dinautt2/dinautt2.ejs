@@ -42,15 +42,7 @@
     <h5>"Space" to jump and "UpArrow to change gravity</h5>
 </h1>
 
-<div id="game">
-    <div class="scoretexte">0</div>
-    <div id="character"><img src="/assets/dinautt/taco.png" width="40" height="40">
-    </div>
-    <div id="obstacle-containerHaut">
-    </div>
-    <div id="obstacle-container">
-    </div>
-</div>
+<canvas id="game" width="1000" height="200"></canvas>
 <div id="leaderboard">
     <h2>Leaderboard:</h2>
     <table>
@@ -58,18 +50,6 @@
         <th scope="col">Pseudo</th>
         <th scope="col">Score</th>
         </thead>
-        <tbody>
-        <% for (var i = 0; i < leaderboard.length; i++) { %>
-            <tr>
-                <td>
-                    <%= leaderboard[i].username %>
-                </td>
-                <td>
-                    <%= leaderboard[i].Dinautt_highscore %>
-                </td>
-            </tr>
-        <% } %>
-        </tbody>
     </table>
 </div>
 
@@ -78,7 +58,9 @@
                 target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
     <p>©claq.fr 2022.</p><br>
 </div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/dinautt.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"
+        integrity="sha512-+Ru50BzEpZjlFzVnjSmJfYFPFfY2hS0Kjlu/IvqaJoux7maF5lJrRVUJWJ2LevPls7rd242GLbWEt+zAo4OVVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/dinautt2.js"></script>
 </body>
 </html>

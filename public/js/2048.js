@@ -6,8 +6,9 @@ if (sideLength < 2 || sideLength > 10) {
 }
 
 function calculTaille(){
-  var taille = 599/sideLength;
+  let taille = 599 / sideLength;
   //on applique cette taille à chaque case du plateau de jeu
+<<<<<<< HEAD
   var cases = document.getElementsByClassName("tile");
 
   for (var i = 0; i < cases.length; i++) { // on parcours toutes les cases afin de changer leur taille
@@ -16,13 +17,29 @@ function calculTaille(){
     cases[i].style.lineHeight = taille+"px";
     cases[i].style.fontSize = taille/2+"px";
   }
+=======
+  let cases = document.getElementsByClassName("tile");
+  for (let i = 0; i < cases.length; i++) {
+    cases[i].style.width = taille + "px";
+    cases[i].style.height = taille + "px";
+    cases[i].style.lineHeight = taille + "px";
+    cases[i].style.fontSize = taille / 2 + "px";
+  }
+
+
+>>>>>>> 3dd9266d6b78166b184b8978545ae3f817d1532f
 }
 
 const score = document.querySelector('.score'); //on récupère la classe "score" du css
 const nbTiles = sideLength * sideLength;  
 const board = document.querySelector('.board');
+<<<<<<< HEAD
 const tiles = [...Array(nbTiles)].map((_, i) => { //on créé les cases dans l'array
   const tile = document.createElement('div');     //on remplit la board avec des cases de valeur 0
+=======
+const tiles = [...Array(nbTiles)].map(() => {
+  const tile = document.createElement('div');
+>>>>>>> 3dd9266d6b78166b184b8978545ae3f817d1532f
   tile.classList.add('tile');
   tile.textContent = '0';
   board.appendChild(tile);
@@ -38,7 +55,7 @@ function addTile() {                              //fonction qui rajoute des til
   }; // plus de place, le jeu est fini
 
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-  randomTile.textContent = Math.random() < 0.9 ? 2 : 4;
+  randomTile.textContent = String(Math.random() < 0.9 ? 2 : 4);
 }
 function colorTiles() //fonction qui applique la couleur à chaque Tile 
 {

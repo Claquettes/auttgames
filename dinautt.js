@@ -26,7 +26,7 @@ function init(app, socketio) {
 
     app.get('/dinautt', checkAuthenticated, (req, res) => {
         db.getDinauttLeaderboard().then((leaderboard) => {
-            res.render('dinautt/dinautt', {leaderboard: leaderboard});
+            res.render('dinautt/dinautt.ejs', {leaderboard: leaderboard});
         }).catch((err) => {
             console.error(err);
             res.sendStatus(500)

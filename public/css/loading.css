@@ -16,7 +16,7 @@ body {
     height: 60%;
     position: relative;
     padding: 25px;
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 .topTexte {
@@ -40,7 +40,7 @@ body {
 }
 
 .waiting {
-    margin: 0px 1.5%;
+    margin: 0 1.5%;
 }
 
 .bottomTexte {
@@ -90,10 +90,18 @@ body {
 }
 
 @keyframes slider {
-    0% { width: 0%; }
-    40% { width: 20%; }
-    60% { width: 20%; }
-    100% { width: 0%; }
+    0% {
+        width: 0;
+    }
+    40% {
+        width: 20%;
+    }
+    60% {
+        width: 20%;
+    }
+    100% {
+        width: 0;
+    }
 }
 
 /* Spinning the sphere using key frames */
