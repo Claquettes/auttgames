@@ -1,26 +1,25 @@
 //on récupère la valeur de la longueur du côté du plateau de jeu, entrée par le joueur
-const sideLength = Number(prompt('Enter the side length of the board (between 2 and 10): '));
+const sideLength = Number(prompt('Entre la taille de la grille (entre 2 et 10)'));
 if (sideLength < 2 || sideLength > 10) {
-  alert('Invalid side length');
+  alert('Taille non conforme');
   throw new Error('Invalid side length');
 }
 
 function calculTaille(){
   let taille = 599 / sideLength;
   //on applique cette taille à chaque case du plateau de jeu
-  let cases = document.getElementsByClassName("tile");
-  for (let i = 0; i < cases.length; i++) {
-    cases[i].style.width = taille + "px";
-    cases[i].style.height = taille + "px";
-    cases[i].style.lineHeight = taille + "px";
-    cases[i].style.fontSize = taille / 2 + "px";
+  var cases = document.getElementsByClassName("tile");
+
+  for (var i = 0; i < cases.length; i++) { // on parcours toutes les cases afin de changer leur taille
+    cases[i].style.width = taille+"px";
+    cases[i].style.height = taille+"px";
+    cases[i].style.lineHeight = taille+"px";
+    cases[i].style.fontSize = taille/2+"px";
   }
-
-
 }
 
-const score = document.querySelector('.score');
-const nbTiles = sideLength * sideLength;
+const score = document.querySelector('.score'); //on récupère la classe "score" du css
+const nbTiles = sideLength * sideLength;  
 const board = document.querySelector('.board');
 const tiles = [...Array(nbTiles)].map(() => {
   const tile = document.createElement('div');
@@ -31,17 +30,17 @@ const tiles = [...Array(nbTiles)].map(() => {
 });
 
 
-function addTile() {
+function addTile() {                              //fonction qui rajoute des tiles à chaque nouveau tour
   const emptyTiles = tiles.filter(tile => tile.textContent === '0');
   if (emptyTiles.length === 0){
     alert("Game Over");
     return;
-  }; // no empty tiles, game is over
+  }; // plus de place, le jeu est fini
 
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
   randomTile.textContent = String(Math.random() < 0.9 ? 2 : 4);
 }
-function colorTiles() /*the function that colors the tiles according to their value in the css file 2048.css */ 
+function colorTiles() //fonction qui applique la couleur à chaque Tile 
 {
   for (let i = 0; i < tiles.length; i++) {
     const tile = tiles[i];
@@ -107,7 +106,6 @@ for (let x = 0; x < sideLength; x++) {
   colorTiles();
 }
 
-
 // Handle keyboard input
 document.addEventListener('keydown', event => {
   switch (event.keyCode) {
@@ -126,7 +124,7 @@ document.addEventListener('keydown', event => {
   }
 });
 
-// Start the game
+//Initialisation du jeu, on calcule la taille, on ajoute 2 tiles, on ajoute la couleur, et on initialise le score.
 calculTaille();
 addTile();
 addTile();
