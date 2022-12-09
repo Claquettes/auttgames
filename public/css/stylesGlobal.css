@@ -49,7 +49,7 @@ header .nav-profile {
     display: inline-block;
 }
 
-header ul,
+header li,
 header .nav-profile {
     margin: 7px 5px;
     transition: background-color 0.4s;
@@ -61,8 +61,11 @@ header span a:hover {
     transition: background-color 0.4s;
 }
 
-header li,
-header span a {
+header li {
+    display: inline-block;
+}
+
+header li a, header span a {
     display: inline-block;
     padding: 12px 10px;
 }
