@@ -72,13 +72,13 @@ body.toggled > #tiles > .tile:hover {
 
 }
 
-.selectprofil, .selectdinautt, .selectcitations, .selectmorpion {
+.selectprofil, .selectdinautt, .selectcitations, .selectmorpion, .select2048 {
   text-align: center;
   color: black;
   transition: color 0.5s;
 }
 
-.selectprofil:hover, .selectdinautt:hover, .selectcitations:hover, .selectmorpion:hover {
+.selectprofil:hover, .selectdinautt:hover, .selectcitations:hover, .selectmorpion:hover, .select2048:hover {
   color: #fff;
 }
 
