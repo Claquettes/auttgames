@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
+    "express-browserify": "^1.0.3",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "express-urlrewrite": "^2.0.0",

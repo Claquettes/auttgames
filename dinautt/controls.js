@@ -11,6 +11,8 @@ function handleKeyEvent(e, player) {
         changeGravity(player);
     } else if (e.code === "Space") {
         jump(player);
+    } else if (e.code === "KeyC") {
+        showDebugInfo(player);
     }
 };
 
@@ -21,8 +23,12 @@ function jump(player) {
 }
 
 function changeGravity(player) {
-    if (player.jumping) return;
+    if (player.jumping || !player.grounded) return;
     player.changingGravity = true;
+}
+
+function showDebugInfo(player) {
+    player.showDebug = !player.showDebug;
 }
 
 module.exports = {

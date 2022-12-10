@@ -86,11 +86,30 @@ function drawObstacle(ctx, obstacle) {
     ctx.fillRect(obstacle.x + consts.obstacleBorderOffset, obstacle.y + consts.obstacleBorderOffset, obstacle.width - 2 * consts.obstacleBorderOffset, obstacle.height - 2 * consts.obstacleBorderOffset);
 }
 
+////////////////////
+//// COLLISIONS ////
+////////////////////
+
+function checkCollisions(game, ctx) {
+    for (let i = 0; i < game.obstacles.length; i++) {
+        let obstacle = game.obstacles[i];
+
+        let collideX = ((game.player.x < obstacle.x + obstacle.width) && (game.player.x + obstacle.width > obstacle.x));
+        let collideY = ((game.player.y + consts.playerHeight > obstacle.y) && (game.player.y < obstacle.y + obstacle.height));
+
+        if (collideX && collideY) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 module.exports = {
     genShortUpperObstacle,
     genShortLowerObstacle,
     genLongUpperObstacle,
     genLongLowerObstacle,
     genMiddleObstacle,
-    drawObstacle
+    checkCollisions
 };

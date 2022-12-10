@@ -4,14 +4,16 @@ const sessionController = require('./sessionController');
 const {checkAuthenticated} = require('./auth');
 const db = require('./db');
 
+const expressBrowserify = require('express-browserify');
+
 function init(app, socketio) {
     socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
     socketio.on('connection', (socket) => {
-            socket.on("newscore", (score) => {
-                if (socket.request.session.passport === undefined) {
-                    return;
-                }
+        socket.on("newscore", (score) => {
+            if (socket.request.session.passport === undefined) {
+                return;
+            }
 
                 let user = socket.request.session.passport.user;
                 if (Number.isInteger(score)) {
@@ -32,6 +34,14 @@ function init(app, socketio) {
             res.sendStatus(500)
         });
     });
+
+    app.get('/dinautt2', (req, res) => {
+        res.render('dinautt2/dinautt2.ejs');
+    });
+
+    app.use("/js/dinautt2.js", expressBrowserify('dinautt/base.js', {
+        watch: true,
+    }));
 }
 
 module.exports = {
