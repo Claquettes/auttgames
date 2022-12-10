@@ -11,7 +11,7 @@ const jumpSize = 80;
 const playerImageSrc = "/assets/dinautt/taco.png";
 
 // BASIC OBSTACLES :
-const minObstaclePlayerSpace = 2 * playerHeight + 30;
+const minObstaclePlayerSpace = 2 * playerHeight + 40;
 
 const shortObstaclesHeight = 60;
 const longObstacleHeight = 100;
@@ -49,18 +49,17 @@ function newBasePlayer() {
 }
 
 function newGame() {
-    let player = newBasePlayer();
-    let obstacles = [];
-    let score = 0;
-
-    let time;
-    let startTime;
-
-    return {
-        player,
-        obstacles,
-        score
+    let game = {
+        player: newBasePlayer(),
+        obstacles: [],
+        score: 0,
+        stop: false
     }
+
+    game.getDifficulty = () => 1 + Math.floor(game.player.score / 3000);
+    game.getSpeed = () => 5 + Math.floor(game.player.score / 3000);
+
+    return game;
 }
 
 module.exports = {

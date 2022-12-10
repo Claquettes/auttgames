@@ -51,8 +51,8 @@ function showDebugInfo(game, ctx) {
     ctx.fillText("jumping : " + game.player.jumping, 30, 90);
     ctx.fillText("grounded : " + game.player.grounded, 30, 110);
     ctx.fillText("changingGravity : " + game.player.changingGravity, 30, 130);
-    ctx.fillText("difficulty : " + getCurrentDifficulty(), 30, 150);
-    ctx.fillText("speed : " + getCurrentSpeed(), 30, 170);
+    ctx.fillText("difficulty : " + game.getDifficulty(), 30, 150);
+    ctx.fillText("speed : " + game.getSpeed(), 30, 170);
 }
 
 module.exports = {

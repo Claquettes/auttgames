@@ -17,10 +17,10 @@
     "animejs": "github:juliangarnier/anime",
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.0.0-beta2",
+    "browserify": "^17.0.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
-    "express-browserify": "^1.0.3",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "express-urlrewrite": "^2.0.0",
@@ -31,7 +31,8 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "sharp": "^0.31.2",
-    "socket.io": "^4.0.1"
+    "socket.io": "^4.0.1",
+    "watchify": "^4.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
