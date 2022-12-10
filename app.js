@@ -33,11 +33,15 @@ app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 app.get('/2048', (req, res) => {
     res.render('2048/2048');
 });
+app.get('/mimir', (req, res) => {
+    res.render('mimir/mimir');
+});
 
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
+
 
 http.listen(port, () => {
     console.log(`Listening on http://localhost:${port}/`);
