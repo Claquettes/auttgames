@@ -2,17 +2,23 @@
 ////    CONTROLS   ////
 ///////////////////////
 
-function handleKeyEvent(e, player) {
+function handleKeyEvent(e, game) {
     if (event.isComposing || event.keyCode === 229) {
         return;
     }
 
-    if (e.code === "ArrowUp") {
-        changeGravity(player);
-    } else if (e.code === "Space") {
-        jump(player);
-    } else if (e.code === "KeyC") {
-        showDebugInfo(player);
+    if (!game.isMenuGame) {
+        if (e.code === "ArrowUp") {
+            changeGravity(game.player);
+        } else if (e.code === "Space") {
+            jump(game.player);
+        } else if (e.code === "KeyC") {
+            showDebugInfo(game.player);
+        }
+    } else {
+        if (event.code === "Space") {
+            game.stopGame = true;
+        }
     }
 };
 

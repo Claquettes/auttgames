@@ -3,11 +3,10 @@ const obstacleMgr = require('./obstacle');
 const controls = require('./controls');
 const playerAbilities = require('./playerAbilities')
 
-const {min, random} = require('./utils');
+const {random} = require('./utils');
 const utils = require('./utils.js');
-const {canvasHeight} = require("./consts");
 
-function addObstacle(game, ctx) {
+function addObstacle(game) {
     let difficulty = game.getDifficulty()
     let speed = game.getSpeed();
 
@@ -31,7 +30,6 @@ function tick(game, ctx) {
     } else {
         if (Date.now() - game.time < 8) {
             Math.seedrandom(Date.now());
-            return true;
         }
     }
     game.time = Date.now();
@@ -72,33 +70,24 @@ function tick(game, ctx) {
 
     if (game.player.showDebug)
         utils.showDebugInfo(game, ctx);
-
-    return true;
 }
 
-function startGame(context, game, menuCallback) {
+function startGame(context, game, gameEndCallback) {
     if (!game.isMenuGame) {
         // CONTROLS
         document.onclick = () => controls.jump(game.player);
-        document.onkeydown = (e) => controls.handleKeyEvent(e, game.player)
-    } else {
-        document.onkeydown = (e) => {
-            if (!event.isComposing && event.keyCode !== 229) {
-                if (event.code === "Space") {
-                    menuCallback();
-                }
-            }
-        }
     }
+
+    document.onkeydown = (e) => controls.handleKeyEvent(e, game);
 
     function tickGame() {
         if (game.stopGame) {
+            gameEndCallback();
             return;
         }
 
-        if (tick(game, context)) {
-            requestAnimationFrame(tickGame);
-        }
+        tick(game, context)
+        requestAnimationFrame(tickGame);
     }
 
     requestAnimationFrame(tickGame);
