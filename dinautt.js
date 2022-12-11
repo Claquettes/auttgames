@@ -12,10 +12,10 @@ function init(app, socketio) {
     socketio.use(sessionController.wrap(sessionController.sessionMiddleware));
 
     socketio.on('connection', (socket) => {
-        socket.on("newscore", (score) => {
-            if (socket.request.session.passport === undefined) {
-                return;
-            }
+            socket.on("newscore", (score) => {
+                if (socket.request.session.passport === undefined) {
+                    return;
+                }
 
                 let user = socket.request.session.passport.user;
                 if (Number.isInteger(score)) {
