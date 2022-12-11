@@ -42,5 +42,5 @@ require('./mimir').init(app);
 
 
 http.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}/`);
+    console.log(`Letsgo ca marche, tu peux test ici http://localhost:${port}/`);
 });
