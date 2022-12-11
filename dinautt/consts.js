@@ -48,16 +48,18 @@ function newBasePlayer() {
     return player;
 }
 
-function newGame() {
+function newGame(isMenuGame) {
     let game = {
         player: newBasePlayer(),
         obstacles: [],
         score: 0,
-        stop: false
+        startTime: Date.now(),
+        stopGame: false,
+        isMenuGame: isMenuGame
     }
 
-    game.getDifficulty = () => 1 + Math.floor(game.player.score / 3000);
-    game.getSpeed = () => 5 + Math.floor(game.player.score / 3000);
+    game.getDifficulty = () => ((isMenuGame) ? 4 : 1 + Math.floor(game.player.score / 3000));
+    game.getSpeed = () => ((isMenuGame) ? 10 : 5 + Math.floor(game.player.score / 3000));
 
     return game;
 }
