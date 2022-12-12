@@ -12,6 +12,19 @@ function min(a, b) {
     return a < b ? a : b;
 }
 
+const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+    const hex = x.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+}).join('');
+
+function hexToRgb(hexColor) {
+    return {
+        r: (hexColor >> 16) & 0xFF,
+        g: (hexColor >> 8) & 0xFF,
+        b: hexColor & 0xFF,
+    }
+}
+
 function drawScore(ctx, score) {
     ctx.fillStyle = "rgb(23 48 111)";
     ctx.fillRect(consts.canvasWidth - 130 - 10, 0, 130 + 10, 25 + 10);
@@ -23,9 +36,8 @@ function drawScore(ctx, score) {
     ctx.fillText("Score: " + score, consts.canvasWidth - 128, 23);
 }
 
-function clearCanvas(ctx) {
-    ctx.fillStyle = consts.backgroundColor;
-    ctx.fillRect(0, 0, consts.canvasWidth, consts.canvasHeight);
+function clear(CETTEVARNEXISTEPASENLOCAL) {
+
 }
 
 function drawRoundButton(ctx, x, y, width, height, arcsize) {
@@ -53,13 +65,42 @@ function showDebugInfo(game, ctx) {
     ctx.fillText("changingGravity : " + game.player.changingGravity, 30, 130);
     ctx.fillText("difficulty : " + game.getDifficulty(), 30, 150);
     ctx.fillText("speed : " + game.getSpeed(), 30, 170);
+    ctx.fillText("gamemode : " + game.gamemode, 150, 30);
+}
+
+function genColorComponentRGB(r, g, b) {
+    let c = {
+        r: Math.floor(r),
+        g: Math.floor(g),
+        b: Math.floor(b),
+        getAsHex: () => rgbToHex(c.r, c.g, c.b),
+        getAsArray: () => [c.r, c.g, c.b]
+    }
+
+    return c;
+}
+
+function genColorComponentHEX(hex) {
+    let rgb = hexToRgb(hex);
+
+    let c = {
+        r: Math.floor(rgb.r),
+        g: Math.floor(rgb.g),
+        b: Math.floor(rgb.b),
+        getAsHex: () => rgbToHex(c.r, c.g, c.b),
+        getAsArray: () => [c.r, c.g, c.b]
+    }
+
+    return c;
 }
 
 module.exports = {
     random,
     min,
     drawScore,
-    clearCanvas,
+    clear,
     drawRoundButton,
-    showDebugInfo
+    showDebugInfo,
+    genColorComponentRGB,
+    genColorComponentHEX
 }

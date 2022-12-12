@@ -1,19 +1,31 @@
+const gamemodes = require("./gamemodes");
+
 ///////////////////////
 ////    CONTROLS   ////
 ///////////////////////
 
 function handleKeyEvent(e, game) {
+    console.dir(gamemodes);
+
     if (event.isComposing || event.keyCode === 229) {
         return;
     }
 
     if (!game.isMenuGame) {
-        if (e.code === "ArrowUp") {
-            changeGravity(game.player);
-        } else if (e.code === "Space") {
-            jump(game.player);
-        } else if (e.code === "KeyC") {
-            showDebugInfo(game.player);
+        if (game.gamemode === "normal") {
+            if (e.code === "ArrowUp") {
+                changeGravity(game.player);
+            } else if (e.code === "Space") {
+                jump(game.player);
+            } else if (e.code === "KeyC") {
+                showDebugInfo(game.player);
+            } else if (e.code === "KeyV") {
+                gamemodes.changeGamemode(game, "rows");
+            }
+        } else if (game.gamemode === "rows") {
+            if (e.code === "KeyV") {
+                gamemodes.changeGamemode(game, "normal");
+            }
         }
     } else {
         if (event.code === "Space") {

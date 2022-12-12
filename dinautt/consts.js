@@ -1,7 +1,8 @@
+const utils = require("./utils");
+
 // CANVAS
 const canvasWidth = 1000;
 const canvasHeight = 200;
-const backgroundColor = "#165eae";
 
 // PLAYER
 const playerWidth = 40;
@@ -13,11 +14,21 @@ const playerImageSrc = "/assets/dinautt/taco.png";
 // BASIC OBSTACLES :
 const minObstaclePlayerSpace = 2 * playerHeight + 40;
 
-const shortObstaclesHeight = 60;
-const longObstacleHeight = 100;
-const basicObstacleWidth = 40;
-const middleObstacleHeight = canvasHeight - minObstaclePlayerSpace;
-const obstacleBorderOffset = 10;
+const normalGMConsts = {
+    shortObstaclesHeight: 60,
+    longObstacleHeight: 100,
+    basicObstacleWidth: 40,
+    middleObstacleHeight: canvasHeight - minObstaclePlayerSpace,
+    obstacleBorderOffset: 10,
+    backgroundColor: utils.genColorComponentRGB(22, 74, 174)
+}
+
+const rowsGMConsts = {
+    obstacleWidth: 40,
+    obstacleHeight: 40,
+    backgroundColor: utils.genColorComponentHEX(0xe038e1)
+}
+
 
 // LIMITS
 const groundY = canvasHeight - 10 - playerHeight;
@@ -30,7 +41,7 @@ function newBasePlayer() {
         width: 0,
         height: 0,
 
-        gravity: true, // 1 = on griybd, 0 = on roof
+        gravity: true, // 1 = on ground, 0 = on roof
         jumping: false,
         grounded: true, // prevent double jump
         changingGravity: false,
@@ -51,7 +62,10 @@ function newBasePlayer() {
 function newGame(isMenuGame) {
     let game = {
         player: newBasePlayer(),
+        backgroundColor: normalGMConsts.backgroundColor,
         obstacles: [],
+        animations: [],
+        gamemode: "normal",
         score: 0,
         startTime: Date.now(),
         stopGame: false,
@@ -67,7 +81,6 @@ function newGame(isMenuGame) {
 module.exports = {
     canvasWidth,
     canvasHeight,
-    backgroundColor,
 
     playerWidth,
     playerHeight,
@@ -76,11 +89,8 @@ module.exports = {
     playerImageSrc,
 
     minObstaclePlayerSpace,
-    shortObstaclesHeight,
-    longObstacleHeight,
-    basicObstacleWidth,
-    middleObstacleHeight,
-    obstacleBorderOffset,
+    normalGMConsts,
+    rowsGMConsts,
 
     groundY,
     roofY,

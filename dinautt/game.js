@@ -3,24 +3,37 @@ const obstacleMgr = require('./obstacle');
 const controls = require('./controls');
 const playerAbilities = require('./playerAbilities')
 
+const animation = require('./animations');
+
 const {random} = require('./utils');
 const utils = require('./utils.js');
 
 function addObstacle(game) {
-    let difficulty = game.getDifficulty()
-    let speed = game.getSpeed();
+    if (game.gamemode === "normal") {
+        let difficulty = game.getDifficulty()
+        let speed = game.getSpeed();
 
-    let type = random(0, difficulty);
-    if (type === 0) {
-        game.obstacles.push(obstacleMgr.genShortLowerObstacle(speed));
-    } else if (type === 1) {
-        game.obstacles.push(obstacleMgr.genShortUpperObstacle(speed));
-    } else if (type === 2) {
-        game.obstacles.push(obstacleMgr.genLongLowerObstacle(speed));
-    } else if (type === 3) {
-        game.obstacles.push(obstacleMgr.genLongUpperObstacle(speed));
-    } else if (type === 4) {
-        game.obstacles.push(obstacleMgr.genMiddleObstacle(speed));
+        let type = random(0, difficulty);
+        if (type === 0) {
+            game.obstacles.push(obstacleMgr.genShortLowerObstacle(speed));
+        } else if (type === 1) {
+            game.obstacles.push(obstacleMgr.genShortUpperObstacle(speed));
+        } else if (type === 2) {
+            game.obstacles.push(obstacleMgr.genLongLowerObstacle(speed));
+        } else if (type === 3) {
+            game.obstacles.push(obstacleMgr.genLongUpperObstacle(speed));
+        } else if (type === 4) {
+            game.obstacles.push(obstacleMgr.genMiddleObstacle(speed));
+        }
+    } else if (game.gamemode === "rows") {
+        let type = random(0, 2);
+        if (type === 0) {
+            game.obstacles.push(obstacleMgr.genRowsTopObstacle(10));
+        } else if (type === 1) {
+            game.obstacles.push(obstacleMgr.genRowsMiddleObstacle(10));
+        } else if (type === 2) {
+            game.obstacles.push(obstacleMgr.genRowsBottomObstacle(10));
+        }
     }
 }
 
@@ -34,8 +47,13 @@ function tick(game, ctx) {
     }
     game.time = Date.now();
 
+    let clearcanvas = (ctx, bg) => {
+        ctx.fillStyle = bg.getAsHex();
+        ctx.fillRect(0, 0, consts.canvasWidth, consts.canvasHeight);
+    }
+
     // clear canvas
-    utils.clearCanvas(ctx);
+    clearcanvas(ctx, game.backgroundColor);
 
     game.obstacles.forEach((obstacle) => obstacle.tick(ctx));
 
@@ -53,6 +71,7 @@ function tick(game, ctx) {
         game.player.score = Math.floor((Date.now() - game.startTime) / 10);
         utils.drawScore(ctx, game.player.score);
 
+        game.animations.forEach((animation) => animation.tick());
         playerAbilities.tick(game);
     } else {
         ctx.fillStyle = "black";
