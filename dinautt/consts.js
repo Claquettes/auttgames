@@ -1,43 +1,43 @@
-const utils = require("./utils");
+const colors = require("./colors");
 
 // CANVAS
-const canvasWidth = 1000;
-const canvasHeight = 200;
+const canvasWidth = 10000;
+const canvasHeight = 2000;
 
 // PLAYER
-const playerWidth = 40;
-const playerHeight = 40;
-const jumpSize = 80;
+const playerWidth = 400;
+const playerHeight = 400;
+const jumpSize = 800;
 
 const playerImageSrc = "/assets/dinautt/taco.png";
 
 // BASIC OBSTACLES :
-const minObstaclePlayerSpace = 2 * playerHeight + 40;
+const minObstaclePlayerSpace = 2 * playerHeight + 400;
 
 const normalGMConsts = {
-    shortObstaclesHeight: 60,
-    longObstacleHeight: 100,
-    basicObstacleWidth: 40,
+    shortObstaclesHeight: 600,
+    longObstacleHeight: 1000,
+    basicObstacleWidth: 400,
     middleObstacleHeight: canvasHeight - minObstaclePlayerSpace,
-    obstacleBorderOffset: 10,
-    backgroundColor: utils.genColorComponentRGB(22, 74, 174)
+    obstacleBorderOffset: 100,
+    backgroundColor: colors.genColorComponentRGB(22, 74, 174)
 }
 
 const rowsGMConsts = {
-    obstacleWidth: 40,
-    obstacleHeight: 40,
-    backgroundColor: utils.genColorComponentHEX(0xe038e1)
+    obstacleWidth: 400,
+    obstacleHeight: 400,
+    backgroundColor: colors.genColorComponentHEX(0xe038e1)
 }
 
 
 // LIMITS
-const groundY = canvasHeight - 10 - playerHeight;
-const roofY = 10;
+const groundY = canvasHeight - 100 - playerHeight;
+const roofY = 100;
 
 function newBasePlayer() {
     let player = {
-        x: 10,
-        y: canvasHeight - 10 - playerHeight,
+        x: 100,
+        y: canvasHeight - 100 - playerHeight,
         width: 0,
         height: 0,
 
@@ -72,8 +72,8 @@ function newGame(isMenuGame) {
         isMenuGame: isMenuGame
     }
 
-    game.getDifficulty = () => ((isMenuGame) ? 4 : 1 + Math.floor(game.player.score / 3000));
-    game.getSpeed = () => ((isMenuGame) ? 10 : 5 + Math.floor(game.player.score / 3000));
+    game.getDifficulty = () => ((isMenuGame) ? 4 : 1 + Math.floor(game.player.score / 3000)) * 2;
+    game.getSpeed = () => ((isMenuGame) ? 10 : 5 + Math.floor(game.player.score / 3000)) * 2;
 
     return game;
 }

@@ -4,16 +4,15 @@ const controls = require('./controls');
 const playerAbilities = require('./playerAbilities')
 
 const animation = require('./animations');
-
-const {random} = require('./utils');
-const utils = require('./utils.js');
+const utils = require('./utils');
+const drawingUtils = require("./drawingUtils");
 
 function addObstacle(game) {
     if (game.gamemode === "normal") {
         let difficulty = game.getDifficulty()
         let speed = game.getSpeed();
 
-        let type = random(0, difficulty);
+        let type = utils.random(0, difficulty);
         if (type === 0) {
             game.obstacles.push(obstacleMgr.genShortLowerObstacle(speed));
         } else if (type === 1) {
@@ -26,7 +25,7 @@ function addObstacle(game) {
             game.obstacles.push(obstacleMgr.genMiddleObstacle(speed));
         }
     } else if (game.gamemode === "rows") {
-        let type = random(0, 2);
+        let type = utils.random(0, 2);
         if (type === 0) {
             game.obstacles.push(obstacleMgr.genRowsTopObstacle(10));
         } else if (type === 1) {
@@ -47,13 +46,8 @@ function tick(game, ctx) {
     }
     game.time = Date.now();
 
-    let clearcanvas = (ctx, bg) => {
-        ctx.fillStyle = bg.getAsHex();
-        ctx.fillRect(0, 0, consts.canvasWidth, consts.canvasHeight);
-    }
-
     // clear canvas
-    clearcanvas(ctx, game.backgroundColor);
+    drawingUtils.clearCanvas(ctx, game.backgroundColor);
 
     game.obstacles.forEach((obstacle) => obstacle.tick(ctx));
 
@@ -63,19 +57,19 @@ function tick(game, ctx) {
         if (obstacleMgr.checkCollisions(game)) {
             if (game.player.showDebug) {
                 ctx.fillStyle = "black";
-                ctx.fillText("Collide", 100, 30);
+                ctx.fillText("Collide", 1000, 300);
             }
         }
 
         // UPDATE SCORE
         game.player.score = Math.floor((Date.now() - game.startTime) / 10);
-        utils.drawScore(ctx, game.player.score);
+        drawingUtils.drawScore(ctx, game.player.score);
 
         game.animations.forEach((animation) => animation.tick());
         playerAbilities.tick(game);
     } else {
         ctx.fillStyle = "black";
-        ctx.font = "20px Arial";
+        ctx.font = "200px Arial";
         let text = "Press Space";
         let measure = ctx.measureText(text);
 
@@ -88,7 +82,7 @@ function tick(game, ctx) {
     }
 
     if (game.player.showDebug)
-        utils.showDebugInfo(game, ctx);
+        drawingUtils.showDebugInfo(game, ctx);
 }
 
 function startGame(context, game, gameEndCallback) {

@@ -10,13 +10,13 @@ function tick(game) {
 function tickNormalGM(player) {
     if (player.changingGravity) {
         if (player.gravity) {
-            player.y -= 6;
+            player.y -= 30;
             if (player.y <= consts.roofY) {
                 player.gravity = false;
                 player.changingGravity = false;
             }
         } else {
-            player.y += 6;
+            player.y += 30;
             if (player.y >= consts.groundY) {
                 player.y = consts.groundY;
                 player.gravity = true;
@@ -25,13 +25,13 @@ function tickNormalGM(player) {
         }
     } else if (player.jumping) {
         if (player.gravity) {
-            player.y -= 4;
+            player.y -= 20;
             if (player.y <= consts.groundY - consts.jumpSize) {
                 player.y = consts.groundY - consts.jumpSize;
                 player.jumping = false;
             }
         } else {
-            player.y += 4;
+            player.y += 20;
             if (player.y >= consts.roofY + consts.jumpSize) {
                 player.y = consts.roofY + consts.jumpSize;
                 player.jumping = false;
@@ -39,13 +39,13 @@ function tickNormalGM(player) {
         }
     } else {
         if (player.gravity) {
-            player.y += 2;
+            player.y += 10;
             if (player.y >= consts.groundY) {
                 player.y = consts.groundY;
                 player.grounded = true;
             }
         } else {
-            player.y -= 2;
+            player.y -= 10;
             if (player.y <= consts.roofY) {
                 player.y = consts.roofY;
                 player.grounded = true;
