@@ -18,31 +18,23 @@ function addObstacle(game) {
         let type = utils.random(0, min(difficulty, 4));
         if (type === 0) {
             obstacle = obstacleMgr.genShortLowerObstacle(speed);
-            console.log("Generated short lower obstacle");
         } else if (type === 1) {
             obstacle = obstacleMgr.genShortUpperObstacle(speed);
-            console.log("Generated short upper obstacle");
         } else if (type === 2) {
             obstacle = obstacleMgr.genLongLowerObstacle(speed);
-            console.log("Generated long lower obstacle");
         } else if (type === 3) {
             obstacle = obstacleMgr.genLongUpperObstacle(speed);
-            console.log("Generated long upper obstacle");
         } else if (type === 4) {
             obstacle = obstacleMgr.genMiddleObstacle(speed);
-            console.log("Generated middle obstacle");
         }
-
-        console.log("Generated obstacle with speed " + speed);
-        console.log("gm normal");
     } else if (game.gamemode === "rows") {
         let type = utils.random(0, 2);
         if (type === 0) {
-            obstacle = obstacleMgr.genRowsTopObstacle(10);
+            obstacle = obstacleMgr.genRowsTopObstacle(5000);
         } else if (type === 1) {
-            obstacle = obstacleMgr.genRowsMiddleObstacle(10);
+            obstacle = obstacleMgr.genRowsMiddleObstacle(5000);
         } else if (type === 2) {
-            obstacle = obstacleMgr.genRowsBottomObstacle(10);
+            obstacle = obstacleMgr.genRowsBottomObstacle(5000);
         }
     }
 

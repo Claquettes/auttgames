@@ -11,13 +11,14 @@ function handleKeyEvent(e, game) {
     }
 
     if (!game.isMenuGame) {
+        if (e.code === "KeyC")
+            showDebugInfo(game.player);
+
         if (game.gamemode === "normal") {
             if (e.code === "ArrowUp") {
                 changeGravity(game);
             } else if (e.code === "Space") {
                 jump(game);
-            } else if (e.code === "KeyC") {
-                showDebugInfo(game.player);
             } else if (e.code === "KeyV") {
                 gamemodes.changeGamemode(game, "rows");
             }
