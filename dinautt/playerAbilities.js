@@ -1,64 +1,36 @@
 const consts = require("./consts");
+const animations = require("./animations");
 
-function tick(game) {
-    if (game.gamemode === "normal")
-        tickNormalGM(game.player);
-    else if (game.gamemode === "rows")
-        tickRowsGM(game.player);
+function jump(game) {
+    if (game.player.changingGravity || !game.player.grounded) return;
+    game.player.jumping = true;
+    game.player.grounded = false;
+
+    animations.newAnimation(game, game.player.y, consts.jumpY(game.player.gravity), consts.halfJumpTime, "cubic", (y) => {
+        game.player.y = Math.round(y);
+    }, () => {
+        game.player.jumping = false;
+        animations.newAnimation(game, game.player.y, (game.player.gravity) ? (consts.groundY) : consts.roofY, consts.halfJumpTime, "cubic", (y) => {
+            game.player.y = Math.round(y);
+        }, () => {
+            game.player.grounded = true;
+        });
+    });
 }
 
-function tickNormalGM(player) {
-    if (player.changingGravity) {
-        if (player.gravity) {
-            player.y -= 30;
-            if (player.y <= consts.roofY) {
-                player.gravity = false;
-                player.changingGravity = false;
-            }
-        } else {
-            player.y += 30;
-            if (player.y >= consts.groundY) {
-                player.y = consts.groundY;
-                player.gravity = true;
-                player.changingGravity = false;
-            }
-        }
-    } else if (player.jumping) {
-        if (player.gravity) {
-            player.y -= 20;
-            if (player.y <= consts.groundY - consts.jumpSize) {
-                player.y = consts.groundY - consts.jumpSize;
-                player.jumping = false;
-            }
-        } else {
-            player.y += 20;
-            if (player.y >= consts.roofY + consts.jumpSize) {
-                player.y = consts.roofY + consts.jumpSize;
-                player.jumping = false;
-            }
-        }
-    } else {
-        if (player.gravity) {
-            player.y += 10;
-            if (player.y >= consts.groundY) {
-                player.y = consts.groundY;
-                player.grounded = true;
-            }
-        } else {
-            player.y -= 10;
-            if (player.y <= consts.roofY) {
-                player.y = consts.roofY;
-                player.grounded = true;
-            }
-        }
-    }
+function changeGravity(game) {
+    if (game.player.jumping || !game.player.grounded) return;
+    game.player.changingGravity = true;
+
+    animations.newAnimation(game, game.player.y, (game.player.gravity) ? consts.roofY : consts.groundY, consts.gravityChangeTime, "cubic", (y) => {
+        game.player.y = Math.round(y);
+    }, () => {
+        game.player.gravity = !game.player.gravity;
+        game.player.changingGravity = false;
+    });
 }
-
-function tickRowsGM(player) {
-
-}
-
 
 module.exports = {
-    tick
+    jump,
+    changeGravity
 };

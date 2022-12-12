@@ -66,7 +66,6 @@ function tick(game, ctx) {
         drawingUtils.drawScore(ctx, game.player.score);
 
         game.animations.forEach((animation) => animation.tick());
-        playerAbilities.tick(game);
     } else {
         ctx.fillStyle = "black";
         ctx.font = "200px Arial";

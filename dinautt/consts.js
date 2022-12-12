@@ -4,10 +4,18 @@ const colors = require("./colors");
 const canvasWidth = 10000;
 const canvasHeight = 2000;
 
-// PLAYER
+// PLAYER AND LIMITS
 const playerWidth = 400;
 const playerHeight = 400;
-const jumpSize = 800;
+
+const groundY = canvasHeight - 100 - playerHeight;
+const roofY = 100;
+
+const jumpSize = 900;
+const halfJumpTime = 350;
+const jumpY = (gravity) => (gravity) ? (groundY - jumpSize) : (roofY + jumpSize);
+
+const gravityChangeTime = 350;
 
 const playerImageSrc = "/assets/dinautt/taco.png";
 
@@ -28,11 +36,6 @@ const rowsGMConsts = {
     obstacleHeight: 400,
     backgroundColor: colors.genColorComponentHEX(0xe038e1)
 }
-
-
-// LIMITS
-const groundY = canvasHeight - 100 - playerHeight;
-const roofY = 100;
 
 function newBasePlayer() {
     let player = {
@@ -73,7 +76,7 @@ function newGame(isMenuGame) {
     }
 
     game.getDifficulty = () => ((isMenuGame) ? 4 : 1 + Math.floor(game.player.score / 3000)) * 2;
-    game.getSpeed = () => ((isMenuGame) ? 10 : 5 + Math.floor(game.player.score / 3000)) * 2;
+    game.getSpeed = () => ((isMenuGame) ? 10 : 10 + Math.floor(game.player.score / 3000)) * 2;
 
     return game;
 }
@@ -85,6 +88,10 @@ module.exports = {
     playerWidth,
     playerHeight,
     jumpSize,
+    halfJumpTime,
+    jumpY,
+
+    gravityChangeTime,
 
     playerImageSrc,
 

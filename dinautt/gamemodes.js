@@ -20,14 +20,11 @@ function changeGamemode(game, gamemode) {
 
     console.log("newbackground: " + newBackground.getAsHex());
 
-    let a = animation.newAnimation(game.backgroundColor.getAsArray(), newBackground.getAsArray(), 2000, false, (color) => {
+    animation.newAnimation(game, game.backgroundColor.getAsArray(), newBackground.getAsArray(), 2000, "linear", (color) => {
         game.backgroundColor = colors.genColorComponentRGB(color[0], color[1], color[2]);
     }, () => {
         console.log("Animation finished");
-        game.animations.splice(game.animations.indexOf(a), 1);
     });
-
-    game.animations.push(a);
 }
 
 module.exports = {

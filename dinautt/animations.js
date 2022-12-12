@@ -1,43 +1,61 @@
+let animArray = [];
+
 function tickAnimation(animation) {
-    let coef = 1;
+    let x = 1;
 
-    if (!animation.logarithmic) {
-        coef = (Date.now() - animation.startTime) / animation.duration;
-        console.log(coef)
-    } else
-        coef = Math.log(Date.now() - animation.startTime) / Math.log(animation.startTime + animation.duration);
+    x = (Date.now() - animation.startTime) / animation.duration;
+    console.log(x)
 
-    if (coef > 1)
-        coef = 1;
+    if (animation.easeType === "cubic") {
+        x = x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    }
+
+    if (x > 1)
+        x = 1;
 
     let newValues = animation.startValues.map((startValue, idx) => {
         let endValue = animation.endValues[idx];
         let delta = endValue - startValue;
 
-        return startValue + delta * coef;
+        return startValue + delta * x;
     });
 
-    console.log(newValues)
+    //console.log(newValues)
+    console.log(x)
+    animArray.push(x);
+
     animation.setValuesCallback(newValues);
 
-    if (coef === 1) {
+    if (x === 1) {
         animation.endCb();
+        console.log(JSON.stringify(animArray))
     }
 }
 
-function newAnimation(startValues, endValues, duration, logarithmic, setValueFunc, endCb) {
+function newAnimation(game, startValues, endValues, duration, easeType, setValueFunc, endCb) {
+    if (!(startValues instanceof Array))
+        startValues = [startValues];
+    if (!(endValues instanceof Array))
+        endValues = [endValues];
+
+    if (startValues.length !== endValues.length)
+        throw new Error("Start and end values have different lengths");
+
     let animation = {
         startTime: Date.now(),
         startValues: startValues,
         endValues: endValues,
         duration: duration,
-        logarithmic: logarithmic,
+        easeType: easeType,
         setValuesCallback: setValueFunc,
-        endCb: endCb,
+        endCb: () => {
+            endCb();
+            game.animations.splice(game.animations.indexOf(animation), 1);
+        },
         tick: () => tickAnimation(animation)
     }
 
-    return animation;
+    game.animations.push(animation);
 }
 
 module.exports = {
