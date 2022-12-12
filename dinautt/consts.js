@@ -76,7 +76,7 @@ function newGame(isMenuGame) {
     }
 
     game.getDifficulty = () => ((isMenuGame) ? 4 : 1 + Math.floor(game.player.score / 3000)) * 2;
-    game.getSpeed = () => ((isMenuGame) ? 10 : 10 + Math.floor(game.player.score / 3000)) * 2;
+    game.getSpeed = () => ((isMenuGame) ? 10 : 10 + Math.floor(game.player.score / 3000)) * 300;
 
     return game;
 }

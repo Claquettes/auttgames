@@ -12,12 +12,10 @@ function genBasicObstacle(speed) {
         width: normalGMConsts.basicObstacleWidth,
         x: consts.canvasWidth,
         y: 0,
+        tick: () => {
+            console.log(obstacle);
+        }
     };
-
-    obstacle.tick = (ctx) => {
-        obstacle.x -= obstacle.speed;
-        drawObstacle(ctx, obstacle);
-    }
 
     return obstacle;
 }
@@ -123,6 +121,8 @@ function drawObstacle(ctx, obstacle) {
 
     ctx.fillStyle = obstacle.color;
     ctx.fillRect(obstacle.x + normalGMConsts.obstacleBorderOffset, obstacle.y + normalGMConsts.obstacleBorderOffset, obstacle.width - 2 * normalGMConsts.obstacleBorderOffset, obstacle.height - 2 * normalGMConsts.obstacleBorderOffset);
+
+    console.dir(obstacle);
 }
 
 ////////////////////
@@ -154,6 +154,8 @@ module.exports = {
     genRowsTopObstacle,
     genRowsMiddleObstacle,
     genRowsBottomObstacle,
+
+    drawObstacle,
 
     checkCollisions
 };

@@ -20,7 +20,7 @@ function changeGamemode(game, gamemode) {
 
     console.log("newbackground: " + newBackground.getAsHex());
 
-    animation.newAnimation(game, game.backgroundColor.getAsArray(), newBackground.getAsArray(), 2000, "linear", (color) => {
+    animation.newTimedAnimation(game, game.backgroundColor.getAsArray(), newBackground.getAsArray(), 2000, "linear", (color) => {
         game.backgroundColor = colors.genColorComponentRGB(color[0], color[1], color[2]);
     }, () => {
         console.log("Animation finished");
