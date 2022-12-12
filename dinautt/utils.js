@@ -36,10 +36,6 @@ function drawScore(ctx, score) {
     ctx.fillText("Score: " + score, consts.canvasWidth - 128, 23);
 }
 
-function clear(CETTEVARNEXISTEPASENLOCAL) {
-
-}
-
 function drawRoundButton(ctx, x, y, width, height, arcsize) {
     ctx.beginPath();
     ctx.moveTo(x + arcsize, y);
@@ -98,7 +94,6 @@ module.exports = {
     random,
     min,
     drawScore,
-    clear,
     drawRoundButton,
     showDebugInfo,
     genColorComponentRGB,

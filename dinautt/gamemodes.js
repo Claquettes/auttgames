@@ -19,7 +19,7 @@ function changeGamemode(game, gamemode) {
 
     console.log("newbackground: " + newBackground.getAsHex());
 
-    let a = animation.newAnimation(game.backgroundColor.getAsArray(), newBackground.getAsArray(), 3000, false, (color) => {
+    let a = animation.newAnimation(game.backgroundColor.getAsArray(), newBackground.getAsArray(), 2000, false, (color) => {
         game.backgroundColor = utils.genColorComponentRGB(color[0], color[1], color[2]);
     }, () => {
         console.log("Animation finished");
