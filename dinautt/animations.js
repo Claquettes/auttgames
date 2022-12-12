@@ -1,4 +1,9 @@
 function tickAnimation(animation) {
+    if (animation.stop) {
+        animation.endCb();
+        return;
+    }
+
     let x = 1;
     let newValues;
 
@@ -29,8 +34,6 @@ function tickAnimation(animation) {
             return startValue + animation.increase[idx] * x;
         });
     }
-
-    console.log(newValues)
 
     animation.setValuesCallback(newValues);
 

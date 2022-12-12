@@ -11,10 +11,10 @@ const {min} = require("./utils");
 function addObstacle(game) {
     let obstacle;
 
-    if (game.gamemode === "normal") {
-        let difficulty = game.getDifficulty()
-        let speed = game.getSpeed();
+    let difficulty = game.getDifficulty()
+    let speed = game.getSpeed();
 
+    if (game.gamemode === "normal") {
         let type = utils.random(0, min(difficulty, 4));
         if (type === 0) {
             obstacle = obstacleMgr.genShortLowerObstacle(speed);
@@ -28,17 +28,15 @@ function addObstacle(game) {
             obstacle = obstacleMgr.genMiddleObstacle(speed);
         }
     } else if (game.gamemode === "rows") {
-        let type = utils.random(0, 2);
+        let type = utils.random(difficulty, 2);
         if (type === 0) {
-            obstacle = obstacleMgr.genRowsTopObstacle(5000);
+            obstacle = obstacleMgr.genRowsTopObstacle(speed);
         } else if (type === 1) {
-            obstacle = obstacleMgr.genRowsMiddleObstacle(5000);
+            obstacle = obstacleMgr.genRowsMiddleObstacle(speed);
         } else if (type === 2) {
-            obstacle = obstacleMgr.genRowsBottomObstacle(5000);
+            obstacle = obstacleMgr.genRowsBottomObstacle(speed);
         }
     }
-
-    console.log(obstacle);
 
     obstacle.animation = animation.newStaticAnimation(game, obstacle.x, -obstacle.speed, (x) => {
             obstacle.x = Math.floor(x);
@@ -50,8 +48,6 @@ function addObstacle(game) {
         });
 
     game.obstacles.push(obstacle);
-
-    console.log(game.animations);
 }
 
 function tick(game, ctx) {
@@ -66,7 +62,7 @@ function tick(game, ctx) {
         if (obstacleMgr.checkCollisions(game)) {
             if (game.player.showDebug) {
                 ctx.fillStyle = "black";
-                ctx.fillText("Collide", 1000, 300);
+                ctx.fillText("Collide", 4000, 300);
             }
         }
 
@@ -85,10 +81,8 @@ function tick(game, ctx) {
     game.animations.forEach((animation) => animation.tick());
 
     // add obstacle
-    if (game.obstacles.length === 0 || game.obstacles[game.obstacles.length - 1].x < 400) {
+    if (game.obstacles.length === 0 || game.obstacles[game.obstacles.length - 1].x < 4000)
         addObstacle(game);
-        console.log("Added obstacle");
-    }
 
     if (game.player.showDebug) drawingUtils.showDebugInfo(game, ctx);
 }

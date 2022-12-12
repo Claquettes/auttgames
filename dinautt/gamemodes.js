@@ -5,9 +5,14 @@ const {genColorComponent} = require("./utils");
 const colors = require("./colors");
 
 function changeGamemode(game, gamemode) {
+    if (game.gamemode === gamemode || game.changingGM) return;
+    game.changingGM = true;
+
     console.log("Changing gamemode to " + gamemode);
     game.gamemode = gamemode;
-    game.obstacles = [];
+    game.obstacles.forEach((obstacle) => {
+        obstacle.animation.stop = true;
+    });
 
     console.log(gamemode)
 
@@ -24,6 +29,7 @@ function changeGamemode(game, gamemode) {
         game.backgroundColor = colors.genColorComponentRGB(color[0], color[1], color[2]);
     }, () => {
         console.log("Animation finished");
+        game.changingGM = false;
     });
 }
 
