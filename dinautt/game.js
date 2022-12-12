@@ -37,15 +37,6 @@ function addObstacle(game) {
 }
 
 function tick(game, ctx) {
-    if (game.time === undefined) {
-        game.time = Date.now();
-    } else {
-        if (Date.now() - game.time < 8) {
-            Math.seedrandom(Date.now());
-        }
-    }
-    game.time = Date.now();
-
     // clear canvas
     drawingUtils.clearCanvas(ctx, game.backgroundColor);
 
