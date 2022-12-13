@@ -31,6 +31,20 @@ function switchMode(game, cb) {
         obstacle.animation.stop = true;
     });
 
+    game.gamemode.data = genGmData();
+
+    game.gamemode.data.grounded = false;
+    game.gamemode.data.jumping = true;
+    game.gamemode.data.changingGravity = true;
+
+    animation.newTimedAnimation(game, game.player.y, consts.normalGMConsts.groundY, 200, "cubic", (y) => {
+        game.player.y = y;
+    }, () => {
+        game.gamemode.data.grounded = true;
+        game.gamemode.data.jumping = false;
+        game.gamemode.data.changingGravity = false;
+    });
+
     animation.newTimedAnimation(game, game.backgroundColor.getAsArray(), gm.backgroundColor.getAsArray(), 2000, "linear", (color) => {
         game.backgroundColor = colors.genColorComponentRGB(color[0], color[1], color[2]);
     }, () => {

@@ -3,6 +3,7 @@ const obstacleMgr = require("./obstacle");
 const utils = require("./utils");
 const drawingUtils = require("./drawingUtils");
 const animation = require("./animations");
+const consts = require("./consts");
 
 const gm = {
     name: "rows",
@@ -25,6 +26,10 @@ function switchMode(game, cb) {
     game.obstacles.forEach((obstacle) => {
         obstacle.animation.stop = true;
     });
+
+    game.gamemode.data = genGmData();
+
+    setRow(game, 1);
 
     animation.newTimedAnimation(game, game.backgroundColor.getAsArray(), gm.backgroundColor.getAsArray(), 2000, "linear", (color) => {
         game.backgroundColor = colors.genColorComponentRGB(color[0], color[1], color[2]);
@@ -49,13 +54,29 @@ function tick(ctx, game) {
     drawingUtils.drawScore(ctx, game.player.score);
 }
 
-function move(direction) {
+function move(game, direction) {
     if (direction === "up") {
+        if (game.gamemode.data.row === 0) return;
+        setRow(game, game.gamemode.data.row - 1);
     } else if (direction === "down") {
-
+        if (game.gamemode.data.row === 2) return;
+        setRow(game, game.gamemode.data.row + 1);
     }
 }
 
+function setRow(game, row) {
+    if (game.gamemode.data.changingRow) return;
+    game.gamemode.data.row = row;
+    game.gamemode.data.changingRow = true;
+
+    animation.newTimedAnimation(game, game.player.y, consts.rowsGMConsts.rowsY(row), 200, "cubic", (y) => {
+        game.player.y = y;
+    }, () => {
+        game.gamemode.data.changingRow = false;
+    });
+}
+
 module.exports = {
-    gm
+    gm,
+    move
 }

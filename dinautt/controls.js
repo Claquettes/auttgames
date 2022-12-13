@@ -24,7 +24,11 @@ function handleKeyEvent(e, game) {
                 gamemodes.changeGamemode(game, rowsGameMode.gm);
             }
         } else if (game.gamemode.name === "rows") {
-            if (e.code === "KeyV") {
+            if (e.code === "ArrowUp") {
+                rowsGameMode.move(game, "up");
+            } else if (e.code === "ArrowDown") {
+                rowsGameMode.move(game, "down");
+            } else if (e.code === "KeyV") {
                 gamemodes.changeGamemode(game, normalGameMode.gm);
             }
         }
@@ -33,7 +37,7 @@ function handleKeyEvent(e, game) {
             game.stopGame = true;
         }
     }
-};
+}
 
 function showDebugInfo(player) {
     player.showDebug = !player.showDebug;

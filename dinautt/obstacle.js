@@ -80,7 +80,7 @@ function genRowsTopObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
     obstacle.height = consts.rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 6 - consts.rowsGMConsts.obstacleHeight / 2;
+    obstacle.y = consts.rowsGMConsts.rowsY(0)
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -91,7 +91,7 @@ function genRowsMiddleObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
     obstacle.height = consts.rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 2 - consts.rowsGMConsts.obstacleHeight / 2;
+    obstacle.y = consts.rowsGMConsts.rowsY(1)
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -102,7 +102,7 @@ function genRowsBottomObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
     obstacle.height = consts.rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 6 * 5 - consts.rowsGMConsts.obstacleHeight / 2;
+    obstacle.y = consts.rowsGMConsts.rowsY(2);
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 

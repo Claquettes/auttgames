@@ -17,7 +17,7 @@ const minObstaclePlayerSpace = 2 * playerHeight + 400;
 const normalGMConsts = {
     backgroundColor: colors.genColorComponentRGB(22, 74, 174),
 
-    groundY: canvasHeight - 100 - playerHeight,
+    groundY: canvasHeight - 200 - playerHeight,
     roofY: 100,
 
     shortObstaclesHeight: 600,
@@ -39,12 +39,14 @@ const rowsGMConsts = {
 
     obstacleWidth: 400,
     obstacleHeight: 400,
+
+    rowsY: (row) => Math.round(canvasHeight / 7 * (2 * (row + 1)) - rowsGMConsts.obstacleHeight / 2 - playerHeight / 2)
 };
 
 function newBasePlayer() {
     let player = {
-        x: 100,
-        y: canvasHeight - 100 - playerHeight,
+        x: 200,
+        y: normalGMConsts.groundY,
         width: 0,
         height: 0,
 
