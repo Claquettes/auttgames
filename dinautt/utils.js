@@ -12,7 +12,12 @@ function min(a, b) {
     return a < b ? a : b;
 }
 
+function updateScore(game) {
+    game.player.score = Math.floor((Date.now() - game.startTime) / 10);
+}
+
 module.exports = {
     random,
     min,
+    updateScore
 }

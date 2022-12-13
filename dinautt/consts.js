@@ -8,34 +8,38 @@ const canvasHeight = 2000;
 const playerWidth = 400;
 const playerHeight = 400;
 
-const groundY = canvasHeight - 100 - playerHeight;
-const roofY = 100;
-
-const jumpSize = 900;
-const halfJumpTime = 350;
-const jumpY = (gravity) => (gravity) ? (groundY - jumpSize) : (roofY + jumpSize);
-
-const gravityChangeTime = 350;
-
 const playerImageSrc = "/assets/dinautt/taco.png";
 
-// BASIC OBSTACLES :
+// GAMEMODES
+
 const minObstaclePlayerSpace = 2 * playerHeight + 400;
 
 const normalGMConsts = {
+    backgroundColor: colors.genColorComponentRGB(22, 74, 174),
+
+    groundY: canvasHeight - 100 - playerHeight,
+    roofY: 100,
+
     shortObstaclesHeight: 600,
     longObstacleHeight: 1000,
     basicObstacleWidth: 400,
-    middleObstacleHeight: canvasHeight - minObstaclePlayerSpace,
     obstacleBorderOffset: 100,
-    backgroundColor: colors.genColorComponentRGB(22, 74, 174)
+
+    middleObstacleHeight: canvasHeight - minObstaclePlayerSpace,
+
+    jumpSize: 700,
+    halfJumpTime: 350,
+    gravityChangeTime: 350,
+
+    jumpY: (gravity) => (gravity) ? (normalGMConsts.groundY - normalGMConsts.jumpSize) : (normalGMConsts.roofY + normalGMConsts.jumpSize)
 }
 
 const rowsGMConsts = {
+    backgroundColor: colors.genColorComponentHEX(0xe038e1),
+
     obstacleWidth: 400,
     obstacleHeight: 400,
-    backgroundColor: colors.genColorComponentHEX(0xe038e1)
-}
+};
 
 function newBasePlayer() {
     let player = {
@@ -43,11 +47,6 @@ function newBasePlayer() {
         y: canvasHeight - 100 - playerHeight,
         width: 0,
         height: 0,
-
-        gravity: true, // 1 = on ground, 0 = on roof
-        jumping: false,
-        grounded: true, // prevent double jump
-        changingGravity: false,
 
         img: new Image(),
 
@@ -62,24 +61,18 @@ function newBasePlayer() {
     return player;
 }
 
-function newGame(isMenuGame) {
-    let game = {
+function newGame(gamemode) {
+    return {
         player: newBasePlayer(),
-        backgroundColor: normalGMConsts.backgroundColor,
         obstacles: [],
         animations: [],
-        gamemode: "normal",
+        gamemode: gamemode,
+        backgroundColor: gamemode.backgroundColor,
         changingGM: false,
         score: 0,
         startTime: Date.now(),
         stopGame: false,
-        isMenuGame: isMenuGame
-    }
-
-    game.getDifficulty = () => ((isMenuGame) ? 4 : ((game.gamemode === "normal") ? (1 + Math.floor(game.player.score / 3000)) : 2));
-    game.getSpeed = () => ((isMenuGame) ? 3000 : ((game.gamemode === "normal") ? ((10 + Math.floor(game.player.score / 3000)) * 300) : 5000));
-
-    return game;
+    };
 }
 
 module.exports = {
@@ -88,20 +81,11 @@ module.exports = {
 
     playerWidth,
     playerHeight,
-    jumpSize,
-    halfJumpTime,
-    jumpY,
-
-    gravityChangeTime,
 
     playerImageSrc,
 
-    minObstaclePlayerSpace,
     normalGMConsts,
     rowsGMConsts,
-
-    groundY,
-    roofY,
 
     newGame
 };
