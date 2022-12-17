@@ -1,6 +1,4 @@
 const consts = require('./consts');
-const normalGMConsts = consts.normalGMConsts;
-const rowsGMConsts = consts.rowsGMConsts;
 
 /////////////////////////////
 ////     OBSTACLE GEN    ////
@@ -9,7 +7,7 @@ const rowsGMConsts = consts.rowsGMConsts;
 function genBasicObstacle(speed) {
     let obstacle = {
         speed: speed,
-        width: normalGMConsts.basicObstacleWidth,
+        width: consts.normalGMConsts.basicObstacleWidth,
         x: consts.canvasWidth,
         y: 0,
         tick: () => {
@@ -26,7 +24,7 @@ function genShortUpperObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
     obstacle.speed = speed;
-    obstacle.height = normalGMConsts.shortObstaclesHeight;
+    obstacle.height = consts.normalGMConsts.shortObstaclesHeight;
     obstacle.color = "green";
     obstacle.borderColor = "darkgreen";
 
@@ -36,7 +34,7 @@ function genShortUpperObstacle(speed) {
 function genShortLowerObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = normalGMConsts.shortObstaclesHeight;
+    obstacle.height = consts.normalGMConsts.shortObstaclesHeight;
     obstacle.color = "green";
     obstacle.borderColor = "darkgreen";
     obstacle.y = consts.canvasHeight - obstacle.height;
@@ -47,7 +45,7 @@ function genShortLowerObstacle(speed) {
 function genLongUpperObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = normalGMConsts.longObstacleHeight;
+    obstacle.height = consts.normalGMConsts.longObstacleHeight;
     obstacle.color = "pink";
     obstacle.borderColor = "red";
 
@@ -57,7 +55,7 @@ function genLongUpperObstacle(speed) {
 function genLongLowerObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = normalGMConsts.longObstacleHeight;
+    obstacle.height = consts.normalGMConsts.longObstacleHeight;
     obstacle.color = "pink";
     obstacle.borderColor = "red";
     obstacle.y = consts.canvasHeight - obstacle.height;
@@ -68,8 +66,8 @@ function genLongLowerObstacle(speed) {
 function genMiddleObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = normalGMConsts.middleObstacleHeight;
-    obstacle.y = consts.canvasHeight / 2 - normalGMConsts.middleObstacleHeight / 2;
+    obstacle.height = consts.normalGMConsts.middleObstacleHeight;
+    obstacle.y = consts.canvasHeight / 2 - consts.normalGMConsts.middleObstacleHeight / 2;
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -81,8 +79,8 @@ function genMiddleObstacle(speed) {
 function genRowsTopObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 6 - rowsGMConsts.obstacleHeight / 2;
+    obstacle.height = consts.rowsGMConsts.obstacleHeight;
+    obstacle.y = consts.rowsGMConsts.rowsY(0)
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -92,8 +90,8 @@ function genRowsTopObstacle(speed) {
 function genRowsMiddleObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 2 - rowsGMConsts.obstacleHeight / 2;
+    obstacle.height = consts.rowsGMConsts.obstacleHeight;
+    obstacle.y = consts.rowsGMConsts.rowsY(1)
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -103,8 +101,8 @@ function genRowsMiddleObstacle(speed) {
 function genRowsBottomObstacle(speed) {
     let obstacle = genBasicObstacle(speed);
 
-    obstacle.height = rowsGMConsts.obstacleHeight;
-    obstacle.y = consts.canvasHeight / 6 * 5 - rowsGMConsts.obstacleHeight / 2;
+    obstacle.height = consts.rowsGMConsts.obstacleHeight;
+    obstacle.y = consts.rowsGMConsts.rowsY(2);
     obstacle.color = "yellow";
     obstacle.borderColor = "gold";
 
@@ -120,7 +118,7 @@ function drawObstacle(ctx, obstacle) {
     ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
 
     ctx.fillStyle = obstacle.color;
-    ctx.fillRect(obstacle.x + normalGMConsts.obstacleBorderOffset, obstacle.y + normalGMConsts.obstacleBorderOffset, obstacle.width - 2 * normalGMConsts.obstacleBorderOffset, obstacle.height - 2 * normalGMConsts.obstacleBorderOffset);
+    ctx.fillRect(obstacle.x + consts.normalGMConsts.obstacleBorderOffset, obstacle.y + consts.normalGMConsts.obstacleBorderOffset, obstacle.width - 2 * consts.normalGMConsts.obstacleBorderOffset, obstacle.height - 2 * consts.normalGMConsts.obstacleBorderOffset);
 }
 
 ////////////////////

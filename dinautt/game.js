@@ -1,7 +1,7 @@
 const consts = require('./consts.js');
 const obstacleMgr = require('./obstacle');
 const controls = require('./controls');
-const playerAbilities = require('./playerAbilities')
+const playerAbilities = require('./normalGameMode')
 
 const animation = require('./animations');
 const utils = require('./utils');
@@ -11,10 +11,10 @@ const {min} = require("./utils");
 function addObstacle(game) {
     let obstacle;
 
-    let difficulty = game.getDifficulty()
-    let speed = game.getSpeed();
+    let difficulty = game.gamemode.getDifficulty(game)
+    let speed = game.gamemode.getSpeed(game);
 
-    if (game.gamemode === "normal") {
+    if (game.gamemode.name === "normal" || game.gamemode.name === "menu") {
         let type = utils.random(0, min(difficulty, 4));
         if (type === 0) {
             obstacle = obstacleMgr.genShortLowerObstacle(speed);
@@ -27,8 +27,10 @@ function addObstacle(game) {
         } else if (type === 4) {
             obstacle = obstacleMgr.genMiddleObstacle(speed);
         }
-    } else if (game.gamemode === "rows") {
-        let type = utils.random(difficulty, 2);
+    } else if (game.gamemode.name === "rows") {
+        console.log(difficulty);
+
+        let type = utils.random(0, difficulty);
         if (type === 0) {
             obstacle = obstacleMgr.genRowsTopObstacle(speed);
         } else if (type === 1) {
@@ -38,13 +40,15 @@ function addObstacle(game) {
         }
     }
 
+    console.log("Adding obstacle: " + obstacle);
+
     obstacle.animation = animation.newStaticAnimation(game, obstacle.x, -obstacle.speed, (x) => {
             obstacle.x = Math.floor(x);
         }, () => {
             game.obstacles.splice(game.obstacles.indexOf(obstacle), 1);
         },
         () => {
-            return obstacle.x < 0;
+            return obstacle.x < -obstacle.width;
         });
 
     game.obstacles.push(obstacle);
@@ -54,29 +58,11 @@ function tick(game, ctx) {
     // clear canvas
     drawingUtils.clearCanvas(ctx, game.backgroundColor);
 
+    console.log(game.gamemode.name);
+
     game.obstacles.forEach((obstacle) => obstacleMgr.drawObstacle(ctx, obstacle));
 
-    if (!game.isMenuGame) {
-        game.player.draw(ctx);
-
-        if (obstacleMgr.checkCollisions(game)) {
-            if (game.player.showDebug) {
-                ctx.fillStyle = "black";
-                ctx.fillText("Collide", 4000, 300);
-            }
-        }
-
-        // UPDATE SCORE
-        game.player.score = Math.floor((Date.now() - game.startTime) / 10);
-        drawingUtils.drawScore(ctx, game.player.score);
-    } else {
-        ctx.fillStyle = "black";
-        ctx.font = "200px Arial";
-        let text = "Press Space";
-        let measure = ctx.measureText(text);
-
-        ctx.fillText(text, consts.canvasWidth / 2 - measure.width / 2, consts.canvasHeight / 2);
-    }
+    game.gamemode.tick(ctx, game);
 
     game.animations.forEach((animation) => animation.tick());
 
@@ -88,9 +74,9 @@ function tick(game, ctx) {
 }
 
 function startGame(context, game, gameEndCallback) {
-    if (!game.isMenuGame) {
+    if (game.gamemode.name !== "menu") {
         // CONTROLS
-        document.onclick = () => controls.jump(game.player);
+        document.onclick = () => controls.jump(game);
     }
 
     document.onkeydown = (e) => controls.handleKeyEvent(e, game);
