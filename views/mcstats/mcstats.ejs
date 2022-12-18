@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Random GIF Generator</title>
+    <title>McStats</title>
     <link rel="stylesheet" href="/css/stylesGlobal.css">
     <link rel="stylesheet" href="/css/mcstats.css">
 </head>
 <body>
 
-<h1>Random GIF Generator</h1>
+<h1>This is a certified Gaming moment</h1>
 
-<!-- This is where the randomly selected GIF will be displayed -->
-<div id="gif-container"></div>
-<script type="module" src="/js/mcstats.js"></script>
+<!-- this is were the user can upload the photo of his receipt-->
+
+<input type="file" id="receipt" name="receipt"
+       accept="image/png, image/jpeg">
+
+<!--button to send the photo to the server-->
+<button onclick="sendReceipt()">Send Receipt</button>
+
+<script type="script" src="/js/mcstats.js"></script>
 </body>
 </html>
