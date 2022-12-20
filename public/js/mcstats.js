@@ -16,31 +16,23 @@ function sendReceipt() {
         }
     });
 }
-//les sandwiches
-let bigmac = 0;
-let signature = 0;
-let mcchicken = 0;
-let deuxcentquatresvingt = 0;
-let filetofish = 0;
-let doublefiletofish = 0;
-let cheeseburger = 0;
-let cheeseburgerbacon = 0;
-let doublecheeseburger = 0;
-let doublecheeseburgerbacon = 0;
-let triplecheeseburger = 0;
-let triplecheeseburgerbacon = 0;
-let mcnuggets = 0;
-let mcfirstboeuf = 0;
-let mcfirstpoulet = 0;
-let mcfirstpoisson = 0;
-let mcfirstveggie = 0;
-let hamburger = 0;
-let croquemcdo =0;
-let mcfish=0;
-let ptitranch = 0;
-let ptitwrapboeuf = 0;
-let mcmuffin = 0;
-let mcmuffineggbacon = 0;
-let cbo = 0;
-let wrappouletbacon = 0;
-let saisonnier = 0; 
+const ctx = document.getElementById('myChart');
+  
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
