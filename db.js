@@ -149,6 +149,18 @@ function storeIP(id, ip) {
     })
 }
 
+function getUserOrders(id) {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT order_id, order_json FROM mcstats WHERE user_id = ?', [id], (err, result) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(result)
+            }
+        })
+    });
+}
+
 module.exports = {
     init,
     getUser,
@@ -158,5 +170,6 @@ module.exports = {
     getDinauttLeaderboard: getDinauttLeaderboard,
     updateDinautt: updateDinautt,
     getNRandomCitations: getNRandomCitations,
-    storeIP: storeIP
+    storeIP: storeIP,
+    getUserOrders: getUserOrders
 };

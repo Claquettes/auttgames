@@ -35,6 +35,18 @@ require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 
+db.getUserOrders(1).then((result) => {
+    for (let i = 0; i < result.length; i++) {
+        result[i].order_json = JSON.parse(result[i].order_json);
+    }
+
+    let commande = result[0].order_json
+
+    console.dir(result);
+    console.dir(result[0].order_json);
+    console.dir(result[0].order_json.menus[0].products);
+});
+
 http.listen(port, () => {
     console.log(`Listening on http://localhost:${port}/`);
 });
