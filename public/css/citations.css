@@ -22,11 +22,10 @@ body {
     justify-content: center;
     align-items: center;
     width: 75%;
-    height: 100%;   
-    background: url(https://media.giphy.com/media/Bs0GXj3ew6xxK/giphy.gif) no-repeat center center fixed; 
+    height: 100%;
     background-size: cover;
     /*La couleur de fond est gris clair*/
-    background-color: #9d68a5;
+    background: #9d68a5 url(https://media.giphy.com/media/Bs0GXj3ew6xxK/giphy.gif) no-repeat fixed center center;
     /*La bordure est noire et épaisse*/
     font-size: 20px;
     /*La police est de couleur blanche*/

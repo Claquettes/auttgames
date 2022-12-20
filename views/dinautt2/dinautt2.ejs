@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Some games created by the AUTT Team; right here for you to try and enjoy, on Claq.fr">
+    <title>Jeu du Dinau'tt</title>
+    <meta name="description" content="Le jeu du Dino mais en mode AUTT">
+    <link rel="icon" type="image/png" href="/logo_autt-(192x192).png" sizes="192x192">
+    <link rel="stylesheet" href="/css/stylesGlobal.css">
+    <link rel="stylesheet" href="/css/dinautt.css">
+</head>
+
+<body>
+<%- include('../header.ejs') %>
+
+<h1>Le jeu du Dino mais en version
+    <div class='autt-container'>
+        <div class='autt-item'>AUTT</div>
+    </div>
+    <h5>"Space" to jump and "UpArrow to change gravity</h5>
+</h1>
+
+<canvas id="game" width="10000" height="2000"></canvas>
+<div id="leaderboard">
+    <h2>Leaderboard:</h2>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Pseudo</th>
+            <th scope="col">Score</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="footer">
+    <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
+    <p>©claq.fr 2022.</p><br>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"
+        integrity="sha512-+Ru50BzEpZjlFzVnjSmJfYFPFfY2hS0Kjlu/IvqaJoux7maF5lJrRVUJWJ2LevPls7rd242GLbWEt+zAo4OVVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--suppress HtmlUnknownTarget -->
+<script type="module" src="/js/dinautt2.js"></script>
+</body>
+</html>

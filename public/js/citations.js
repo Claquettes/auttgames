@@ -38,7 +38,7 @@ startbutton.addEventListener("click", () => {
 });
 
 copyButton.addEventListener("click", () => {
-    text = window.location.href + "?room=" + roomId;
+    let text = window.location.href + "?room=" + roomId;
     navigator.clipboard.writeText(text).then(() => {
         alert("Texte copié !")
     })
@@ -78,7 +78,7 @@ socket.on('end game', (room, answer) => {
 });
 
 function refreshAnswer(room, answer, owner) {
-    text = `
+    let text = `
     <table id="answerTable">
         <thead>
             <tr>

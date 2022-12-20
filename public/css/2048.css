@@ -1,0 +1,107 @@
+.score{
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  font-size: 44px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    border: 2px solid #333;
+  }
+
+  .tile {
+
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    border: #333;
+    border-radius: 10px;
+    background-color: #eee;
+  }
+  .tile-0 {
+    color: rgba(0, 0, 0, 0.0);
+  }
+  .tile-2 {
+    background-color: #eee4da;
+  }
+
+  .tile-4 {
+    background-color: #ede0c8;
+  }
+
+  .tile-8 {
+    background-color: #f2b179;
+  }
+
+  .tile-16 {
+    background-color: #f59563;
+  }
+
+  .tile-32 {
+    background-color: #f67c5f;
+  }
+  
+  .tile-64 {
+    background-color: #f65e3b;
+  }
+
+  .tile-128 {
+    background-color: #edcf72;
+  }
+
+  .tile-256 {
+    background-color: #edcc61;
+  }
+
+  .tile-512 {
+    background-color: #edc850;
+  }
+
+  .tile-1024 {
+    background-color: #edc53f;
+  }
+
+  .tile-2048 {
+    background-color: #edc22e;
+  }
+
+  .tile-4096 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }
+
+  .tile-8192 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }
+
+  .tile-16384 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }
+
+  .tile-32768 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }
+
+  .tile-65536 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }
+
+  .tile-131072 {
+    background-color: #3c3a32;
+    color: #eee4da;
+  }

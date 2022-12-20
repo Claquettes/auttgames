@@ -6,28 +6,9 @@
     <link rel="icon" type="image/png" href="/logo_autt-(192x192).png" sizes="192x192">
     <title>Jeux en ligne</title>
 </head>
-
 <body>
-<header>
-    <a href="/">AUTT</a>
-    <ul>
-        <a href="/">
-            <li>Accueil</li>
-        </a>
-        <a href="/dinautt">
-            <li>Dinautt</li>
-        </a>
-        <a href="/morpion">
-            <li>Morpion</li>
-        </a>
-        <a href="/citations">
-            <li>Jeu des citations</li>
-        </a>
-    </ul>
-    <span class="nav-profile">
-			<a href="/profile">Mon profil</a>
-		</span>
-</header>
+<%- include('../header.ejs') %>
+
 <div class="containerPlayer">
     <div class="topTexte">
         Joueurs Connectés:
@@ -36,7 +17,7 @@
     <div class="p1"></div>
     <div class="p2"></div>
     <div class="p3"></div>
-		<div class="p4"></div>
+    <div class="p4"></div>
 		<div class="p5"></div>
 		<div class="p6"></div>
 		<div class="bottomTexte">
@@ -44,21 +25,22 @@
 		</div>
 		<div class="host"></div>
 	</div>
-	<div class="texte">
-		<h1>System<span style="color:white;">.<span style="color:#e06c75;">out</span>.</span><span style="color:#61afef;">println</span>("</h1>
-		<div class="string">
-		  <h1 class="greeting en">en attente</h1>
-		  <h1 class="greeting es">de tous les</h1>
-		  <h1 class="greeting de">joueurs pour</h1>
-		  <h1 class="greeting it">lancer la partie</h1>  
-		</div>
-		<h1 class="closure">");</h1>
-	</div>
-	<div class="footer">
-		<p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
-			target="_blank" href="https://github.com/Claquettes/JS_Games">ici</p>
-		<p>©claq.fr 2022.</p><br> 
-	</div>
+<div class="texte">
+    <h1>System<span style="color:white;">.<span style="color:#e06c75;">out</span>.</span><span style="color:#61afef;">println</span>("
+    </h1>
+    <div class="string">
+        <h1 class="greeting en">en attente</h1>
+        <h1 class="greeting es">de tous les</h1>
+        <h1 class="greeting de">joueurs pour</h1>
+        <h1 class="greeting it">lancer la partie</h1>
+    </div>
+    <h1 class="closure">");</h1>
+</div>
+<div class="footer">
+    <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
+    <p>©claq.fr 2022.</p><br>
+</div>
 </body>
 
 

@@ -10,52 +10,36 @@
 
     <title>Jeu des citations</title>
 </head>
-
 <body>
-    <header>
-        <a href="/">AUTT</a>
-        <ul>
-            <a href="/">
-                <li>Accueil</li>
-            </a>
-            <a href="/dinautt">
-                <li>Dinautt</li>
-            </a>
-            <a href="/morpion">
-                <li>Morpion</li>
-            </a>
-            <a href="/citations">
-                <li>Jeu des citations</li>
-            </a>
-        </ul>
-    </header>
-    <div id="lobby">
-        <button id="createButton">Créer une room</button>
-        <button id="joinButton">Rejoindre une room</button>
-    </div>
-    <div id="waitingRoom" class="d-none waiting">
-        <div class="containerPlayer">
-            <div class="topTexte">
-                Joueurs Connectés:
-            </div>
-            <div id="playersList" class="players"></div>
-        </div>
-        <button id="startButton" class="d-none">Démarrer la partie</button>
-        <button id="copyButton" class="js-copy">Partager le lien</button>
-        <div class="wrapper">
-            <div class="box">
-                <img class="taco" src="/assets/dinautt/taco.png">
-                <div class="textBox">
-                    en attente de joueurs<br>
-                    pour lancer la partie
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="gameContainer" class="d-none">
-        <div class="containertop">
+<%- include('../header.ejs') %>
 
-            <div class="animHautGauche">
+<div id="lobby">
+    <button id="createButton">Créer une room</button>
+    <button id="joinButton">Rejoindre une room</button>
+</div>
+<div id="waitingRoom" class="d-none waiting">
+    <div class="containerPlayer">
+        <div class="topTexte">
+            Joueurs Connectés:
+        </div>
+        <div id="playersList" class="players"></div>
+    </div>
+    <button id="startButton" class="d-none">Démarrer la partie</button>
+    <button id="copyButton" class="js-copy">Partager le lien</button>
+    <div class="wrapper">
+        <div class="box">
+            <img alt="AUTT taco" class="taco" src="/assets/dinautt/taco.png">
+            <div class="textBox">
+                en attente de joueurs<br>
+                pour lancer la partie
+            </div>
+        </div>
+    </div>
+</div>
+<div id="gameContainer" class="d-none">
+    <div class="containertop">
+
+        <div class="animHautGauche">
             </div>
 
             <div id="screen" class="screen">
@@ -105,10 +89,9 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/citations.js"></script>
     <div class="footer">
-        <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a target="_blank"
-                href="https://github.com/Claquettes/JS_Games">ici</p>
+        <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                    target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
         <p>©claq.fr 2022.</p><br>
     </div>
 </body>
-
 </html>

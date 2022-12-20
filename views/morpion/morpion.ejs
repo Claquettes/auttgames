@@ -10,28 +10,8 @@
     <link rel="icon" type="image/png" href="/logo_autt-(192x192).png" sizes="192x192">
     <title>Morpion</title>
 </head>
-
 <body>
-<header>
-    <a href="/">AUTT</a>
-    <ul>
-        <a href="/">
-            <li>Accueil</li>
-        </a>
-        <a href="/dinautt">
-            <li>Dinautt</li>
-        </a>
-        <a href="//morpion">
-            <li>Morpion</li>
-        </a>
-        <a href="/citations">
-            <li>Jeu des citations</li>
-        </a>
-    </ul>
-    <span class="nav-profile">
-			<a href="/profile">Mon profil</a>
-		</span>
-</header>
+<%- include('../header.ejs') %>
 
 <div class="container mt-5">
     <div class="row">
@@ -107,17 +87,17 @@
             <div class="text-center d-none mt-2" id="restart-area">
                 <input class="btn btn-primary" id="restart" type="button" value="Rejouer">
             </div>
-
         </div>
     </div>
-    <script src="/jquery/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/morpion.js"></script>
-    <div class="footer">
-        <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
-                    target="_blank" href="https://github.com/Claquettes/JS_Games">ici</p>
-        <p>©claq.fr 2022.</p><br>
-    </div>
+</div>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/morpion.js"></script>
+<div class="footer">
+    <p>Made with ♡ in Lyon, France by FlashOnFire, Tibouyou et Claquettes. Code disponible <a
+                target="_blank" href="https://github.com/Claquettes/JS_Games">ici</a></p>
+    <p>©claq.fr 2022.</p><br>
+</div>
 </body>
 </html>

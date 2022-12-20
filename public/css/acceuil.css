@@ -2,10 +2,14 @@
   --g2: rgb(22, 94, 174);
   --g1: rgb(175, 122, 255); 
 }
+@font-face {
+  font-family:'Press Start 2P';
+  src: url('PressStart2P-Regular.ttf:</assets/>'); /* ca marche pas */
+}
 
 @keyframes background-pan {
   from {
-    background-position: 0% center;
+    background-position: 0 center;
   }
   
   to {
@@ -38,7 +42,7 @@ body {
   background-size: 200%;
   height: 100vh;
   overflow: hidden;
-  margin: 0px;
+  margin: 0;
 }
 
 body.toggled {
@@ -64,6 +68,7 @@ body.toggled > #tiles > .tile:hover {
   opacity: 0.1 !important;
 }
 */
+
 .centered {
   left: 50%;
   position: absolute;
@@ -72,13 +77,13 @@ body.toggled > #tiles > .tile:hover {
 
 }
 
-.selectprofil, .selectdinautt, .selectcitations, .selectmorpion {
+.selectprofil, .selectdinautt, .selectcitations, .selectmorpion, .select2048 {
   text-align: center;
   color: black;
   transition: color 0.5s;
 }
 
-.selectprofil:hover, .selectdinautt:hover, .selectcitations:hover, .selectmorpion:hover {
+.selectprofil:hover, .selectdinautt:hover, .selectcitations:hover, .selectmorpion:hover, .select2048:hover {
   color: #fff;
 }
 
@@ -112,7 +117,7 @@ body.toggled > #tiles > .tile:hover {
 .tile:before {
   background-color: rgb(15, 15, 15);
   content: "";
-  inset: 0.5px;
+  inset: 1px;
   position: absolute;
 }
 
@@ -120,7 +125,7 @@ body.toggled > #tiles > .tile:hover {
   color: white;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 6vw;
-  margin: 0px;
+  margin: 0;
   pointer-events: none;
   transition: opacity 1200ms ease;
   width: 50vw;
@@ -131,7 +136,7 @@ body.toggled > #tiles > .tile:hover {
   color: white;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 6vw;
-  margin: 0px;
+  margin: 0;
   pointer-events: none;
   transition: opacity 1200ms ease;
   width: 50vw;

@@ -107,5 +107,4 @@ function checkNotAuthenticated(req, res, next) {
 module.exports = {
     init: init,
     checkAuthenticated: checkAuthenticated,
-    checkNotAuthenticated: checkNotAuthenticated
 }

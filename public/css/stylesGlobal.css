@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/press-start-2p');
+
 :root {
     --color0: #6ba6f8;
     --color1: #04080F;
@@ -5,10 +7,9 @@
     --color3: #165eae;
     --color4: #bdd0e6;
     --color5: #DAE3E5;
-    --color6: rgb(9, 76, 116);
-    --color7: rgb(23, 48, 111);
+    --color6: #AF7AFF;
+    --color7: #165EAE;
 }
-@import url('https://fonts.cdnfonts.com/css/press-start-2p');
 
 html {
     width: 100vw;
@@ -22,8 +23,8 @@ html {
 
 body {
     overflow: hidden;
-    background: rgb(72,138,232);
-    background: radial-gradient(circle, rgba(72,138,232,1) 0%, rgba(9,76,116,1) 80%);
+    background: rgb(175,122,255);
+    background: linear-gradient(90deg, rgba(175,122,255,1) 5%, rgba(22,94,174,1) 100%);  /*Faudrait changer pour mettre les variables mais ca marche pas*/
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -48,7 +49,7 @@ header .nav-profile {
     display: inline-block;
 }
 
-header ul,
+header li,
 header .nav-profile {
     margin: 7px 5px;
     transition: background-color 0.4s;
@@ -60,8 +61,11 @@ header span a:hover {
     transition: background-color 0.4s;
 }
 
-header li,
-header span a {
+header li {
+    display: inline-block;
+}
+
+header li a, header span a {
     display: inline-block;
     padding: 12px 10px;
 }

@@ -8,7 +8,6 @@ const path = require('path');
 const mysql = require('mysql2');
 const db = require('./db')
 const auth = require('./auth')
-const anime = require('animejs');
 
 const port = 80;
 
@@ -30,10 +29,18 @@ app.get('/', (req, res) => {
 const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
 
 app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
+
+app.get('/2048', (req, res) => {
+    res.render('2048/2048');
+});
+
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
+require('./mimir').init(app);
+require('./mcstats').init(app);
+
 
 db.getUserOrders(1).then((result) => {
     for (let i = 0; i < result.length; i++) {
@@ -48,5 +55,5 @@ db.getUserOrders(1).then((result) => {
 });
 
 http.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}/`);
+    console.log(`Letsgo ca marche, tu peux test ici http://localhost:${port}/`);
 });
