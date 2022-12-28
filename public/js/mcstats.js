@@ -1,17 +1,18 @@
 
-let data = document.currentScript.getAttribute("data");
+let data = JSON.parse(document.currentScript.getAttribute("data"));
+
 let bestOf = 0; 
 let maxiBestOf = 0;
 let menuMcFirst = 0;
 let maxiMcFirst = 0;
 let happymeal = 0;
-console.log(data);
-for (let order in data){
-  console.log(order);
-  let orderdata = JSON.parse(order.order_json);
-  for(let menu in orderdata.menus){
+
+foreach(data, (order) => {
+  let orderData = JSON.parse(order.order_json);
+
+  foreach(orderData.menus, (menu) => {
     switch(menu.menu_id){
-      case 1: 
+      case 1:
         bestOf++;
         break;
       case 2:
@@ -26,9 +27,9 @@ for (let order in data){
       case 5:
         happymeal++;
         break;
-  }
-}}
-
+    }
+  });
+});
 
 const chartData = {
   menu_id: 1,
@@ -53,5 +54,13 @@ const myChart = new Chart(ctx, {
     ],
   },
 });
-console.log(document.currentScript.getAttribute("data"));
 
+
+// defining foreach function, needed becayuse of JSON.parse crappy design which converts Arrays into objects with indexes as keys
+function foreach(object, cb){
+  for (let key in object){
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      cb(object[key]);
+    }
+  }
+}
