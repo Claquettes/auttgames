@@ -41,14 +41,27 @@ const chartData = {
     { name: "Happymeal", value: happymeal },
   ]
 };
-const ctx = document.getElementById("myChart").getContext("2d");
+const ctx = document.getElementById("accompagnementChart").getContext("2d");
 const myChart = new Chart(ctx, {
-  type: "bar",
+  type: "pie",
   data: {
     labels: chartData.products.map(product => product.name),
     datasets: [
       {
-        label: `Menu ${chartData.menu_id}`,
+        label: `Side-Meal`,
+        data: chartData.products.map(product => product.value),
+      },
+    ],
+  },
+});
+const ct = document.getElementById("burgerChart").getContext("2d");
+const burg = new Chart(ct, {
+  type: "pie",
+  data: {
+    labels: chartData.products.map(product => product.name),
+    datasets: [
+      {
+        label: `burgers`,
         data: chartData.products.map(product => product.value),
       },
     ],
@@ -56,7 +69,7 @@ const myChart = new Chart(ctx, {
 });
 
 
-// defining foreach function, needed becayuse of JSON.parse crappy design which converts Arrays into objects with indexes as keys
+// defining foreach function, needed because of JSON.parse crappy design which converts Arrays into objects with indexes as keys
 function foreach(object, cb){
   for (let key in object){
     if (Object.prototype.hasOwnProperty.call(object, key)) {

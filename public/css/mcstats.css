@@ -1,10 +1,25 @@
-.menu { 
-    background-color: aliceblue;
+.container{
+    width: 80%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    left: 10%;
+    top: 10%;
+    flex-direction: row;
+}
+.accompagnement{ 
     position: relative;
     display: inline-block;
     left: 10%;
     top: 10%;
-    width: 40%;
-    height: 40%;
-
+    width: 30%;
+    display: flex;
+}
+.burger{
+    position: relative;
+    display: inline-block;
+    left: 10%;
+    top: 10%;
+    width: 30%;
+    display: flex;
 }
