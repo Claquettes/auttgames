@@ -6,11 +6,15 @@ let maxiBestOf = 0;
 let menuMcFirst = 0;
 let maxiMcFirst = 0;
 let happymeal = 0;
+let nuggets = 0;
+let bigmac = 0;
+let le280 = 0;
+
 
 foreach(data, (order) => {
   let orderData = JSON.parse(order.order_json);
 
-  foreach(orderData.menus, (menu) => {
+  foreach(orderData.menus, (menu) => {    // foreach menu in order
     switch(menu.menu_id){
       case 1:
         bestOf++;
@@ -28,10 +32,23 @@ foreach(data, (order) => {
         happymeal++;
         break;
     }
+      foreach(orderData.products, (product) => { // foreach product PRODUCTS array
+          switch(product.product_id){
+              case 13:
+                  nuggets++;
+                  break;
+              case 140:
+                  bigmac++;
+                  break;
+              case 34:
+                  le280++;
+                  break;
+          }
+      });
   });
 });
 
-const chartData = {
+const chartData = {       //data and charts for the type of menu
   menu_id: 1,
   products: [
     { name: "BestOf", value: bestOf},
@@ -41,6 +58,15 @@ const chartData = {
     { name: "Happymeal", value: happymeal },
   ]
 };
+const burgerData = {       //data and charts for the type of sandwich
+    menu_id: 1,
+    products: [
+        { name: "BigMac", value: bigmac},
+        { name: "280", value: le280},
+    ]
+};
+
+
 const ctx = document.getElementById("accompagnementChart").getContext("2d");
 const myChart = new Chart(ctx, {
   type: "pie",
@@ -54,18 +80,45 @@ const myChart = new Chart(ctx, {
     ],
   },
 });
+
 const ct = document.getElementById("burgerChart").getContext("2d");
 const burg = new Chart(ct, {
   type: "pie",
   data: {
-    labels: chartData.products.map(product => product.name),
+    labels: burgerData.products.map(product => product.name),
     datasets: [
       {
         label: `burgers`,
-        data: chartData.products.map(product => product.value),
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        display: true,
+        data: burgerData.products.map(product => product.value),
       },
     ],
   },
+});
+
+const c = document.getElementById("boissonChart").getContext("2d");
+const boisson = new Chart(c, {
+    type: "pie",
+    data: {
+        labels: chartData.products.map(product => product.name),
+        datasets: [
+            {
+                label: `boisson`,
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                display: true,
+                data: chartData.products.map(product => product.value),
+                //on rajoute une légende "boisson" pour ce graphique
+              options: {
+                legend: {
+                    display: true,
+                    text: 'Boisson'
+                }
+              }
+
+            }
+        ]
+    }
 });
 
 
