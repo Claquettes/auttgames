@@ -32,7 +32,7 @@ app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 
 
 //perso claquettes
-app.use('/casse-briques', express.static(path.join(__dirname, 'casses-briques')));
+app.use('/casse-briques', express.static(path.join(__dirname, 'casse-briques')));
 app.use('/snak', express.static(path.join(__dirname, 'snak')));
 
 
