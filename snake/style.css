@@ -1,6 +1,6 @@
 @font-face {
   font-family: "options";
-  src: url("/assets/PressStart2P-Regular.ttf");
+  src: url("/snake/assets/PressStart2P-Regular.ttf");
 }
 .container{ /*on centre sur la largeur de la page, meme ce qui n'est pas du texte*/
   display: flex;
@@ -8,7 +8,7 @@
   margin-top: 10%;
   width: 70%;
   height: 500px;
-  background-image: url("assets/wood.png");
+  background-image: url("/snake/assets/wood.png");
   border: 1px solid black;
   z-index: 1;
   flex-direction: row;
@@ -59,7 +59,7 @@
   /* on met l'image d'herbe en background */
   display: block;
   position: absolute;
-  background-image: url("assets/herbe.png");
+  background-image: url("/snake/assets/herbe.png");
   margin : 0 auto;
   
   width: 500px;
