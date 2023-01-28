@@ -1,0 +1,26 @@
+#game{
+    margin-top: 10%;
+    background-color: rgb(0, 1, 16, 0);
+    border: rgb(255, 255, 255) 6px solid;
+}
+
+.breakoutGame{
+    display: inline-block;
+    height: 900px;
+    width: 800px;
+    position: relative;
+    left: 30%;
+}
+
+.difficultyContainer{
+    background-color: #000;
+    border: #000 1px solid;
+}
+
+body{
+    background-color: #000;
+}
+
+
+    
+

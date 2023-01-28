@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "options";
+  src: url("/assets/PressStart2P-Regular.ttf");
+}
+.container{ /*on centre sur la largeur de la page, meme ce qui n'est pas du texte*/
+  display: flex;
+  margin: 0 auto;
+  margin-top: 10%;
+  width: 70%;
+  height: 500px;
+  background-image: url("assets/wood.png");
+  border: 1px solid black;
+  z-index: 1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: normal;
+
+}
+
+
+.scoreContainer {
+  font-size: 50px;
+  display: block;
+  color: white;
+  text-align: center;
+  z-index: 1;
+
+}
+.optionsContainer {
+  color: white;
+  font-family: "options";
+  text-shadow: 4px 4px 4px rgba(139,195,74,255);
+  font-size: large;
+  text-align: center;
+  position: relative; 
+  z-index: 1;
+  width: 500px;
+  height: 500px;
+  top: 4%;
+  left: 50%;
+}
+
+#bottomText{
+  margin-top: 10px;
+  font-size: 10px;
+}
+#start-button{
+
+  box-shadow: 3px 3px 8px rgba(139,195,74,255);
+  margin-top: 4%;
+  height: 50px;
+  width: 100px;
+  z-index: 3;
+}
+
+#game-area {
+  /* on met l'image d'herbe en background */
+  display: block;
+  position: absolute;
+  background-image: url("assets/herbe.png");
+  margin : 0 auto;
+  
+  width: 500px;
+  height: 500px;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+
+}
+#other-area {
+  display: block;
+  left: 500px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+}
+
+.snake-unit {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: black;
+}
+
+#food {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: red;
+}
