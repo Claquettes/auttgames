@@ -2,13 +2,13 @@ function checkPaddleCollision() {
     if (ball.y + ball.radius > paddle.y &&
         ball.x > paddle.x &&
         ball.x < paddle.x + paddle.width) {
-        ball.speedY = -ball.speedY;
+        ball.speedY = -ball.speedY - 0.3;
         var paddleCenter = paddle.x + paddle.width / 2;
         var ballDistFromPaddleCenter = ball.x - paddleCenter;
         if (ballDistFromPaddleCenter < 0.1) {
-            ball.speedX = ballDistFromPaddleCenter * 0.15 + 8.5;
+            ball.speedX = ballDistFromPaddleCenter * 0.15 + 4.5;
         }
-        else {ball.speedX = ballDistFromPaddleCenter * 0.15 + 4.5;}
+        else {ball.speedX = ballDistFromPaddleCenter * 0.15 + 1.5;}
     }
 }
 
