@@ -5,7 +5,10 @@ function checkPaddleCollision() {
         ball.speedY = -ball.speedY;
         var paddleCenter = paddle.x + paddle.width / 2;
         var ballDistFromPaddleCenter = ball.x - paddleCenter;
-        ball.speedX = ballDistFromPaddleCenter * 0.15 + 0.5;
+        if (ballDistFromPaddleCenter < 0.1) {
+            ball.speedX = ballDistFromPaddleCenter * 0.15 + 8.5;
+        }
+        else {ball.speedX = ballDistFromPaddleCenter * 0.15 + 4.5;}
     }
 }
 
