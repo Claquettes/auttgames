@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Press Start 2P";
+    src: url("/casse-briques/assets/PressStart2P-Regular.ttf");
+  }
 body{
     background-color: #000;
 }
