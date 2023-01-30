@@ -3,10 +3,12 @@
     src: url("/casse-briques/assets/PressStart2P-Regular.ttf");
   }
 body{
+    font-family: "Press start 2P";
     background-color: #000;
 }
 
 #game{
+    font-family: "Press Start 2P";
     margin-top: 1%;
     background-color: rgb(0, 1, 16, 0);
     border: rgb(255, 255, 255) 6px solid;
