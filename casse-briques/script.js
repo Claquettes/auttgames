@@ -10,15 +10,16 @@ var rightPressed = false;
 var leftPressed = false;
 const paddleSpeed = 5; // pixels per second
 var lastTime;
-var timeStep = 1000/40; // 60fps
+var timeStep = 1000/60; // 60fps
 var maxSpeed = 10;
 
 var ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 10,
-    speedX: 2.5,
-    speedY: 2.5,
+    //on donne une vitesse initiale à la balle, aléatoire et entre 2 et 4
+    speedX: Math.floor(Math.random() * 3) + 2,
+    speedY: Math.floor(Math.random() * 3) + 2,  
     color: "white"
 };
 
@@ -102,11 +103,23 @@ function fixedUpdate() {
 
 
 function start() {
-    bricks = Level2();
+    bricks = Level0();
     checkURLParams();
     colorBricks();
-    lastTime = Date.now();
-    requestAnimationFrame(fixedUpdate);
+    //on attends que le joueur appuie sur espace pour lancer le jeu
+    document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 32) {
+            
+            lastTime = Date.now();
+             requestAnimationFrame(fixedUpdate);
+        }
+    });     
+    //on affiche un message d'attente, en attendant que le joueur appuie sur espace, en utilisant le canvas et la police qui est dans le dossier assets
+    ctx.font = "30px 'Press Start 2P'";
+    ctx.fillStyle = "white";
+    ctx.fillText("Press space to start", 100, 300);
+
+                                   
 }
 
 function checkURLParams() {
@@ -114,6 +127,9 @@ function checkURLParams() {
     var url = new URL(url_string);
     var level = url.searchParams.get("level");
     console.log(level);
+    if (level == 0) {
+        bricks = Level0();
+    }
     if (level == 1) {
         bricks = Level1();
     }

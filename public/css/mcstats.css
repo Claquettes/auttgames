@@ -1,0 +1,30 @@
+.container{
+    width: 80%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    left: 10%;
+    top: 10%;
+    flex-direction: row;
+}
+.accompagnement{
+    position: relative;
+    width: 30%;
+    display: flex;
+    background-color: #2cccc4;
+
+}
+.burger{
+    position: relative;
+    display: inline-block;
+    width: 30%;
+    display: flex;
+    background-color: #0f0f0f;
+}
+.boisson{
+    position: relative;
+    display: inline-block;
+    width: 30%;
+    display: flex;
+    background-color: #0f0f0f;
+}
