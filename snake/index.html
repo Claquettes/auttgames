@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalistic Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="game-area"></div>
+        <div id="other-area">
+            
+            <div class="optionsContainer">
+                <div class="scoreContainer">
+                    Score: <span id="score">0</span>
+                </div>
+                <h1>Options: </h1>
+                <h2>Speed: </h2>
+                <select id="speed">
+                    <option value="1">Lent</option>
+                    <option value="2">Moyen</option>
+                    <option value="3">Rapide</option>
+                    <option value="4">Expert</option>
+                </select>
+                <h2>Spawn distance from border</h2>
+
+                <select id="distance">
+                    <option value="0">O blocks</option>
+                    <option value="1">1 blocks</option>
+                    <option value="2">2 blocks</option>
+                    <option value="5">5 blocks</option>
+                </select>
+                <div id="d"></div>
+                    <button id="start-button">Start</button> <br/>
+                    <a div id="bottomText"> score = score + speed - distance +2</a>
+                   
+            </div>
+        </div>
+    </div>
+   
+        
+  
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
+  
