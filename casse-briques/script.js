@@ -106,12 +106,15 @@ function start() {
     bricks = Level0();
     checkURLParams();
     colorBricks();
+    pause = true;
     //on attends que le joueur appuie sur espace pour lancer le jeu
+    
     document.addEventListener("keydown", function (e) {
-        if (e.keyCode == 32) {
-            
+
+        if ((e.keyCode == 32) && (pause == true)) {
+            pause = false;
             lastTime = Date.now();
-             requestAnimationFrame(fixedUpdate);
+             requestAnimationFrame(fixedUpdate);           
         }
     });     
     //on affiche un message d'attente, en attendant que le joueur appuie sur espace, en utilisant le canvas et la police qui est dans le dossier assets
