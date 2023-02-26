@@ -33,6 +33,7 @@ app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
 
 //perso claquettes
 app.use('/casse-briques', express.static(path.join(__dirname, 'casse-briques')));
+app.use('/polyressources', express.static(path.join(__dirname, 'polyressources')));
 app.use('/snak', express.static(path.join(__dirname, 'snak')));
 
 
@@ -47,7 +48,6 @@ require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 require('./mimir').init(app);
-require('./polyressources').init(app);
 require('./mcstats').init(app);
 
 
