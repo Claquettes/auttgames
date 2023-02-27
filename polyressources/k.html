@@ -1,13 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Colorful Background with Anime.js</title>
-  <link rel="stylesheet" type="text/css" href="/PolyRessources/k.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	<title>Minimalist Animated Background</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		canvas {
+			display: block;
+		}
+	</style>
 </head>
 <body>
-  <div class="background"></div>
-  <script src="/PolyRessources/k.js"></script>
+	<script>
+		let circles = [];
+
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			noStroke();
+			fill(255, 150);
+			for (let i = 0; i < 100; i++) {
+				let x = random(width);
+				let y = random(height);
+				let r = random(20, 60);
+				circles.push(new Circle(x, y, r));
+			}
+		}
+
+		function draw() {
+			background(50, 50, 50, 50);
+			for (let circle of circles) {
+				circle.move();
+				circle.show();
+			}
+		}
+
+		class Circle {
+			constructor(x, y, r) {
+				this.x = x;
+				this.y = y;
+				this.r = r;
+				this.speedX = random(-2, 2);
+				this.speedY = random(-2, 2);
+			}
+
+			move() {
+				this.x += this.speedX;
+				this.y += this.speedY;
+				if (this.x < -this.r || this.x > width + this.r) {
+					this.speedX *= -1;
+				}
+				if (this.y < -this.r || this.y > height + this.r) {
+					this.speedY *= -1;
+				}
+			}
+
+			show() {
+				ellipse(this.x, this.y, this.r * 2);
+			}
+		}
+	</script>
 </body>
 </html>
