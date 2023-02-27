@@ -159,3 +159,18 @@ body.toggled > #tiles > .tile:hover {
   z-index: 1;
 }
 
+.selectdinautt {
+  color: white;
+}
+.selectmorpion {
+  color: white;
+}
+.select2048 {
+  color: white;
+}
+.selectcitations {
+  color: white;
+}
+.selectprofil {
+  color: white;
+}
