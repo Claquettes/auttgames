@@ -1,20 +1,46 @@
-const animeParams = {
-  targets: '.background',
-  scale: [
-    {value: 1, easing: 'easeOutSine', duration: 1000},
-    {value: 1.2, easing: 'easeInOutQuad', duration: 1200},
-    {value: 1, easing: 'easeOutSine', duration: 1000},
-    {value: 1.1, easing: 'easeInOutQuad', duration: 1200},
-    {value: 1, easing: 'easeOutSine', duration: 1000}
-  ],
-  backgroundColor: [
-    {value: '#1c1c1c'},
-    {value: '#3b3b3b'},
-    {value: '#1c1c1c'}
-  ],
-  easing: 'linear',
-  duration: 5000,
-  loop: true
-};
+let circles = [];
 
-anime(animeParams);
+		function setup() {
+			createCanvas(window.innerWidth, window.innerHeight);
+			noStroke();
+			fill(255, 150);
+			for (let i = 0; i < 100; i++) {
+				let x = random(width);
+				let y = random(height);
+				let r = random(20, 60);
+				circles.push(new Circle(x, y, r));
+			}
+		}
+
+		function draw() {
+			background(50, 50, 50, 50);
+			for (let circle of circles) {
+				circle.move();
+				circle.show();
+			}
+		}
+
+		class Circle {
+			constructor(x, y, r) {
+				this.x = x;
+				this.y = y;
+				this.r = r;
+				this.speedX = random(-2, 2);
+				this.speedY = random(-2, 2);
+			}
+
+			move() {
+				this.x += this.speedX;
+				this.y += this.speedY;
+				if (this.x < -this.r || this.x > width + this.r) {
+					this.speedX *= -1;
+				}
+				if (this.y < -this.r || this.y > height + this.r) {
+					this.speedY *= -1;
+				}
+			}
+
+			show() {
+				ellipse(this.x, this.y, this.r * 2);
+			}
+		}
