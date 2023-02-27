@@ -1,15 +1,20 @@
-anime({
-    targets: '#background',
-    backgroundColor: [
-      {value: '#ed6ea0'},
-      {value: '#ec8c69'},
-      {value: '#f0c172'},
-      {value: '#f6e27a'},
-      {value: '#7ed6c6'},
-      {value: '#4a4e4d'}
+const animeParams = {
+    targets: '.background',
+    scale: [
+      {value: 1, easing: 'easeOutSine', duration: 1000},
+      {value: 1.2, easing: 'easeInOutQuad', duration: 1200},
+      {value: 1, easing: 'easeOutSine', duration: 1000},
+      {value: 1.1, easing: 'easeInOutQuad', duration: 1200},
+      {value: 1, easing: 'easeOutSine', duration: 1000}
     ],
-    duration: 5000,
+    backgroundColor: [
+      {value: '#1c1c1c'},
+      {value: '#3b3b3b'},
+      {value: '#1c1c1c'}
+    ],
     easing: 'linear',
+    duration: 5000,
     loop: true
-  });
+  };
   
+  anime(animeParams);
