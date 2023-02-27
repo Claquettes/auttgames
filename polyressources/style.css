@@ -10,7 +10,7 @@ body {
     font-size:xx-large;
     overflow: hidden;
 }
-.background {
+.bg {
     position: fixed;
     width: 100%;
     height: 100%;
