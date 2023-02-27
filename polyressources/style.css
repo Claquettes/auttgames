@@ -1,5 +1,4 @@
 body {
-    background-color: #ffffff;
     padding: 0;
     margin: 0;
     display: flex;
@@ -18,6 +17,7 @@ canvas {
     left: 0;
 }
 h1, p {
+    background-color: #000000s;
     position: relative;
     z-index: 1;
     text-align: center;
