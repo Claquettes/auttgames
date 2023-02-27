@@ -9,12 +9,22 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size:xx-large;
 }
-h1
-{
-    background-color: #000000;
-    color: white;
-    font-size: smaller;
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+h1{
+    font-size: 3em;
+    font-weight: bold;
 }
+  
+p{
+    font-size: 1.5em;
+}
+  
 .menu_principal{
     width: 100%;
     height: 10%;
