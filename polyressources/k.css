@@ -1,34 +1,14 @@
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
   }
   
-  #bg {
+  .background {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+    background-color: #1c1c1c;
     z-index: -1;
-  }
-  
-  .black-white {
-    filter: grayscale(100%);
-  }
-  
-  .animated {
-    animation-duration: 5s;
-    animation-name: hue-rotate;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-  
-  @keyframes hue-rotate {
-    from {
-      filter: hue-rotate(0deg);
-    }
-    to {
-      filter: hue-rotate(360deg);
-    }
   }
   

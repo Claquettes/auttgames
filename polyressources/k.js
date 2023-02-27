@@ -1,14 +1,20 @@
-const bg = document.getElementById("bg");
+const animeParams = {
+  targets: '.background',
+  scale: [
+    {value: 1, easing: 'easeOutSine', duration: 1000},
+    {value: 1.2, easing: 'easeInOutQuad', duration: 1200},
+    {value: 1, easing: 'easeOutSine', duration: 1000},
+    {value: 1.1, easing: 'easeInOutQuad', duration: 1200},
+    {value: 1, easing: 'easeOutSine', duration: 1000}
+  ],
+  backgroundColor: [
+    {value: '#1c1c1c'},
+    {value: '#3b3b3b'},
+    {value: '#1c1c1c'}
+  ],
+  easing: 'linear',
+  duration: 5000,
+  loop: true
+};
 
-// Set initial class to add black and white filter
-bg.classList.add("black-white");
-
-// Animate the background to rotate hue infinitely
-anime({
-  targets: "#bg",
-  duration: 10000,
-  backgroundColor: ["#000", "#fff"],
-  easing: "linear",
-  direction: "alternate",
-  loop: true,
-});
+anime(animeParams);
