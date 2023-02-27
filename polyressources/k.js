@@ -1,14 +1,19 @@
 const animeParams = {
   targets: '.background',
-  backgroundPosition: [
-    {value: '0% 0%', duration: 4000},
-    {value: '100% 0%', duration: 4000},
-    {value: '100% 100%', duration: 4000},
-    {value: '0% 100%', duration: 4000},
-    {value: '0% 0%', duration: 4000},
+  scale: [
+    {value: 1, easing: 'easeOutSine', duration: 1000},
+    {value: 1.2, easing: 'easeInOutQuad', duration: 1200},
+    {value: 1, easing: 'easeOutSine', duration: 1000},
+    {value: 1.1, easing: 'easeInOutQuad', duration: 1200},
+    {value: 1, easing: 'easeOutSine', duration: 1000}
+  ],
+  backgroundColor: [
+    {value: '#1c1c1c'},
+    {value: '#3b3b3b'},
+    {value: '#1c1c1c'}
   ],
   easing: 'linear',
-  duration: 20000,
+  duration: 5000,
   loop: true
 };
 
