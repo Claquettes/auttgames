@@ -103,3 +103,7 @@ h1, p {
 .poly{
     color: rgba(0, 159, 227, 1);
 }
+
+.home_button{
+    z-index: 1;
+}
