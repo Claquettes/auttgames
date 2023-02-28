@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: Consolas, monaco, monospace;
     font-size:xx-large;
     overflow: hidden;
 }
@@ -17,13 +17,18 @@ canvas {
     left: 0;
 }
 h1, p {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     position: relative;
     z-index: 1;
     text-align: center;
     margin: 50px 0;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: Consolas, monaco, monospace;
+    font-weight: 100;
+    border-radius: 10px;
 }
 
 
@@ -43,8 +48,8 @@ h1, p {
 .container_matieres{
     width: 65%;
     height: 25%;
-    background-color: #000000;
-    padding: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
     margin-top: 10%;
     display: flex;
     color: #ffffff;
@@ -52,6 +57,7 @@ h1, p {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    border-radius: 10px;
 }
 
 .container_matieres a {
@@ -76,15 +82,24 @@ h1, p {
     cursor: pointer;
     transform: scale(1.1);
     transition: 0.2s;
+    border-radius: 5px;
 }
 
 .footer {
     position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
+    left: 40%;
+    bottom: 5px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 20%;    
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     text-align: center;
     z-index: 1;
+    border-radius: 10px;
   }
+
+.poly{
+    color: rgba(0, 159, 227, 1);
+}

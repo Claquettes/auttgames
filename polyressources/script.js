@@ -3,7 +3,7 @@ let circles = [];
 		function setup() {
 			createCanvas(window.innerWidth, window.innerHeight);
 			noStroke();
-			fill(255, 150);
+			fill(255, 6);
 			for (let i = 0; i < 100; i++) {
 				let x = random(width);
 				let y = random(height);
@@ -13,7 +13,7 @@ let circles = [];
 		}
 
 		function draw() {
-			background(0, 0, 0, 50);
+			background(0, 10, 30, 30);
 			for (let circle of circles) {
 				circle.move();
 				circle.show();
