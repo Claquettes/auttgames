@@ -174,3 +174,19 @@ body.toggled > #tiles > .tile:hover {
 .selectprofil {
   color: white;
 }
+
+.selectdinautt:hover {
+  color: var(--g2);
+}
+.selectmorpion:hover {
+  color: var(--g2);
+}
+.select2048:hover {
+  color: var(--g2);
+}
+.selectcitations:hover {
+  color: var(--g2);
+}
+.selectprofil:hover {
+  color: var(--g2);
+}
