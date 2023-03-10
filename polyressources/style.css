@@ -53,7 +53,7 @@ h1, p {
     margin-top: 10%;
     display: flex;
     color: #ffffff;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1;
