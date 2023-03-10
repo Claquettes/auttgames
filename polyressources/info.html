@@ -27,11 +27,12 @@
       <a class="matiere" href="https://perso.liris.cnrs.fr/nathalie.guin/LIFAPR/ConseilsTP.pdf">
         Conseils TP 
       </a>
-      <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-       <button type="submit">Upload</button>
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+      <label for="file">Ajoute tes propres ressources!</label>
+      <input type="file" id="file" name="file">
+      <br>
+      <input type="submit" value="Upload File">
     </form>
-
     </div>
 
     <div class="footer">
