@@ -8,20 +8,22 @@
   <meta name="author" content="Claq">
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Welcome to Claq's garden, create your own and relax.">
-  <meta property="og:image" content="/garden/garden.ico"/>
-  <link rel="icon" type="image/png" src="/garden/garden.ico" sizes="192x192">
-  <link rel="stylesheet" href="/garden/style.css">
+  <meta property="og:image" content="/garden.ico"/>
+  <link rel="icon" type="image/png" href="/garden.ico" sizes="192x192">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nova+Oval">
   </head>
   <body>
+    <div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
     <span class="left">
       <div class="buttons">
-        <button id="clear" onclick="clearButton()"><img src="/garden/assets/buttons/delete.png" alt="clear" width="35"></button>
-        <button id="eraser" onclick="eraserButton()"><img src="/garden/assets/buttons/eraser.png" alt="eraser" width="35"></button>
-        <button id="save" onclick="saveButton()"><img src="/garden/assets/buttons/sauver.png" alt="save" width="35"></button>
+        <button id="clear" onclick="clearButton()"><img src="/assets/buttons/delete.png" alt="clear" width="35"></button>
+        <button id="eraser" onclick="eraserButton()"><img src="/assets/buttons/eraser.png" alt="eraser" width="35"></button>
+        <button id="save" onclick="saveButton()"><img src="/assets/buttons/sauver.png" alt="save" width="35"></button>
       </div>
-    </span>
     <span class="help">
       <details>
         <summary>Click here if you need help !</summary>
@@ -31,24 +33,25 @@
         <p>Click on the "Eraser" button to erase the tiles.</p>
       </details>
     </span>
+    </span>
     <canvas id="drawing-canvas" width="400" height="400"></canvas>
     <div id="image-container">
       <details>
-        <summary>Click to see Grass Tiles !</summary>
+        <summary>Click to see Grass Tiles    !  </summary>
         <div id="grass" class="s-container"></div>
       </details> <!-- contient les images de grass -->
       
       <details>
-        <summary>Click to see Water Tiles !</summary>
+        <summary>Click to see Water Tiles    !  </summary>
         <div id="water" class="s-container"></div>
       </details> <!-- contient les images de water -->
       <br>
       <details>
-        <summary>Click to see Cliff Tiles !</summary>
+        <summary>Click to see Cliff Tiles    !  </summary>
         <div id="cliff" class="s-container"></div>
       </details> <!-- contient les images de cliff -->
 
     </div>
   </body>
-  <script src="/garden/yes.js"></script>
+  <script src="/yes.js"></script>
 </html>
