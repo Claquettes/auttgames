@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <meta name="description" content="Welcome to Claq's garden, create your own and relax.">
-  <meta property="og:image" content="/garden.ico"/>
+  <meta property="og:image" content="/garden/garden.ico"/>
   <link rel="icon" type="image/png" href="/garden/garden.ico" sizes="192x192">
   <link rel="stylesheet" href="/garden/style.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nova+Oval">
@@ -20,9 +20,9 @@
 <div class="bg bg3"></div>
     <span class="left">
       <div class="buttons">
-        <button id="clear" onclick="clearButton()"><img src="/garden/assets/buttons/delete.png" alt="clear" width="35"></button>
-        <button id="eraser" onclick="eraserButton()"><img src="/garden/assets/buttons/eraser.png" alt="eraser" width="35"></button>
-        <button id="save" onclick="saveButton()"><img src="/garden/assets/buttons/sauver.png" alt="save" width="35"></button>
+        <button id="clear" onclick="clearButton()"><img src="/garden/buttons/delete.png" alt="clear" width="35"></button>
+        <button id="eraser" onclick="eraserButton()"><img src="/garden/buttons/eraser.png" alt="eraser" width="35"></button>
+        <button id="save" onclick="saveButton()"><img src="/garden/buttons/sauver.png" alt="save" width="35"></button>
       </div>
     <span class="help">
       <details>
@@ -33,6 +33,7 @@
         <p>Click on the "Eraser" button to erase the tiles.</p>
       </details>
     </span>
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/300494469&color=%23c4dfaa&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/chillhopdotcom" title="Chillhop Music" target="_blank" style="color: #cccccc; text-decoration: none;">Chillhop Music</a> · <a href="https://soundcloud.com/chillhopdotcom/sets/lofihiphop" title="lofi hip hop playlist" target="_blank" style="color: #cccccc; text-decoration: none;">lofi hip hop playlist</a></div>
     </span>
     <canvas id="drawing-canvas" width="400" height="400"></canvas>
     <div id="image-container">
@@ -49,6 +50,10 @@
       <details>
         <summary>Click to see Cliff Tiles    !  </summary>
         <div id="cliff" class="s-container"></div>
+      </details> <!-- contient les images de cliff -->
+      <details>
+        <summary>Click to see Flowers Tiles    !  </summary>
+        <div id="flower" class="s-container"></div>
       </details> <!-- contient les images de cliff -->
 
     </div>

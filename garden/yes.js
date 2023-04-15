@@ -4,15 +4,13 @@ const imageContainer = document.getElementById("image-container");
 const divGrass = document.getElementById("grass");
 const divWater = document.getElementById("water");
 const divCliff = document.getElementById("cliff");
+const divFlowers = document.getElementById("flower");
 const sc = document.getElementsByClassName("s-container");
-
-
 
 const tileSize = 40;
 let currentImage = 0;
 
 erase = false;
-
 
 const images = [
     "/garden/assets/tiles/tile001.png",
@@ -98,6 +96,8 @@ const images = [
     "/garden/assets/tiles/tile086.png",
     "/garden/assets/tiles/tile087.png",
     "/garden/assets/tiles/tile088.png",
+    "/garden/assets/tiles/tile088-bridge.png",
+    "/garden/assets/tiles/tile089-bridge.png",
     "/garden/assets/tiles/tile089.png",
     "/garden/assets/tiles/tile090.png",
     "/garden/assets/tiles/tile091.png",
@@ -145,7 +145,14 @@ const images = [
     "/garden/assets/tiles/tile146.png",
     "/garden/assets/tiles/tile147.png",
     "/garden/assets/tiles/tile148.png",
-
+    "/garden/assets/tiles/pink-flowers.png",
+    "/garden/assets/tiles/solo-pink-flower.png",
+    "/garden/assets/tiles/tulips.png",
+    "/garden/assets/tiles/d-yellow.png",
+    "/garden/assets/tiles/yellow.png",
+    "/garden/assets/tiles/rose.png",
+    "/garden/assets/tiles/sakura.png",
+    "/garden/assets/tiles/d-violet.png",
 ];
 
 let selectedImage;
@@ -165,11 +172,14 @@ images.forEach((image) => {
   });
   if (currentImage < 52) { //on met dans le span grass 
     divGrass.appendChild(img);
-  } else if (currentImage < 99) { //on met dans le span water
+  } else if (currentImage < 101) { //on met dans le span water
     divWater.appendChild(img);
-  } else if (currentImage < 168) { //on met dans le span cliff
+  } else if (currentImage < 133) { //on met dans le span cliff
     divCliff.appendChild(img);
   }  
+  else if (currentImage < 222) { //on met dans le span cliff
+    divFlowers.appendChild(img);
+  }
 });
 
 canvas.addEventListener("click", (event) => {
@@ -215,6 +225,6 @@ function saveButton() {
   downloadLink.href = dataURL;
   downloadLink.download = 'canvas.png';
   downloadLink.click();
-  }, 1000);
+  }, 800);
 }
 
