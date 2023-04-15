@@ -15,11 +15,36 @@
       <div class="buttons">
         <button id="clear" onclick="clearButton()"><img src="/garden/assets/buttons/delete.png" alt="clear" width="35"></button>
         <button id="eraser" onclick="eraserButton()"><img src="/garden/assets/buttons/eraser.png" alt="eraser" width="35"></button>
-      
+        <button id="save" onclick="saveButton()"><img src="/garden/assets/buttons/sauver.png" alt="save" width="35"></button>
       </div>
     </span>
+    <span class="help">
+      <details>
+        <summary>Click here if you need help !</summary>
+        <p>Click on the buttons to select the tile you want to draw.</p>
+        <p>Click on the canvas to draw.</p>
+        <p>Click on the "Clear" button to clear the canvas.</p>
+        <p>Click on the "Eraser" button to erase the tiles.</p>
+      </details>
+    </span>
     <canvas id="drawing-canvas" width="400" height="400"></canvas>
-    <div id="image-container"></div>
+    <div id="image-container">
+      <details>
+        <summary>Click to see Grass Tiles !</summary>
+        <div id="grass" class="s-container"></div>
+      </details> <!-- contient les images de grass -->
+      
+      <details>
+        <summary>Click to see Water Tiles !</summary>
+        <div id="water" class="s-container"></div>
+      </details> <!-- contient les images de water -->
+      <br>
+      <details>
+        <summary>Click to see Cliff Tiles !</summary>
+        <div id="cliff" class="s-container"></div>
+      </details> <!-- contient les images de cliff -->
+
+    </div>
   </body>
   <script src="/garden/yes.js"></script>
 </html>
