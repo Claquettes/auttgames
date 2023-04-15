@@ -96,6 +96,7 @@ const images = [
     "/garden/assets/tiles/tile086.png",
     "/garden/assets/tiles/tile087.png",
     "/garden/assets/tiles/tile088.png",
+    "/garden/assets/tiles/tile088-w1.png",
     "/garden/assets/tiles/tile088-bridge.png",
     "/garden/assets/tiles/tile089-bridge.png",
     "/garden/assets/tiles/tile089.png",
@@ -113,6 +114,10 @@ const images = [
     "/garden/assets/tiles/tile101.png",
     "/garden/assets/tiles/tile102.png",
     "/garden/assets/tiles/tile104.png",
+    "/garden/assets/tiles/tile104-orange.png",
+    "/garden/assets/tiles/tile104-m-orange.png",
+    "/garden/assets/tiles/tile104-grey.png",
+    "/garden/assets/tiles/tile104-blue.png",
     "/garden/assets/tiles/tile112.png",
     "/garden/assets/tiles/tile113.png",
     "/garden/assets/tiles/tile114.png",
@@ -128,6 +133,7 @@ const images = [
     "/garden/assets/tiles/tile127.png",
     "/garden/assets/tiles/tile128.png",
     "/garden/assets/tiles/tile129.png",
+    "/garden/assets/tiles/tile129-w3.png",
     "/garden/assets/tiles/tile130.png",
     "/garden/assets/tiles/tile131.png",
     "/garden/assets/tiles/tile132.png",
@@ -135,6 +141,7 @@ const images = [
     "/garden/assets/tiles/tile135.png",
     "/garden/assets/tiles/tile136.png",
     "/garden/assets/tiles/tile137.png",
+    "/garden/assets/tiles/tile137-w22.png",
     "/garden/assets/tiles/tile138.png",
     "/garden/assets/tiles/tile139.png",
     "/garden/assets/tiles/tile140.png",
@@ -153,6 +160,7 @@ const images = [
     "/garden/assets/tiles/rose.png",
     "/garden/assets/tiles/sakura.png",
     "/garden/assets/tiles/d-violet.png",
+    
 ];
 
 let selectedImage;
@@ -172,9 +180,9 @@ images.forEach((image) => {
   });
   if (currentImage < 52) { //on met dans le span grass 
     divGrass.appendChild(img);
-  } else if (currentImage < 101) { //on met dans le span water
+  } else if (currentImage < 106) { //on met dans le span water
     divWater.appendChild(img);
-  } else if (currentImage < 133) { //on met dans le span cliff
+  } else if (currentImage < 140) { //on met dans le span cliff
     divCliff.appendChild(img);
   }  
   else if (currentImage < 222) { //on met dans le span cliff
@@ -228,3 +236,6 @@ function saveButton() {
   }, 800);
 }
 
+function gitButton() {
+  window.open("https://github.com/Claquettes/garden");
+}

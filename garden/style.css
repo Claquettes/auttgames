@@ -36,6 +36,7 @@ body{
 
 #eraser{
   background-color: white;
+  cursor: crosshair;
 }
 
 #rotate{
@@ -44,6 +45,11 @@ body{
 
 #save{
   background-color: white;
+}
+
+#github{
+  background-color: white;
+  cursor: pointer;
 }
 
 #drawing-canvas {
