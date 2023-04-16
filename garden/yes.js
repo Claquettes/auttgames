@@ -233,11 +233,12 @@ function saveButton() {
   const dataURL = canvas.toDataURL('image/png')
   const downloadLink = document.createElement('a');
   //onn demande le nom du fichier
-  let filename = prompt("Name of your creation :");
-  filename = filename + ".png";
-  downloadLink.download = filename;
+  let filenamepng = prompt("Name of your creation :");
+  filenamepng = filenamepng + ".png";
+  downloadLink.href = dataURL;
+  downloadLink.download = filenamepng;
   downloadLink.click();
-  }, 1000);
+  }, 800);
 }
 
 function gitButton() {
