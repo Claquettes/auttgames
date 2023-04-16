@@ -237,7 +237,7 @@ function saveButton() {
   filename = filename + ".png";
   downloadLink.download = filename;
   downloadLink.click();
-  }, 800);
+  }, 1000);
 }
 
 function gitButton() {
