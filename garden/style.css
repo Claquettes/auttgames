@@ -52,6 +52,15 @@ body{
   cursor: pointer;
 }
 
+#export{
+  background-color: white;
+}
+
+#gardenInput{
+  background-color: white;
+  font-size: x-small;
+}
+
 #drawing-canvas {
   display: flex;
   justify-content: center;

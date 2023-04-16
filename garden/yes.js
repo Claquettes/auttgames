@@ -6,6 +6,7 @@ const divWater = document.getElementById("water");
 const divCliff = document.getElementById("cliff");
 const divFlowers = document.getElementById("flower");
 const sc = document.getElementsByClassName("s-container");
+const fileInput = document.getElementById('gardenInput');
 
 const tileSize = 40;
 let currentImage = 0;
@@ -114,6 +115,8 @@ const images = [
     "/garden/assets/tiles/tile101.png",
     "/garden/assets/tiles/tile102.png",
     "/garden/assets/tiles/tile104.png",
+    "/garden/assets/tiles/tile104-lillypad.png",
+    "/garden/assets/tiles/tile104-l-lillypad.png",
     "/garden/assets/tiles/tile104-orange.png",
     "/garden/assets/tiles/tile104-m-orange.png",
     "/garden/assets/tiles/tile104-grey.png",
@@ -141,7 +144,7 @@ const images = [
     "/garden/assets/tiles/tile135.png",
     "/garden/assets/tiles/tile136.png",
     "/garden/assets/tiles/tile137.png",
-    "/garden/assets/tiles/tile137-w22.png",
+    "/garden/assets/tiles/tile137-w2222.png",
     "/garden/assets/tiles/tile138.png",
     "/garden/assets/tiles/tile139.png",
     "/garden/assets/tiles/tile140.png",
@@ -160,7 +163,6 @@ const images = [
     "/garden/assets/tiles/rose.png",
     "/garden/assets/tiles/sakura.png",
     "/garden/assets/tiles/d-violet.png",
-    
 ];
 
 let selectedImage;
@@ -180,12 +182,12 @@ images.forEach((image) => {
   });
   if (currentImage < 52) { //on met dans le span grass 
     divGrass.appendChild(img);
-  } else if (currentImage < 106) { //on met dans le span water
+  } else if (currentImage < 108) { //on met dans le span water
     divWater.appendChild(img);
-  } else if (currentImage < 140) { //on met dans le span cliff
+  } else if (currentImage < 142) { //on met dans le span cliff
     divCliff.appendChild(img);
   }  
-  else if (currentImage < 222) { //on met dans le span cliff
+  else if (currentImage < 222) { //on met dans le span fleurs
     divFlowers.appendChild(img);
   }
 });
@@ -230,8 +232,10 @@ function saveButton() {
   setTimeout(() => {
   const dataURL = canvas.toDataURL('image/png')
   const downloadLink = document.createElement('a');
-  downloadLink.href = dataURL;
-  downloadLink.download = 'canvas.png';
+  //onn demande le nom du fichier
+  let filename = prompt("Name of your creation :");
+  filename = filename + ".png";
+  downloadLink.download = filename;
   downloadLink.click();
   }, 800);
 }
@@ -239,3 +243,51 @@ function saveButton() {
 function gitButton() {
   window.open("https://github.com/Claquettes/garden");
 }
+
+function exportButton(){ //we export the canvas as a json file
+    let data = [];
+    //for each tile, we get the image source and the position
+    for (let i = 0; i < canvas.width; i += tileSize) {
+      for (let j = 0; j < canvas.height; j += tileSize) {
+        let imgData = ctx.getImageData(i, j, tileSize, tileSize);
+        let dataURL = canvas.toDataURL();
+        let src = dataURL;
+        data.push({src, i, j});
+      }
+    }
+    //we create a json file
+    let json = JSON.stringify(data);
+    let blob = new Blob([json], {type: "application/json"});
+    let url  = URL.createObjectURL(blob);
+    //we download the file
+    let a = document.createElement('a');
+    //on met le nom du fichier, en ajoutant l'heure et la date
+    var filename = prompt("Name of your creation :");
+    filename = filename + ".json";
+  
+    a.download    = filename;
+    a.href        = url;
+    a.textContent = "Download file";
+    a.click();
+}
+
+
+//we import a json file in the "gardenInput" input
+fileInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  console.log('Selected file:', file);
+  //when we select a file, we read it, and then we draw the images on the canvas
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const data = JSON.parse(event.target.result);
+    data.forEach((tile) => {
+      const image = new Image();
+      image.src = tile.src;
+      image.onload = () => {
+        ctx.drawImage(image, tile.i*tileSize, tile.j*tileSize, tileSize*10, tileSize*10);
+      };
+    });
+  };
+  reader.readAsText(file);
+});
+    
