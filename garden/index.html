@@ -1,0 +1,70 @@
+<html>
+  <head>
+  <title>Claq's garden</title>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Welcome To AUTT Garden, your place to relax while creating you own garden.">
+  <meta name="keywords" content="Claq, garden, autt, autt.fr, autt.fr/garden, autt.fr, auttgames, Mathieu Ponton,">
+  <meta name="author" content="Claq">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow">
+  <meta property="og:image" content="https://iili.io/H8fN9KQ.png"/>
+  <meta property="og:title" content="AUTT Garden"/>
+  <meta property="og:description" content="Welcome To AUTT Garden, your place to relax while creating you own garden."/>
+  <meta property="og:url" content="https://autt.fr/garden"/>
+  <meta property="og:site_name" content="AUTT Garden"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="fr"/>
+  <link rel="icon" type="image/png" href="/garden/garden.ico" sizes="192x192">
+  <link rel="stylesheet" href="/garden/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nova+Oval">  
+  </head>
+  <body>
+    <div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+    <span class="left">
+      <div class="buttons">
+        <button id="clear" onclick="clearButton()"><img src="/garden/assets/buttons/delete.png" alt="clear" width="35"></button>
+        <button id="eraser" onclick="eraserButton()"><img src="/garden/assets/buttons/eraser.png" alt="eraser" width="35"></button>
+        <button id="save" onclick="saveButton()"><img src="/garden/assets/buttons/sauver.png" alt="save" width="35"></button>
+        <button id="github" onclick="gitButton()"><img src="/garden/assets/buttons/github.png" alt="github" width="35"></button>
+        <button id="export" onclick="exportButton()"><img src="/garden/assets/buttons/export.png" alt="export" width="35"></button>
+        <input type="file" id="gardenInput">
+      </div>
+    <span class="help">
+      <details>
+        <summary>Click here if you need help !</summary>
+        <p>Click on the buttons to select the tile you want to draw.</p>
+        <p>Click on the canvas to draw.</p>
+        <p>Click on the "Clear" button to clear the canvas.</p>
+        <p>Click on the "Eraser" button to erase the tiles.</p>
+      </details>
+    </span>
+    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/300494469&color=%23c4dfaa&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/chillhopdotcom" title="Chillhop Music" target="_blank" style="color: #cccccc; text-decoration: none;">Chillhop Music</a> · <a href="https://soundcloud.com/chillhopdotcom/sets/lofihiphop" title="lofi hip hop playlist" target="_blank" style="color: #cccccc; text-decoration: none;">lofi hip hop playlist</a></div>
+    </span>
+    <canvas id="drawing-canvas" width="400" height="400"></canvas>
+    <div id="image-container">
+      <details>
+        <summary>Click to see Grass Tiles    !  </summary>
+        <div id="grass" class="s-container"></div>
+      </details> <!-- contient les images de grass -->
+      
+      <details>
+        <summary>Click to see Water Tiles    !  </summary>
+        <div id="water" class="s-container"></div>
+      </details> <!-- contient les images de water -->
+      <br>
+      <details>
+        <summary>Click to see Cliff Tiles    !  </summary>
+        <div id="cliff" class="s-container"></div>
+      </details> <!-- contient les images de cliff -->
+      <details>
+        <summary>Click to see Flowers Tiles    !  </summary>
+        <div id="flower" class="s-container"></div>
+      </details> <!-- contient les images de cliff -->
+
+    </div>
+  </body>
+  <script src="/garden/yes.js"></script>
+</html>

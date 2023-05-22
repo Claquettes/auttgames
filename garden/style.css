@@ -1,0 +1,148 @@
+:root{
+  --yellow: #F5F0BB;
+  --lime: #C4DFAA;
+  --green: #90C8AC;
+  --blue: #73A9AD;
+}
+
+body{
+  font-family: "Nova Oval", sans-serif;
+  transition: 500ms;
+}
+
+.left{  
+  float: left;
+  margin-left: 4%;
+  margin-right: 7%;
+  margin-top: 0%;
+  margin-bottom: -5%;
+  border : 2px solid white;
+  padding: 10px;
+  padding-bottom: 0%;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+-webkit-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+-moz-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+}
+
+.help{
+  font-size: small;
+}
+
+#clear{
+  background-color: white;
+}
+
+#eraser{
+  background-color: white;
+  cursor: crosshair;
+}
+
+#rotate{
+  background-color: white;
+}
+
+#save{
+  background-color: white;
+}
+
+#github{
+  background-color: white;
+  cursor: pointer;
+}
+
+#export{
+  background-color: white;
+}
+
+#gardenInput{
+  background-color: white;
+  font-size: x-small;
+}
+
+#drawing-canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-left: 10px;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+-webkit-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+-moz-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+}
+
+#image-container {
+  justify-content: center;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  font-size: large;
+  font-weight: bold;
+}
+
+#image-container img {
+  border: 2px solid white;
+  margin: 3px ;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#image-container img:hover {
+  transform: scale(1.3);
+  transition: 0.4s;
+}
+
+summary{
+  display: block;
+  padding: 1%;
+  font-size: large;
+  border: 2px solid white;
+  margin: 2%;
+  justify-content: center;
+  text-align: center;
+  transition: 0.5s;
+  cursor: pointer;
+  box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.5);
+-webkit-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+-moz-box-shadow: 13px 20px 36px 3px rgba(144, 200, 172, 0.7);
+}
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, var(--yellow) 50%, var(--green) 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+  animation-duration: 7s;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:10s;
+}
+
+.bg3 {
+  animation-duration:14s;
+}
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
