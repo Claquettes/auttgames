@@ -19,5 +19,3 @@ function init(app) {
 module.exports = {
     init
 }
-
-console.log(player.id)
