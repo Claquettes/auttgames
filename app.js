@@ -50,6 +50,7 @@ require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 require('./mimir').init(app);
 require('./mcstats').init(app);
+require('./hidden').init(app);
 
 
 db.getUserOrders(1).then((result) => {
