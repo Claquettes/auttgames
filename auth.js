@@ -41,7 +41,18 @@ function init(app, db, session_secret) {
         })
     })
 
-    
+    app.get('/mcstats', checkAuthenticated, (req, res) => { //on autorise l'accès seulement 
+        //on recupère l'id du compte
+        let id = req.user.id;
+        if (req.user.id !==4) {
+            res.sendStatus(403);
+          } else {
+            res.render("mcstats/mcstats.ejs");
+          }
+    });
+
+
+
 
     app.get('/login', checkNotAuthenticated, (req, res) => {
         res.render('login')
