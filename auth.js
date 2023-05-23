@@ -51,9 +51,6 @@ function init(app, db, session_secret) {
           }
     });
 
-
-
-
     app.get('/login', checkNotAuthenticated, (req, res) => {
         res.render('login')
     })
