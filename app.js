@@ -8,7 +8,8 @@ const mysql = require('mysql2');
 const db = require('./db');
 const auth = require('./auth');
 const fs = require('fs');
-const mm = require('music-metadata');
+const { parseFile } = require('music-metadata'); // Updated module import
+
 
 const port = 80;
 
@@ -47,33 +48,38 @@ require('./mcstats').init(app);
 
 // Add the code for the music player routes below
 
-const songsDirectory = path.join(__dirname, 'mcstats/my_music');
-
-app.get('/', async (req, res) => {
-  const songs = await getSongs();
-  res.render('index', { songs });
-});
-
-app.use('/my_music', express.static(songsDirectory));
-
-async function getSongs() {
-  const files = await fs.promises.readdir(songsDirectory);
-  const songs = [];
-
-  for (const file of files) {
-    if (file.endsWith('.mp3')) {
-      const path = `/my_music/${file}`;
-      const metadata = await mm.parseFile(path);
-      const title = metadata.common.title || file.slice(0, -4);
-      const duration = formatTime(metadata.format.duration);
-      const artist = metadata.common.artist || 'Artist Name';
-
-      songs.push({ title, duration, artist, path });
-    }
-  }
-
-  return songs;
-}
+app.get('/', (req, res) => {
+    const songs = [];
+    const musicPath = path.join(__dirname, 'my_music');
+  
+    fs.readdir(musicPath, async (err, files) => {
+      if (err) {
+        console.error('Error reading music files:', err);
+        return res.sendStatus(500);
+      }
+  
+      for (const file of files) {
+        if (file.endsWith('.mp3')) {
+          const filePath = path.join(musicPath, file);
+  
+          try {
+            const metadata = await parseFile(filePath);
+            const song = {
+              title: metadata.common.title || file,
+              duration: metadata.format.duration || 0,
+              artist: metadata.common.artist || 'Unknown Artist',
+              path: `/my_music/${file}`,
+            };
+            songs.push(song);
+          } catch (err) {
+            console.error('Error parsing metadata:', err);
+          }
+        }
+      }
+  
+      res.render('index', { songs: songs });
+    });
+  });
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
