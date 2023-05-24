@@ -3,7 +3,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 
 const sessionController = require('./sessionController')
-const { sanitize } = require("./passport-config");
+const {sanitize} = require("./passport-config");
 
 function init(app, db, session_secret, songs) {
     app.use(flash())
@@ -27,20 +27,19 @@ function init(app, db, session_secret, songs) {
     app.use(methodOverride('_method'))
 
     app.get('/profile', checkAuthenticated, (req, res) => {
-        db.getStats(req.user.id)
-            .then((stats) => {
-                res.render('profile', {
+        db.getStats(req.user.id).then((stats) => {
+            res.render('profile',
+                {
                     username: req.user.username,
                     avatar: req.user.avatar,
                     banner: req.user.banner,
                     stats: stats
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.sendStatus(500);
-            });
-    });
+                })
+        }).catch((err) => {
+            console.log(err)
+            res.sendStatus(500)
+        })
+    })
 
     app.get('/mcstats', checkAuthenticated, (req, res) => {
         let id = req.user.id;
@@ -53,27 +52,69 @@ function init(app, db, session_secret, songs) {
     });
 
     app.get('/login', checkNotAuthenticated, (req, res) => {
-        res.render('login');
+        res.render('login')
+    })
+
+    app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+            successRedirect: '/profile',
+            failureRedirect: '/login',
+            failureFlash: true
+        })
+    )
+    app.get('/register', checkNotAuthenticated, (req, res) => {
+        res.render('register')
+    })
+
+    app.post('/register', checkNotAuthenticated, async (req, res) => {
+        if (req.body.username.trim() === '' || req.body.password.trim() === '') {
+            res.render('/register', {message: "Nom d'utilisateur ou mot de passe vide"})
+        }
+
+        db.registerUser(sanitize(req.body.username), sanitize(req.body.password), (req.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
+            if (err) {
+                console.log(err)
+                res.sendStatus(500)
+            } else {
+                if (success) {
+                    res.render('login', {message: message})
+                } else {
+                    res.render('register', {message: message})
+                }
+            }
+        })
+    })
+
+    app.delete('/logout', (req, res, next) => {
+        req.logOut((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/login');
+        });
+
     });
 
-    // Rest of the code...
+    app.get('/settings', checkAuthenticated, (req, res) => {
+        res.render('settings', {user: req.user});
+    })
 
-    function checkAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) {
-            return next();
-        }
-        res.redirect('/login');
-    }
+}
 
-    function checkNotAuthenticated(req, res, next) {
-        if (req.isAuthenticated()) {
-            return res.redirect('/profile');
-        }
-        next();
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
     }
+    res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return res.redirect('/profile')
+    }
+    next()
 }
 
 module.exports = {
     init: init,
     checkAuthenticated: checkAuthenticated,
-};
+}
