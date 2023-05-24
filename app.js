@@ -43,10 +43,11 @@ app.get('/2048', (req, res) => {
 
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
-require('./Qalc').init(app, socketio.of('/Qalc'));
+/* require('./Qalc').init(app, socketio.of('/Qalc')); */
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 require('./mimir').init(app);
+/*
 require('./mcstats').init(app);
 
 
@@ -83,6 +84,7 @@ app.get('/', (req, res) => {
     res.render('index', { songs: songs });
   });
 });
+*/
 
   
   function formatTime(seconds) {
