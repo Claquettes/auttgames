@@ -17,10 +17,18 @@ app.use(express.urlencoded({extended: false}))
 db.init(mysql, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD);
 auth.init(app, db, process.env.SESSION_SECRET)
 
-app.use('/bootstrap/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
-app.use('/bootstrap/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
-app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-app.use('/', express.static('public'));
+    app.get('/mcstats', checkAuthenticated, (req, res) => { //on autorise l'accès seulement 
+        //on recupère l'id du compte
+        let id = req.user.id;
+        if (req.user.id !==4) {
+            res.sendStatus(403);
+          } else {
+            res.render("mcstats/mcstats.ejs");
+          }
+    });
+
+
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/index.html'));
