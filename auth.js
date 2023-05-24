@@ -47,7 +47,8 @@ function init(app, db, session_secret) {
         if (req.user.id !==3) { //user 3 == propriétaire du site (Mathieu P.)
             res.sendStatus(403); //on renvoie une erreur 403 (forbidden) CAR LA PAGE EST A USAGE PERSONNEL.
           } else {
-            res.render("mcstats/mcstats.ejs");
+            res.redirect('https://claq.fr/mcstats/test.html')
+            console.log("Accès autorisé à la page mcstats")
           }
     });
 
