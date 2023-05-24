@@ -171,5 +171,5 @@ module.exports = {
     updateDinautt: updateDinautt,
     getNRandomCitations: getNRandomCitations,
     storeIP: storeIP,
-    getUserOrders: getUserOrders
+    /*getUserOrders: getUserOrders*/
 };
