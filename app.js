@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
     const songs = [];
     
     console.log('on va tenter de lire les musiques');
-    const musicPath = path.join(__dirname, '/Qalc/my_music');
+    const musicPath = path.join(__dirname, 'views/Qalc/my_music');
 
     fs.readdir(musicPath, async (err, files) => {
       if (err) {
