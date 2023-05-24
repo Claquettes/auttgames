@@ -63,10 +63,6 @@ function init(app, db, session_secret, songs) {
     });
 
 
-
-
-
-
     app.get('/login', checkNotAuthenticated, (req, res) => {
         res.render('login')
     })
