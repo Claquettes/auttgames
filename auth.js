@@ -48,7 +48,7 @@ function init(app, db, session_secret) {
             res.sendStatus(403); //on renvoie une erreur 403 (forbidden) CAR LA PAGE EST A USAGE PERSONNEL.
           } else {
             //on redirige vers la page Qalc/private.php
-            res.redirect('https://claq.fr/mcstats');
+            res.redirect('mcstats/test.html');
           }
     });
 
