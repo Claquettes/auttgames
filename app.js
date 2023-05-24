@@ -50,17 +50,17 @@ require('./mimir').init(app);
 require('./mcstats').init(app);
 
 // Add the code for the music player routes below
-
 app.get('/', (req, res) => {
     const songs = [];
     const musicUrl = 'https://claq.fr/host/my_music';
-  
+    console.log('on va tenter de lire les musiques');
+    const musicPath = path.join(__dirname, 'Qalc/my_music');
+
     fs.readdir(musicPath, async (err, files) => {
       if (err) {
         console.error('Error reading music files:', err);
         return res.sendStatus(500);
       }
-  
       for (const file of files) {
         if (file.endsWith('.mp3')) {
           const filePath = url.resolve(musicUrl, file);
