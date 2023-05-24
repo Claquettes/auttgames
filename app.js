@@ -36,12 +36,14 @@ app.use('/snak', express.static(path.join(__dirname, 'snak')));
 app.use('/garden', express.static(path.join(__dirname, 'garden')));
 app.use('/host', express.static(path.join(__dirname, 'host')));
 
+
 app.get('/2048', (req, res) => {
   res.render('2048/2048');
 });
 
 require('./dinautt').init(app, socketio.of('/dinautt'));
 require('./citations').init(app, socketio.of('/citations'));
+require('./Qalc').init(app, socketio.of('/Qalc'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 require('./mimir').init(app);
