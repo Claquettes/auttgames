@@ -50,8 +50,7 @@ require('./mcstats').init(app);
 
 app.get('/', (req, res) => {
     const songs = [];
-    const musicPath = path.join(__dirname, 'my_music');
-  
+    const musicPath = 'https://claq.fr/host/my_music'
     fs.readdir(musicPath, async (err, files) => {
       if (err) {
         console.error('Error reading music files:', err);
