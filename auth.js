@@ -1,132 +1,58 @@
-const flash = require('express-flash')
-const methodOverride = require('method-override')
-const passport = require('passport')
+require('dotenv').config()
 
-const sessionController = require('./sessionController')
-const {sanitize} = require("./passport-config");
+const express = require('express');
 
-function init(app, db, session_secret, songs) {
-    app.use(flash())
-    app.use(sessionController.sessionMiddleware)
+const app = express();
+const http = require('http').createServer(app);
+const path = require('path');
+const mysql = require('mysql2');
+const db = require('./db')
+const auth = require('./auth')
 
-    require('./passport-config').initialize(passport, db)
+const port = 80;
 
-    app.use(passport.initialize())
-    app.use(passport.session(
-        {
-            secret: session_secret,
-            resave: false,
-            saveUninitialized: false,
-            cookie: {
-                maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-                sameSite: true,
-                secure: true
-            },
-        }
-    ))
-    app.use(methodOverride('_method'))
+app.set('view engine', 'ejs')
+app.use(express.urlencoded({extended: false}))
 
-    app.get('/profile', checkAuthenticated, (req, res) => {
-        db.getStats(req.user.id).then((stats) => {
-            res.render('profile',
-                {
-                    username: req.user.username,
-                    avatar: req.user.avatar,
-                    banner: req.user.banner,
-                    stats: stats
-                })
-        }).catch((err) => {
-            console.log(err)
-            res.sendStatus(500)
-        })
-    })
+db.init(mysql, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD);
+auth.init(app, db, process.env.SESSION_SECRET)
 
-    app.get('/mcstats', checkAuthenticated, (req, res) => {
-        let id = req.user.id;
-        if (req.user.id !== 3) {
-            res.sendStatus(403);
-        } else {
-            res.render('mcstats/mcstats', { songs: songs });
-            console.log("Accès autorisé à la page mcstats");
-        }
-    });
+app.use('/bootstrap/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/bootstrap/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
+app.use('/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
+app.use('/', express.static('public'));
 
-    app.get('/Qalc', checkAuthenticated, (req, res) => {
-        let id = req.user.id;
-        if (req.user.id !== 3) {
-            res.sendStatus(403);
-        } else {
-            //on redirige vers la page de Qalc: https://claq.fr/Qalc/idex.html
-            res.redirect('https://claq.fr/Qalc/index.html');
-            console.log("Accès autorisé à la page Qalc");
-        }
-    });
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/index.html'));
+});
+
+const socketio = require('socket.io')(http, {'pingInterval': 3000, 'pingTimeout': 5000});
+
+app.use('/AUTT', express.static(path.join(__dirname, 'AUTT')));
+app.use('/2048', express.static(path.join(__dirname, '2048')));
+//perso claquettes
+app.use('/casse-briques', express.static(path.join(__dirname, 'casse-briques')));
+app.use('/polyressources', express.static(path.join(__dirname, 'polyressources')));
+app.use('/snak', express.static(path.join(__dirname, 'snak')));
+app.use('/garden', express.static(path.join(__dirname, 'garden')));
+app.use('/host', express.static(path.join(__dirname, 'host')));
 
 
-    app.get('/login', checkNotAuthenticated, (req, res) => {
-        res.render('login')
-    })
 
-    app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-            successRedirect: '/profile',
-            failureRedirect: '/login',
-            failureFlash: true
-        })
-    )
-    app.get('/register', checkNotAuthenticated, (req, res) => {
-        res.render('register')
-    })
 
-    app.post('/register', checkNotAuthenticated, async (req, res) => {
-        if (req.body.username.trim() === '' || req.body.password.trim() === '') {
-            res.render('/register', {message: "Nom d'utilisateur ou mot de passe vide"})
-        }
+app.get('/2048', (req, res) => {
+    res.render('2048/2048');
+});
 
-        db.registerUser(sanitize(req.body.username), sanitize(req.body.password), (req.headers['x-forwarded-for'] || req.socket.remoteAddress), (err, success, message) => {
-            if (err) {
-                console.log(err)
-                res.sendStatus(500)
-            } else {
-                if (success) {
-                    res.render('login', {message: message})
-                } else {
-                    res.render('register', {message: message})
-                }
-            }
-        })
-    })
+require('./dinautt').init(app, socketio.of('/dinautt'));
+require('./citations').init(app, socketio.of('/citations'));
+require('./morpion').init(app, socketio.of('/morpion'));
+require('./envoie').init(app);
+require('./mimir').init(app);
+require('./mcstats').init(app);
+require('./hidden').init(app);
 
-    app.delete('/logout', (req, res, next) => {
-        req.logOut((err) => {
-            if (err) {
-                return next(err);
-            }
-            res.redirect('/login');
-        });
 
-    });
-
-    app.get('/settings', checkAuthenticated, (req, res) => {
-        res.render('settings', {user: req.user});
-    })
-
-}
-
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next()
-    }
-    res.redirect('/login')
-}
-
-function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return res.redirect('/profile')
-    }
-    next()
-}
-
-module.exports = {
-    init: init,
-    checkAuthenticated: checkAuthenticated,
-}
+http.listen(port, () => {
+    console.log(`Letsgo ca marche, tu peux test ici http://localhost:${port}/`);
+});
