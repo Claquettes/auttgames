@@ -51,38 +51,39 @@ require('./mcstats').init(app);
 
 
 app.get('/', (req, res) => {
-    const songs = [];
-    
-    console.log('on va tenter de lire les musiques');
-    const musicPath = path.join(__dirname, 'views/Qalc/my_music');
-
-    fs.readdir(musicPath, async (err, files) => {
-      if (err) {
-        console.error('Error reading music files:', err);
-        return res.sendStatus(500);
-      }
-      for (const file of files) {
-        if (file.endsWith('.mp3')) {
-          const filePath = url.resolve(musicUrl, file);
+  const songs = [];
   
-          try {
-            const metadata = await parseFile(filePath);
-            const song = {
-              title: metadata.common.title || file,
-              duration: metadata.format.duration || 0,
-              artist: metadata.common.artist || 'Unknown Artist',
-              path: `/my_music/${file}`,
-            };
-            songs.push(song);
-          } catch (err) {
-            console.error('Error parsing metadata:', err);
-          }
+  console.log('on va tenter de lire les musiques');
+  const musicPath = path.join(__dirname, 'views/Qalc/my_music');
+
+  fs.readdir(musicPath, async (err, files) => {
+    if (err) {
+      console.error('Error reading music files:', err);
+      return res.sendStatus(500);
+    }
+    for (const file of files) {
+      if (file.endsWith('.mp3')) {
+        const filePath = path.join(musicPath, file);
+
+        try {
+          const metadata = await parseFile(filePath);
+          const song = {
+            title: metadata.common.title || file,
+            duration: metadata.format.duration || 0,
+            artist: metadata.common.artist || 'Unknown Artist',
+            path: `/my_music/${file}`,
+          };
+          songs.push(song);
+        } catch (err) {
+          console.error('Error parsing metadata:', err);
         }
       }
-  
-      res.render('index', { songs: songs });
-    });
+    }
+
+    res.render('index', { songs: songs });
   });
+});
+
   
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
