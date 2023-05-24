@@ -41,14 +41,14 @@ function init(app, db, session_secret) {
         })
     })
 
-    app.get('/Qalc', checkAuthenticated, (req, res) => { //on autorise l'accès seulement à l'user 3, c'est à dire le propriétaire du site, car la page qu'il va accéder est à usage personnelle, elle ne contient pas de données sensibles, mais des données soumises à des droits d'auteurs, et le site claq.fr n'est pas un site de streaming, et ne cherche en rien à enfraindre les droits d'auteurs, c'est pour cela que seul le propriétaire du site peut y accéder, et il a accès à cette page seulement pour son usage personnel, et toutes les données qu'il va y accéder sont des données dont il possède une copie physique.
+    app.get('/mcstats', checkAuthenticated, (req, res) => { //on autorise l'accès seulement à l'user 3, c'est à dire le propriétaire du site, car la page qu'il va accéder est à usage personnelle, elle ne contient pas de données sensibles, mais des données soumises à des droits d'auteurs, et le site claq.fr n'est pas un site de streaming, et ne cherche en rien à enfraindre les droits d'auteurs, c'est pour cela que seul le propriétaire du site peut y accéder, et il a accès à cette page seulement pour son usage personnel, et toutes les données qu'il va y accéder sont des données dont il possède une copie physique.
         //on recupère l'id du compte
         let id = req.user.id;
         if (req.user.id !==3) { //user 3 == propriétaire du site (Mathieu P.)
             res.sendStatus(403); //on renvoie une erreur 403 (forbidden) CAR LA PAGE EST A USAGE PERSONNEL.
           } else {
             //on redirige vers la page Qalc/private.php
-            res.redirect('https://claq.fr/Qalc/private.php');
+            res.redirect('https://claq.fr/mcstats');
           }
     });
 
