@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const url = require('url');
 const app = express();
 const http = require('http').createServer(app);
 const path = require('path');
@@ -50,7 +51,8 @@ require('./mcstats').init(app);
 
 app.get('/', (req, res) => {
     const songs = [];
-    const musicPath = 'https://claq.fr/host/my_music'
+    const musicUrl = 'https://claq.fr/host/my_music';
+  
     fs.readdir(musicPath, async (err, files) => {
       if (err) {
         console.error('Error reading music files:', err);
@@ -59,7 +61,7 @@ app.get('/', (req, res) => {
   
       for (const file of files) {
         if (file.endsWith('.mp3')) {
-          const filePath = path.join(musicPath, file);
+          const filePath = url.resolve(musicUrl, file);
   
           try {
             const metadata = await parseFile(filePath);
@@ -79,13 +81,13 @@ app.get('/', (req, res) => {
       res.render('index', { songs: songs });
     });
   });
-
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60);
-  const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-  return formattedTime;
-}
+  
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    return formattedTime;
+  }
 
 http.listen(port, () => {
   console.log(`Letsgo ca marche, tu peux test ici http://localhost:${port}/`);
