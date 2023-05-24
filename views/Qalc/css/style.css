@@ -1,0 +1,41 @@
+.music-player {
+    text-align: center;
+    background-color: aquamarine;
+    border : 3px solid black;
+  }
+  
+  /* CSS for the responsive layout */
+  @media screen and (max-width: 600px) {
+    .music-player {
+      width: 100%;
+    }
+  }
+
+#library { /* flex container that will hold 'songs' */
+  display: flex;
+  background-color: blue;
+  border: 3px solid black;
+}
+
+#library .song { /* flex items */
+  flex: 1 0 0; /* grow, shrink, basis */
+  padding: 1em;
+  border: 1px solid #ccc;
+  margin: 1em;
+  text-align: center;
+}
+
+#library .song:hover {
+  background-color: #eee;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#library-top-text {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 1em;
+  background-color: #eee;
+  border: 1px solid #ccc;
+}

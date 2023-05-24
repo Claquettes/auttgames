@@ -49,7 +49,7 @@ require('./citations').init(app, socketio.of('/citations'));
 require('./morpion').init(app, socketio.of('/morpion'));
 require('./envoie').init(app);
 require('./mimir').init(app);
-require('./mcstats').init(app);
+require('./Qalc').init(app);
 
 /*
 
