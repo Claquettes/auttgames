@@ -148,7 +148,7 @@ function storeIP(id, ip) {
         })
     })
 }
-
+/*
 function getUserOrders(id) {
     return new Promise((resolve, reject) => {
         db.query('SELECT order_id, order_json FROM mcstats WHERE user_id = ?', [id], (err, result) => {
@@ -160,7 +160,7 @@ function getUserOrders(id) {
         })
     });
 }
-
+*/
 module.exports = {
     init,
     getUser,
