@@ -51,7 +51,7 @@ require('./envoie').init(app);
 require('./mimir').init(app);
 require('./mcstats').init(app);
 
-
+/*
 
 db.getUserOrders(1).then((result) => {
     for (let i = 0; i < result.length; i++) {
@@ -64,7 +64,7 @@ db.getUserOrders(1).then((result) => {
     console.dir(result[0].order_json);
     console.dir(result[0].order_json.menus[0].products);
 });
-
+*/
 http.listen(port, () => {
     console.log(`Letsgo ca marche, tu peux test ici http://localhost:${port}/`);
 });
