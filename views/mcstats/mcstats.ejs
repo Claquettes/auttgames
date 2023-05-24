@@ -14,17 +14,42 @@
         width: 100%;
       }
     }
+    
+    /* CSS for the library */
+    .library {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .library-item {
+      margin: 10px;
+    }
+    
+    .library-item img {
+      width: 100px;
+      height: 100px;
+    }
   </style>
 </head>
 <body>
-    HELLO YOU ARE WORKING BY MAGIC ????
   <div class="music-player">
     <audio id="audio-player" controls autoplay>
-        <source src="https://claq.fr/host/my_music/unity.mp3" type="audio/mpeg">      Your browser does not support the audio element.
+      <!-- Remove the static source element -->
+      Your browser does not support the audio element.
     </audio>
     <h2 id="song-title"></h2>
     <p id="artist-name"></p>
     <p id="song-duration"></p>
+  </div>
+  
+  <div class="library">
+    <% songs.forEach(function(song) { %>
+      <div class="library-item" onclick="loadSong('<%- song.path %>')">
+        <p><%- song.title %></p>
+      </div>
+    <% }); %>
   </div>
 
   <script>
@@ -48,6 +73,17 @@
         artistName.textContent = currentSong.artist;
       }
     });
+
+    // Function to load a song when clicked from the library
+    function loadSong(path) {
+      const source = document.createElement('source');
+      source.src = path;
+      source.type = 'audio/mpeg';
+      audioPlayer.innerHTML = '';
+      audioPlayer.appendChild(source);
+      audioPlayer.load();
+      audioPlayer.play();
+    }
 
     function formatTime(seconds) {
       const minutes = Math.floor(seconds / 60);
