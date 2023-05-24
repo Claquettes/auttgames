@@ -1,19 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Qalq</title>
-    <link rel="stylesheet" href="/css/stylesGlobal.css">
-    <link rel="stylesheet" href="/css/mcstats.css">
+  <title>Responsive Music Player</title>
+  <style>
+    /* CSS for the music player */
+    .music-player {
+      text-align: center;
+    }
+    
+    /* CSS for the responsive layout */
+    @media screen and (max-width: 600px) {
+      .music-player {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-Bon on est là hein JuJuJul
-<script src="/js/mcstats.js"></script>
-  
+    HELLO YOU ARE WORKING BY MAGIC ????
+  <div class="music-player">
+    <audio id="audio-player" controls autoplay>
+      <source src="your-audio-file.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <h2 id="song-title"></h2>
+    <p id="artist-name"></p>
+    <p id="song-duration"></p>
+  </div>
+
+  <script>
+    // JavaScript to update song information
+    const audioPlayer = document.getElementById('audio-player');
+    const songTitle = document.getElementById('song-title');
+    const artistName = document.getElementById('artist-name');
+    const songDuration = document.getElementById('song-duration');
+
+    const songs = <%- JSON.stringify(songs) %>;
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+      const duration = formatTime(audioPlayer.duration);
+      songDuration.textContent = `Duration: ${duration}`;
+    });
+
+    audioPlayer.addEventListener('play', () => {
+      const currentSong = songs.find(song => song.path === audioPlayer.currentSrc);
+      if (currentSong) {
+        songTitle.textContent = currentSong.title;
+        artistName.textContent = currentSong.artist;
+      }
+    });
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
+      const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+      return formattedTime;
+    }
+  </script>
 </body>
 </html>
-
-
-
-   
-  
-   
