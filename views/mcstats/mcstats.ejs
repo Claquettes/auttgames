@@ -35,7 +35,7 @@
     const artistName = document.getElementById('artist-name');
     const songDuration = document.getElementById('song-duration');
 
-    const songs = <%- JSON.stringify(songs) %>;
+    const songs = '<%- JSON.stringify(songs) %>';
 
     audioPlayer.addEventListener('loadedmetadata', () => {
       const duration = formatTime(audioPlayer.duration);
