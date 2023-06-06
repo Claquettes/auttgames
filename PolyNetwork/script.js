@@ -25,3 +25,5 @@ function main()
     redirect(getUserId());
     console.log("Redirecting...");
 }
+
+main();
