@@ -21,9 +21,10 @@ function main()
     {
         console.log("No id found, redirecting to the main page...");
         window.location.href = "https://maxime-antoine.fr/PolyNetwork/index.php";
+    }else{
+        redirect(getUserId());
+        console.log("Redirecting...");
     }
-    redirect(getUserId());
-    console.log("Redirecting...");
 }
 
 main();
