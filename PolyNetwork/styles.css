@@ -1,0 +1,25 @@
+:root{
+    --accent: #00adef;
+    --accentLight: #15bdff;
+    --accentDark: #0085b9;
+    --bg: #7c8892;
+    --bg-dark: #384955;
+    --text: #fff;
+    --alert: #ff4949;
+    --alertDark: #eb3a3a;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color:  var(--bg);
+    color: var(--text);
+    font-size: 1em;
+    min-height: 100vh;
+    padding: 0px;
+    margin: 0;
+}
+
+img {
+    height: 40px;
+}
