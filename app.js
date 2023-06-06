@@ -33,6 +33,7 @@ app.use('/2048', express.static(path.join(__dirname, '2048')));
 //perso claquettes
 app.use('/casse-briques', express.static(path.join(__dirname, 'casse-briques')));
 app.use('/polyressources', express.static(path.join(__dirname, 'polyressources')));
+app.use('/PolyNetwork', express.static(path.join(__dirname, 'PolyNetwork')));
 app.use('/snak', express.static(path.join(__dirname, 'snak')));
 app.use('/garden', express.static(path.join(__dirname, 'garden')));
 app.use('/host', express.static(path.join(__dirname, 'host')));
